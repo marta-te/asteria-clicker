@@ -3,7 +3,6 @@ let clickPower = 1;
 let passiveIncome = 0;
 
 const countEl = document.getElementById("count");
-const dangerEl = document.getElementById("danger");
 
 // Click power upgrades PASSIVE
 const passiveItems = {
@@ -55,20 +54,6 @@ setInterval(() => {
 }, 1000);
 
 // DANGER
-setInterval(() => {
-  if (Math.random() < 0.2) {
-    dangerEl.style.display = "block";
-    let interval = setInterval(() => {
-      count -= 1;
-      update();
-    }, 1000);
-
-    dangerEl.onclick = () => {
-      clearInterval(interval);
-      dangerEl.style.display = "none";
-    };
-  }
-}, 10000);
 
 function updateShopDisplay() {
     const shop = document.getElementById("passiveShop");
@@ -107,3 +92,67 @@ function updateShopDisplay() {
   
   // Run the display function on load
   updateShopDisplay();
+
+  let asteria = 100; // Starting Asteria count
+  let dangerTimer = null;
+  let dangerInterval = null;
+  
+  const dangerEl = document.getElementById("danger");
+  const dangerImage = document.getElementById("dangerImage");
+  
+  const asteriaDisplay = document.getElementById("asteriaDisplay");
+  
+  function updateAsteriaDisplay() {
+    asteriaDisplay.innerText = `Asteria: ${asteria} Ⓐ`;
+  }
+  
+  // Function to show the danger image
+  function showDanger() {
+    console.log("Showing danger"); // Debugging log to check if function is triggered
+    dangerEl.style.display = "block"; // Show the danger container
+    
+    // Random initial position at the top of the screen
+    let posX = Math.random() * (window.innerWidth - 100); // Width minus image width
+    dangerImage.style.left = `${posX}px`;
+    dangerImage.style.top = `0px`; // Fixed at the top
+  
+    // Velocity for horizontal movement
+    let velocityX = 2 * (Math.random() < 0.5 ? -1 : 1); // Random left or right
+  
+    // Floating horizontally with bouncing effect
+    dangerInterval = setInterval(() => {
+      posX += velocityX; // Update position
+  
+      // Bounce on edges
+      if (posX <= 0 || posX >= window.innerWidth - 100) velocityX *= -1;
+  
+      // Apply new position
+      dangerImage.style.left = `${posX}px`;
+    }, 10); // Update every 10ms
+  
+    // Deduct Asteria every second
+    if (dangerTimer === null) {
+      dangerTimer = setInterval(() => {
+        if (asteria >= 1) { // If we have Asteria to deduct
+          asteria -= 1;
+          updateAsteriaDisplay();
+        }
+      }, 1000); // Deduct every second
+    }
+  }
+  
+  // Function to handle danger image click (clear interval, hide danger)
+  dangerEl.onclick = () => {
+    console.log("Danger clicked"); // Debugging log to check if click is working
+    clearInterval(dangerInterval);
+    clearInterval(dangerTimer);
+    dangerEl.style.display = "none"; // Hide the danger image
+  };
+  
+  // Randomly show danger every 10 seconds with a 20% chance
+  setInterval(() => {
+    if (Math.random() < 0.2) { // 20% chance
+      showDanger();
+    }
+  }, 10000); // Check every 10 seconds
+  

@@ -13,12 +13,15 @@ body {
   }
   
   #danger {
-    background: red;
-    color: white;
-    padding: 10px;
-    font-weight: bold;
-    cursor: pointer;
+    position: absolute;
+    z-index: 10;
   }
+  
+  #dangerImage {
+    position: absolute;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+  }  
   
   #clickBtn {
     cursor: pointer;
