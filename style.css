@@ -21,7 +21,8 @@ body {
     position: absolute;
     transition: all 0.1s ease-in-out;
     cursor: pointer;
-  }  
+  }
+  
   
   #clickBtn {
     cursor: pointer;

@@ -133,10 +133,9 @@ function updateShopDisplay() {
     // Deduct Asteria every second
     if (dangerTimer === null) {
       dangerTimer = setInterval(() => {
-        if (asteria >= 1) { // If we have Asteria to deduct
-          asteria -= 1;
+          count -= 1;
           updateAsteriaDisplay();
-        }
+        
       }, 1000); // Deduct every second
     }
   }
@@ -156,3 +155,4 @@ function updateShopDisplay() {
     }
   }, 10000); // Check every 10 seconds
   
+  showDanger(); // Show danger on load for testing
