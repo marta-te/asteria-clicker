@@ -7,29 +7,26 @@ const passiveRateDisplay = document.getElementById("passiveRate");
 const clickBtn = document.getElementById("clickBtn");
 
 const activeItems = {
-  drift: { cost: 10, value: 1, image: "assets/drift.jpg" },
-  hairDye: { cost: 25, value: 2, image: "assets/hairdye.png" },
-  sunglasses: { cost: 50, value: 5, image: "assets/glasses_spikey.png" }
-};
+    oneMoreTime: { cost: 50,   value: 1,  image: "assets/onemoretime.jpeg" },       // Entry-level
+    hairDye:     { cost: 100,  value: 3,  image: "assets/hairdye.png" },
+    sunglasses:  { cost: 200,  value: 6,  image: "assets/glasses_spikey.png" },
+    drift:       { cost: 400,  value: 12, image: "assets/drift.jpg", locked: true },
+    staff:       { cost: 1000, value: 25, image: "assets/staff.png" },
+    takeAPic:    { cost: 2500, value: 50, image: "assets/takeapic.jpeg" },
+    haha:        { cost: 6000, value: 120, image: "assets/haha.jpg" }                  // High-end
+  };
+  
 
 const passiveItems = {
-  sanctuary: {
-    baseCost: 25, currentCost: 25, income: 1, owned: 0,
-    image: "assets/sanctuary.jpeg"
-  },
-  kets4eki: {
-    baseCost: 100, currentCost: 100, income: 5, owned: 0,
-    image: "assets/kets4eki.jpeg"
-  },
-  fanart: {
-    baseCost: 300, currentCost: 300, income: 15, owned: 0,
-    image: "assets/instagram.webp"
-  },
-  photoshoot: {
-    baseCost: 1000, currentCost: 1000, income: 50, owned: 0,
-    image: "assets/photoshoot.png"
-  }
-};
+    sanctuary:   { baseCost: 25,    currentCost: 25,    income: 1,   owned: 0, image: "assets/sanctuary.jpeg" },
+    kets4eki:    { baseCost: 100,   currentCost: 100,   income: 5,   owned: 0, image: "assets/kets4eki.jpeg" },
+    fanart:      { baseCost: 300,   currentCost: 300,   income: 15,  owned: 0, image: "assets/instagram.webp" },
+    photoshoot:  { baseCost: 1000,  currentCost: 1000,  income: 50,  owned: 0, image: "assets/photoshoot.png" },
+    socialsPost: { baseCost: 5000,  currentCost: 5000,  income: 150, owned: 0, image: "assets/socials.png" },
+    redMercedes: { baseCost: 20000, currentCost: 20000, income: 500, owned: 0, image: "assets/redmercedes.png" },
+    disstrack:   { baseCost: 50000, currentCost: 50000, income: 1000,owned: 0, image: "assets/disstrack.jpeg" }
+  };
+  
 
 function updateDisplays() {
   asteriaDisplay.textContent = `Asteria: ${asteria} Ⓐ`;
@@ -76,6 +73,7 @@ function renderShops() {
     passiveShop.innerHTML = "<h2>Passive</h2>";
   
     for (const [name, item] of Object.entries(activeItems)) {
+        if (name === "drift" && item.locked) continue;
       const card = document.createElement("div");
       card.className = "shop-item";
   
@@ -108,8 +106,9 @@ function renderShops() {
     }
   
     for (const [name, item] of Object.entries(passiveItems)) {
-      const card = document.createElement("div");
-      card.className = "shop-item";
+
+        const card = document.createElement("div");
+        card.className = "shop-item";
   
       const itemContent = document.createElement("div");
       itemContent.className = "item-content";
@@ -133,6 +132,23 @@ function renderShops() {
       card.onclick = () => buyPassiveItem(name);
       card.appendChild(itemContent);
       passiveShop.appendChild(card);
+    }
+  }
+  function buyPassiveItem(name) {
+    const item = passiveItems[name];
+    if (asteria >= item.currentCost) {
+      asteria -= item.currentCost;
+      passiveIncome += item.income;
+      item.owned += 1;
+      item.currentCost = Math.floor(item.currentCost * 1.5);
+  
+      // Unlock drift if redMercedes was bought
+      if (name === "redMercedes") {
+        activeItems.drift.locked = false;
+      }
+  
+      renderShops();
+      updateDisplays();
     }
   }
   

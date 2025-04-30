@@ -2,7 +2,7 @@ body {
     font-family: 'Sono', sans-serif;
     margin: 0;
     background-color: #121212;
-    color: white;
+    color: rgba(255, 255, 255, 0.259);
     font-family: sans-serif;
     overflow: hidden;
   }
@@ -31,16 +31,32 @@ body {
     padding: 20px;
   }
   
-  #clickBtn img {
-    width: 200px;
-    height: auto;
+  #clickBtn {
+    background: transparent;
+    border: none;
+    padding: 0;
     cursor: pointer;
+    outline: none;
   }
+  
+  #clickBtn img {
+    width: 300px;
+    height: auto;
+    display: block;
+    transition: transform 0.1s ease;
+    border-radius: 50%;
+  }
+  
+  #clickBtn:active img {
+    transform: scale(0.99); /* Shrinks slightly on click */
+  }
+  
+  
   
 /* Apply "Sono" font to the entire body */
 body {
     font-family: 'Sono', sans-serif;
-    background-color: #f4f4f4; /* Optional: Light background color */
+    background-color: #f4f4f45f; /* Optional: Light background color */
     color: #ff0000; /* Dark text for contrast */
     margin: 0;
     padding: 0;
