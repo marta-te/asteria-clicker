@@ -1,25 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Asterias Clicker</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asteria Clicker</title>
+    <!-- Preconnect to improve font loading speed -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sono:wght@200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  
 <body>
-  <h1>Asterias: <span id="count">0</span></h1>
-  <img id="clickBtn" src="assets/asteria.webp" alt="Asterias" width="200">
 
-  <div id="shop">
-    <h2>Passive Items</h2>
-    <div id="passiveShop"></div>
-  </div>
-  
-  
 
-  <div id="danger" style="display: none;">
-    <img id="dangerImage" src="assets/britney_manson.jpeg" alt="Danger" width="100">
+  <div class="container">
+    <div class="shop-container" id="activeShop">
+      <h2>Active</h2>
+    </div>
+
+    <div class="game-area">
+      <div id="asteriaDisplay">Asteria: 0 Ⓐ</div>
+      <div id="passiveRate">+0 Ⓐ/s</div>
+      <button id="clickBtn">
+        <img src="assets/asteria.webp" alt="Click Icon" />
+      </button>
+    </div>
+
+    <div class="shop-container" id="passiveShop">
+      <h2>Passive</h2>
+    </div>
   </div>
-  
+
+  <div id="danger" style="display: none">
+    <img id="dangerImage" src="assets/britney_manson.jpeg" alt="Danger" />
+  </div>
 
   <script src="game.js"></script>
 </body>
