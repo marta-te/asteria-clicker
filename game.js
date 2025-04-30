@@ -7,8 +7,8 @@ const passiveRateDisplay = document.getElementById("passiveRate");
 const clickBtn = document.getElementById("clickBtn");
 
 const activeItems = {
-  drift: { cost: 10, value: 1, image: "assets/drift.png" },
-  hairDye: { cost: 25, value: 2, image: "assets/hair_dye.png" },
+  drift: { cost: 10, value: 1, image: "assets/drift.jpg" },
+  hairDye: { cost: 25, value: 2, image: "assets/hairdye.png" },
   sunglasses: { cost: 50, value: 5, image: "assets/glasses_spikey.png" }
 };
 
@@ -27,7 +27,7 @@ const passiveItems = {
   },
   photoshoot: {
     baseCost: 1000, currentCost: 1000, income: 50, owned: 0,
-    image: "assets/photoshoot.avif"
+    image: "assets/photoshoot.png"
   }
 };
 
