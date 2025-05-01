@@ -115,19 +115,14 @@ body {
     margin-bottom: 5px;
   }
   
-  #danger {
-    position: absolute;
-    top: 0;
-    width: 100px;
-    height: auto;
-    z-index: 10;
+  #dangerImage {
+    filter: drop-shadow(0 0 10px red);
+    transition: transform 0.2s ease;
+  }
+  #dangerImage:hover {
+    transform: scale(1.05);
   }
   
-  #dangerImage {
-    position: absolute;
-    top: 0;
-    width: 100px;
-  }
   
   .shop-item {
     display: flex;           /* Flexbox to lay out image and text side by side */
