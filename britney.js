@@ -2,8 +2,7 @@ let britneyVisible = false;
 let britneyTimer;
 let moveInterval;
 let britneyX = -150;
-const britneyVelocity = 1.2; // Renamed to avoid variable collision
-
+const britneyVelocity = 1.2;
 function showBritney() {
   const dangerEl = document.getElementById("danger");
   if (!dangerEl) return;
@@ -67,7 +66,6 @@ function catchBritney() {
   if (britneyVisible) {
     console.log("✅ Britney was caught!");
     hideBritney();
-    alert("✅ You caught Britney Manson in time!");
   }
 }
 
