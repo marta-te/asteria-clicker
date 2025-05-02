@@ -2,19 +2,21 @@ let britneyVisible = false;
 let britneyTimer;
 let moveInterval;
 let britneyX = 0;
-let britneyY = 0; 
-let britneySpawnY = 0;
+let britneyY = 0;
+let britneySpawnModifier = 1.0;
 
+const dangerEl = document.getElementById("danger");
+const dangerImage = document.getElementById("dangerImage");
 const britneyVelocity = 1.2;
 
+// === SHOW BRITNEY ===
 function showBritney() {
-  const dangerEl = document.getElementById("danger");
-  if (!dangerEl) return;
+  if (britneyVisible) return;
 
   console.log("👀 Britney appears!");
 
   britneyVisible = true;
-  britneyX = window.innerWidth / 2 - 50; // center
+  britneyX = window.innerWidth / 2 - 50;
   britneyY = 0;
 
   dangerEl.style.display = "block";
@@ -23,7 +25,6 @@ function showBritney() {
 
   moveBritney();
 
-  // She will try to steal after 5 seconds
   britneyTimer = setTimeout(() => {
     if (britneyVisible) {
       stealAsteria();
@@ -31,6 +32,7 @@ function showBritney() {
   }, 5000);
 }
 
+// === MOVE BRITNEY ===
 function moveBritney() {
   clearInterval(moveInterval);
 
@@ -42,16 +44,11 @@ function moveBritney() {
 
     britneyY += verticalSpeed * direction;
 
-    const dangerEl = document.getElementById("danger");
-    const gameArea = document.querySelector(".game-area");
-
-    if (!dangerEl) return;
-
     dangerEl.style.left = `${(window.innerWidth / 2) - 50}px`;
     dangerEl.style.top = `${britneyY}px`;
 
     const imageHeight = dangerEl.offsetHeight || 100;
-    const maxY = (gameArea?.offsetHeight || window.innerHeight) - imageHeight;
+    const maxY = (document.querySelector(".game-area")?.offsetHeight || window.innerHeight) - imageHeight;
 
     if (britneyY >= maxY || britneyY <= 0) {
       direction *= -1;
@@ -59,58 +56,48 @@ function moveBritney() {
   }, 16);
 }
 
+// === STEAL ASTERIA ===
 function stealAsteria() {
-  if (!britneyVisible) return;
-
   console.log("🧨 Britney Manson is stealing Asteria...");
   console.log("Asteria before:", asteria);
 
   asteria = 0;
-
-  try {
-    if (typeof updateDisplays === "function") {
-      updateDisplays(); // Ensure it's available
-    } else {
-      console.warn("⚠️ updateDisplays not defined.");
-    }
-
-    alert("💀 Britney Manson stole all your Asterias!");
-  } catch (error) {
-    console.error("❌ Error during updateDisplays in stealAsteria:", error);
-  }
-
-  hideBritney(); // Call hideBritney to hide the element
+  if (typeof updateDisplays === "function") updateDisplays();
+  alert("💀 Britney Manson stole all your Asterias!");
+  hideBritney();
 }
 
+// === HIDE BRITNEY ===
 function hideBritney() {
-  const dangerEl = document.getElementById("danger");
-  if (dangerEl) {
-    dangerEl.style.display = "none"; // Hide the element
-  }
-  britneyVisible = false; // Update the visibility flag
+  clearInterval(moveInterval);
+  clearTimeout(britneyTimer);
+  dangerEl.style.display = "none";
+  britneyVisible = false;
 }
 
-function catchBritney() {
+// === CLICK TO CATCH ===
+dangerImage.addEventListener("click", () => {
   if (britneyVisible) {
     console.log("✅ Britney was caught!");
     hideBritney();
+    updateBritneyProgress?.(1);
   }
-}
-
-function startBritneyCycle() {
-  const dangerImg = document.getElementById("dangerImage");
-  if (dangerImg) {
-    dangerImg.addEventListener("click", catchBritney);
-  }
-
-  setInterval(showBritney, 10000); // Every 10 seconds
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  startBritneyCycle();
 });
 
-// Optional: for debugging
-window.addEventListener("error", e => {
-  console.error("JS Error:", e.message);
-});
+// === SPAWN CHECK EVERY 10 SECONDS ===
+setInterval(() => {
+  const adjustedChance = 1.0 * britneySpawnModifier;
+  const roll = Math.random();
+  console.log(`🎯 Spawn roll: ${roll} vs chance ${adjustedChance}`);
+
+  if (!britneyVisible && roll < adjustedChance) {
+    showBritney();
+  }
+}, 10000);
+
+// === EXTERNAL CONTROL ===
+function reduceBritneyChanceBy(percent) {
+  britneySpawnModifier *= (1 - percent);
+  if (britneySpawnModifier < 0) britneySpawnModifier = 0;
+  console.log(`🔻 Britney spawn modifier now: ${britneySpawnModifier}`);
+}

@@ -4,10 +4,20 @@ let achievements = {
       unlocked: false,
       description: "You clicked for the first time!",
     },
+    FBM: {
+        name: "FBM",
+        unlocked: false,
+        description: "80% less chance of Britney.",
+      },
     redMercedes: {
         name: "Red Mercedes",
         unlocked: false,
         description: "+active item: drift",
+      },
+      infiniteSwag: {
+        name: "Infinite Swag",
+        unlocked: false,
+        description: "Swag galore | +active item: GALORE",
       },
     britneyCatcher: {
           name: "Britney Catcher",
@@ -73,7 +83,8 @@ let achievements = {
   
       li.appendChild(name);
       li.appendChild(desc);
-      list.appendChild(li);
+      list.insertBefore(li, list.firstChild);
+
     });
   }
   

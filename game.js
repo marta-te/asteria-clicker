@@ -1,4 +1,4 @@
-let asteria = 22000;
+let asteria = 220000;
 let clickPower = 1;
 let passiveIncome = 0;
 let hasHairDye = false;
@@ -78,6 +78,7 @@ function buyActiveItem(name) {
             hasHelloKittyHat = true;
             console.log("Hello Kitty Hat unlocked");
             updateAsteriaImage();
+            unlockAchievement("infiniteSwag");
         }
       
 
@@ -99,6 +100,11 @@ function buyPassiveItem(name) {
         console.log("Drift unlocked!");
         unlockAchievement("redMercedes");
       }
+      if (name === "disstrack" && item.owned === 1) {
+        britneySpawnModifier = 0.2; // Reduce spawn chance by 80%
+        unlockAchievement("FBM");
+      }
+      
       
   
       // Unlock fanart if anarchistSanctuary is bought
@@ -191,44 +197,6 @@ function renderShops() {
       passiveShop.appendChild(card);
     }
   }
-
-  
-
-// Danger Logic
-const dangerEl = document.getElementById("danger");
-const dangerImage = document.getElementById("dangerImage");
-let posX = 0;
-let velocity = 2;
-let dangerInterval, dangerTimer;
-
-function showDanger() {
-  dangerEl.style.display = "block";
-  dangerImage.style.top = "0px";
-  posX = Math.random() * (window.innerWidth - 100);
-  dangerImage.style.left = `${posX}px`;
-
-  dangerInterval = setInterval(() => {
-    posX += velocity;
-    if (posX <= 0 || posX >= window.innerWidth - 100) velocity *= -1;
-    dangerImage.style.left = `${posX}px`;
-  }, 10);
-
-  dangerTimer = setInterval(() => {
-    asteria -= 1;
-    updateDisplays();
-  }, 1000);
-}
-
-dangerEl.onclick = () => {
-  clearInterval(dangerInterval);
-  clearInterval(dangerTimer);
-  dangerEl.style.display = "none";
-  updateBritneyProgress(1);
-
-};
-
-// Appear after 10 seconds
-setTimeout(showDanger, 10000);
 
 function updateAsteriaImage() {
     const clickImage = document.querySelector("#clickBtn img");

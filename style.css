@@ -238,7 +238,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 300px;
-    max-height: 400px;
+    max-height: 100px;
     overflow-y: auto;
     background-color: black;
     color: red;
@@ -324,5 +324,16 @@ body {
     margin-bottom: 6px;
     color: rgba(255, 0, 0, 0.4);
     transition: all 0.3s ease;
+  }
+  
+  #achievementsPanel::-webkit-scrollbar {
+    width: 8px;
+  }
+  #achievementsPanel::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 4px;
+  }
+  #achievementsPanel::-webkit-scrollbar-track {
+    background: black;
   }
   
