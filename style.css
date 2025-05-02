@@ -122,8 +122,7 @@ body {
   #dangerImage:hover {
     transform: scale(1.05);
   }
-  
-  
+
   .shop-item {
     display: flex;           /* Flexbox to lay out image and text side by side */
     margin-bottom: 20px;     /* Space between items */
