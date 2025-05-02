@@ -1,6 +1,9 @@
-let asteria = 0;
+let asteria = 1000000;
 let clickPower = 1;
 let passiveIncome = 0;
+let hasHairDye = false;
+let hasGlasses = false;
+let hasHelloKittyHat = false;
 
 const asteriaDisplay = document.getElementById("asteriaDisplay");
 const passiveRateDisplay = document.getElementById("passiveRate");
@@ -11,10 +14,11 @@ const clickBtn = document.getElementById("clickBtn");
 
 const activeItems = {
     oneMoreTime: { cost: 50,   value: 1,  image: "assets/onemoretime.jpeg" },       // Entry-level
-    hairDye:     { cost: 100,  value: 3,  image: "assets/hairdye.png" },
-    sunglasses:  { cost: 200,  value: 6,  image: "assets/glasses_spikey.png" },
-    drift:       { cost: 400,  value: 12, image: "assets/drift.jpg", locked: true },
-    staff:       { cost: 1000, value: 25, image: "assets/staff.png" },
+    hairDye:     { cost: 100,  value: 2,  image: "assets/hairdye.png" },
+    sunglasses:  { cost: 200,  value: 4,  image: "assets/glasses_spikey.png" },
+    drift:       { cost: 400,  value: 8, image: "assets/drift.jpg", locked: true },
+    staff:       { cost: 1000, value: 10, image: "assets/staff.png" },
+    helloKittyHat:{ cost: 1500, value: 20, image: "assets/kittyhat.PNG", locked: true},
     takeAPic:    { cost: 2500, value: 50, image: "assets/takeapic.jpeg" },
     haha:        { cost: 6000, value: 120, image: "assets/haha.jpg" }                  // High-end
   };
@@ -23,7 +27,7 @@ const activeItems = {
 const passiveItems = {
     sanctuary:   { baseCost: 25,    currentCost: 25,    income: 1,   owned: 0, image: "assets/sanctuary.jpeg" },
     kets4eki:    { baseCost: 100,   currentCost: 100,   income: 5,   owned: 0, image: "assets/kets4eki.jpeg" },
-    fanart:      { baseCost: 300,   currentCost: 300,   income: 15,  owned: 0, image: "assets/instagram.webp" },
+    fanart:      { baseCost: 300,   currentCost: 300,   income: 15,  owned: 0, image: "assets/instagram.webp", locked: true },
     photoshoot:  { baseCost: 1000,  currentCost: 1000,  income: 50,  owned: 0, image: "assets/photoshoot.png" },
     socialsPost: { baseCost: 5000,  currentCost: 5000,  income: 150, owned: 0, image: "assets/socials.png" },
     redMercedes: { baseCost: 20000, currentCost: 20000, income: 500, owned: 0, image: "assets/redmercedes.png" },
@@ -51,20 +55,61 @@ function buyActiveItem(name) {
     item.cost = Math.floor(item.cost * 1.5);
     renderShops();
     updateDisplays();
+    if (name === "hairDye") {
+        activeItems.helloKittyHat.locked = false;
+        hasHairDye = true;
+
+
+        console.log("Hello Kitty Hat unlocked");
+        console.log("Hairdye unlocked");
+        updateAsteriaImage();
+        renderShops();
+
+      }
+      
+      if (name === "sunglasses") {
+        hasGlasses = true;
+        console.log("Glasses unlocked");
+          
+        updateAsteriaImage();
+      }
+        if (name === "helloKittyHat") {
+            hasHelloKittyHat = true;
+            console.log("Hello Kitty Hat unlocked");
+            updateAsteriaImage();
+        }
+      
+
+    updateAsteriaImage();
   }
 }
 
 function buyPassiveItem(name) {
-  const item = passiveItems[name];
-  if (asteria >= item.currentCost) {
-    asteria -= item.currentCost;
-    passiveIncome += item.income;
-    item.owned += 1;
-    item.currentCost = Math.floor(item.currentCost * 1.5);
-    renderShops();
-    updateDisplays();
+    const item = passiveItems[name];
+    if (asteria >= item.currentCost) {
+      asteria -= item.currentCost;
+      passiveIncome += item.income;
+      item.owned += 1;
+      item.currentCost = Math.floor(item.currentCost * 1.5);
+  
+      // Unlock drift if redMercedes is bought
+      if (name === "redMercedes") {
+        activeItems.drift.locked = false;
+        console.log("Drift unlocked!");
+      }
+      
+  
+      // Unlock fanart if anarchistSanctuary is bought
+      if (name === "sanctuary") {
+        passiveItems.fanart.locked = false;
+        console.log("Fanart unlocked!");
+      }
+  
+      renderShops();
+      updateDisplays();
+    }
   }
-}
+  
 
 setInterval(() => {
   asteria += passiveIncome;
@@ -82,7 +127,7 @@ function renderShops() {
 
   
     for (const [name, item] of Object.entries(activeItems)) {
-        if (name === "drift" && item.locked) continue;
+        if (item.locked) continue;
       const card = document.createElement("div");
       card.className = "shop-item";
   
@@ -116,6 +161,7 @@ function renderShops() {
   
     for (const [name, item] of Object.entries(passiveItems)) {
 
+        if (item.locked) continue;
         const card = document.createElement("div");
         card.className = "shop-item";
   
@@ -143,23 +189,7 @@ function renderShops() {
       passiveShop.appendChild(card);
     }
   }
-  function buyPassiveItem(name) {
-    const item = passiveItems[name];
-    if (asteria >= item.currentCost) {
-      asteria -= item.currentCost;
-      passiveIncome += item.income;
-      item.owned += 1;
-      item.currentCost = Math.floor(item.currentCost * 1.5);
-  
-      // Unlock drift if redMercedes was bought
-      if (name === "redMercedes") {
-        activeItems.drift.locked = false;
-      }
-  
-      renderShops();
-      updateDisplays();
-    }
-  }
+
   
 
 // Danger Logic
@@ -195,6 +225,27 @@ dangerEl.onclick = () => {
 
 // Appear after 10 seconds
 setTimeout(showDanger, 10000);
+
+function updateAsteriaImage() {
+    const clickImage = document.querySelector("#clickBtn img");
+    if (!clickImage) return;
+  
+    console.log("Updating image - HairDye:", hasHairDye, "Glasses:", hasGlasses, "HelloKittyHat:", hasHelloKittyHat);
+  
+    if (hasHairDye && hasHelloKittyHat) {
+      clickImage.src = "assets/hellokittyasteria.PNG"; // this one must be first
+    } else if (hasHairDye && hasGlasses) {
+      clickImage.src = "assets/redhairglasses.PNG";
+    } else if (hasHairDye) {
+      clickImage.src = "assets/redhair.PNG";
+    } else if (hasGlasses) {
+      clickImage.src = "assets/glassesnohair.PNG";
+    } else {
+      clickImage.src = "assets/asteria.PNG";
+    }
+  }
+  
+
 
 renderShops();
 updateDisplays();
