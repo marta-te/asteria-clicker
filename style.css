@@ -186,4 +186,143 @@ body {
     scrollbar-color: red rgb(0, 0, 0);
   }
   
+  #achievementsBtn {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    background-color: #ff000074; /* deep red */
+    color: #fff;
+    border: 2px solid #000;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    transition: background-color 0.2s ease;
+  }
+  
+  #achievementsBtn:hover {
+    background-color: #ff1a1a; /* brighter red on hover */
+  }
+  
+  
+  #achievementTab {
+    position: fixed;
+    top: 50px;
+    right: 10px;
+    width: 250px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: #ff0000;
+    border: 2px solid #300000;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+  }
+  
+  #achievementList .achievement {
+    background: #010001;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+    padding: 8px;
+    margin-bottom: 6px;
+  }
+  #achievementsPanel {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: black;
+    color: red;
+    border: 2px solid red;
+    border-radius: 8px;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 0 15px red;
+    font-family: monospace;
+  }
+  
+  #achievementsPanel h2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 20px;
+    text-shadow: 0 0 5px red;
+  }
+  
+  #achievementsList {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  #achievementsList li {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-left: 3px solid red;
+    background-color: rgba(255, 0, 0, 0.1);
+    transition: background-color 0.2s ease;
+  }
+  
+  #achievementsList li:hover {
+    background-color: rgba(255, 0, 0, 0.3);
+    box-shadow: 0 0 8px red;
+  }
+
+  .achievement {
+    color: grey;
+    border: 1px solid rgb(0, 0, 0);
+    padding: 6px;
+    margin-bottom: 6px;
+    background-color: #111;
+    transition: all 0.3s ease;
+  }
+  
+  .achievement.unlocked {
+    color: red;
+    border-color: red;
+    text-shadow: 0 0 6px red;
+  }
+  
+  @keyframes glow {
+    from { box-shadow: 0 0 5px red; }
+    to { box-shadow: 0 0 15px red; }
+  }
+  .achievement-description {
+    font-size: 0.9em;
+    color: #aaa;
+    margin-top: 4px;
+  }
+  
+  #achievementsBtn.glow {
+    box-shadow: 0 0 10px 2px red;
+    border: 1px solid red;
+    animation: pulseGlow 1s infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0% { box-shadow: 0 0 5px rgb(255, 0, 0); }
+    50% { box-shadow: 0 0 15px rgb(255, 0, 0); }
+    100% { box-shadow: 0 0 5px rgb(255, 0, 0); }
+  }
+  
+  .achievement.britney-progress {
+    --progress: 0%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 0, 0, 0.08) var(--progress),
+      #111 var(--progress)
+    );
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    padding: 6px;
+    margin-bottom: 6px;
+    color: rgba(255, 0, 0, 0.4);
+    transition: all 0.3s ease;
+  }
   

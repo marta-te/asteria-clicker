@@ -1,4 +1,4 @@
-let asteria = 1000000;
+let asteria = 22000;
 let clickPower = 1;
 let passiveIncome = 0;
 let hasHairDye = false;
@@ -58,6 +58,7 @@ function buyActiveItem(name) {
     if (name === "hairDye") {
         activeItems.helloKittyHat.locked = false;
         hasHairDye = true;
+        unlockAchievement("buyHairDye");
 
 
         console.log("Hello Kitty Hat unlocked");
@@ -96,6 +97,7 @@ function buyPassiveItem(name) {
       if (name === "redMercedes") {
         activeItems.drift.locked = false;
         console.log("Drift unlocked!");
+        unlockAchievement("redMercedes");
       }
       
   
@@ -221,6 +223,8 @@ dangerEl.onclick = () => {
   clearInterval(dangerInterval);
   clearInterval(dangerTimer);
   dangerEl.style.display = "none";
+  updateBritneyProgress(1);
+
 };
 
 // Appear after 10 seconds
@@ -249,3 +253,14 @@ function updateAsteriaImage() {
 
 renderShops();
 updateDisplays();
+
+clickBtn.onclick = () => {
+    asteria += clickPower;
+    updateDisplays();
+  
+    // Unlock first click achievement
+    if (!achievements.firstClick.unlocked) {
+      unlockAchievement("firstClick");
+    }
+  };
+  

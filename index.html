@@ -17,6 +17,7 @@
 
 <body>
 
+
   <div class="container">
     <div class="shop-container" id="activeShop">
       <h2>Active: <span id="activeRate">+0 Ⓐ/s</span></h2>
@@ -30,6 +31,18 @@
         <img src="assets/asteria.PNG" alt="Click Icon" />
       </button>
     </div>
+<!-- Achievements Button -->
+<button id="achievementsBtn">Achievements</button>
+
+<!-- Achievements Panel -->
+<div id="achievementsPanel" style="display: none;">
+  <h2>Achievements</h2>
+  <ul id="achievementsList">
+    <!-- Achievements will be injected here -->
+  </ul>
+</div>
+
+
 
     <div class="shop-container" id="passiveShop">
         <h2>Passive: <span id="passiveRate">+0 Ⓐ/s</span></h2>
@@ -40,6 +53,8 @@
 
   <script src="game.js"></script>
   <script src="britney.js"></script>
+  <script src="achievements.js"></script>
+
 
   </body>
 
