@@ -4,6 +4,9 @@ let passiveIncome = 0;
 
 const asteriaDisplay = document.getElementById("asteriaDisplay");
 const passiveRateDisplay = document.getElementById("passiveRate");
+const activeRateDisplay = document.getElementById("activeRate");
+
+
 const clickBtn = document.getElementById("clickBtn");
 
 const activeItems = {
@@ -69,8 +72,12 @@ setInterval(() => {
 function renderShops() {
     const activeShop = document.getElementById("activeShop");
     const passiveShop = document.getElementById("passiveShop");
-    activeShop.innerHTML = "<h2>Active</h2>";
-    passiveShop.innerHTML = "<h2>Passive</h2>";
+    activeShop.querySelectorAll(".shop-item").forEach(e => e.remove());
+    passiveShop.querySelectorAll(".shop-item").forEach(e => e.remove());
+    asteriaDisplay.textContent = `Asteria: ${asteria} Ⓐ`;
+    activeRateDisplay.textContent = `+${clickPower} Ⓐ/click`;
+    passiveRateDisplay.textContent = `+${passiveIncome} Ⓐ/s`;
+
   
     for (const [name, item] of Object.entries(activeItems)) {
         if (name === "drift" && item.locked) continue;
