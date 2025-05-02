@@ -23,13 +23,17 @@ body {
   
   .game-area {
     flex-grow: 1;
+    position: relative;       /* 👈 Needed for absolute positioning of #danger */
+    height: 100vh;            /* 👈 Ensures consistent height */
     background-color: #181818;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
+    overflow: hidden;         /* Prevent Britney from going outside bounds */
   }
+  
   
   #clickBtn {
     background: transparent;
@@ -122,6 +126,15 @@ body {
   #dangerImage:hover {
     transform: scale(1.05);
   }
+  #danger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 1000;
+  }
+  
+  
 
   .shop-item {
     display: flex;           /* Flexbox to lay out image and text side by side */

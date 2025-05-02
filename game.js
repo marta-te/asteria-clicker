@@ -31,10 +31,12 @@ const passiveItems = {
   };
   
 
-function updateDisplays() {
-  asteriaDisplay.textContent = `Asteria: ${asteria} Ⓐ`;
-  passiveRateDisplay.textContent = `+${passiveIncome} Ⓐ/s`;
-}
+  function updateDisplays() {
+    if (asteriaDisplay) asteriaDisplay.textContent = `Asteria: ${asteria} Ⓐ`;
+    if (passiveRateDisplay) passiveRateDisplay.textContent = `+${passiveIncome} Ⓐ/s`;
+    if (activeRateDisplay) activeRateDisplay.textContent = `+${clickPower} Ⓐ/click`;
+  }
+  
 
 clickBtn.onclick = () => {
   asteria += clickPower;
