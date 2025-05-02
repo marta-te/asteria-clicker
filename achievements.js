@@ -1,29 +1,16 @@
 let achievements = {
-    firstClick: {
-      name: "First Click",
-      unlocked: false,
-      description: "You clicked for the first time!",
-    },
-    FBM: {
-        name: "FBM",
-        unlocked: false,
-        description: "80% less chance of Britney.",
-      },
-    redMercedes: {
-        name: "Red Mercedes",
-        unlocked: false,
-        description: "+active item: drift",
-      },
-      fanart: {name: "fanart", unlocked: false, description: "Anarchist sanctuary lets fans share art! | +passive item fanart",},
-      infiniteSwag: {
-        name: "Infinite Swag",
-        unlocked: false,
-        description: "Swag galore | +active item: GALORE",
-      },
+    firstClick: {name: "First Click",unlocked: false,description: "You clicked for the first time!",},
+    
+    FBM: {name: "FBM",unlocked: false,description: "80% less chance of Britney.",},
+    
+    redMercedes: {name: "Red Mercedes",unlocked: false,description: "+active item: drift",},
+    
+    fanart: {name: "fanart", unlocked: false, description: "Anarchist sanctuary lets fans share art! | +passive item fanart",},
+    
+    infiniteSwag: {name: "Infinite Swag",unlocked: false,description: "Swag galore | +active item: GALORE",},
+    
     britneyCatcher: {
-          name: "Britney Catcher",
-          description: "Catch 10, 100, and 1000 Britneys.",
-          progress: 0,
+          name: "Britney Catcher",description: "Catch 10, 100, and 1000 Britneys.",progress: 0,
           tiers: [
             { amount: 10, unlocked: false },
             { amount: 100, unlocked: false },
