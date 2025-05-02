@@ -14,6 +14,7 @@ let achievements = {
         unlocked: false,
         description: "+active item: drift",
       },
+      fanart: {name: "fanart", unlocked: false, description: "Anarchist sanctuary lets fans share art! | +passive item fanart",},
       infiniteSwag: {
         name: "Infinite Swag",
         unlocked: false,

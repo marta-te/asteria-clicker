@@ -1,4 +1,4 @@
-let asteria = 220000;
+let asteria = 0;
 let clickPower = 1;
 let passiveIncome = 0;
 let hasHairDye = false;
@@ -103,6 +103,9 @@ function buyPassiveItem(name) {
       if (name === "disstrack" && item.owned === 1) {
         britneySpawnModifier = 0.2; // Reduce spawn chance by 80%
         unlockAchievement("FBM");
+      }
+      if (name === "sanctuary" && item.owned === 1) {
+        unlockAchievement("fanart");
       }
       
       
