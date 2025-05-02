@@ -13,6 +13,7 @@ function showBritney() {
 
   console.log("👀 Britney appears!");
 
+  britneyVisible = true;
   britneyX = window.innerWidth / 2 - 50; // center
   britneyY = 0;
 
