@@ -18,12 +18,14 @@ const activeItems = {
     oneMoreTime: { cost: 50,   value: 1,  image: "assets/onemoretime.jpeg" },       // Entry-level
     hairDye:     { cost: 100,  value: 2,  image: "assets/hairdye.png" },
     sunglasses:  { cost: 200,  value: 4,  image: "assets/glasses_spikey.png" },
-    drift:       { cost: 400,  value: 8, image: "assets/drift.jpg", locked: true },
+    drift:       { cost: 400,  value: 8,  image: "assets/drift.jpg", locked: true },
     staff:       { cost: 1000, value: 20, image: "assets/staff.png" },
-    helloKittyHat:{ cost: 1500, value: 20, image: "assets/kittyhat.PNG", locked: true},
+    helloKittyHat:{ cost: 1500,value: 20, image: "assets/kittyhat.PNG", locked: true},
     takeAPic:    { cost: 2500, value: 50, image: "assets/takeapic.jpeg" },
-    GALORE:        { cost: 6000, value: 120, image: "assets/galore.jpg", locked: true },
-    HAHA:        { cost: 6969, value: 69, image: "assets/haha.jpg" }
+    GALORE:      { cost: 6000, value: 120,image: "assets/galore.jpg", locked: true },
+    HAHA:        { cost: 6969, value: 69, image: "assets/haha.jpg" },
+    UltraInstinct:{ baseCost: 150000,currentCost:150000, income: 10000,owned: 0, image: "assets/ultrainstinct.jpg", locked: true},
+    CuteSongsForGangsters: { baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/cutesongsforgangsters.jpg" },
   };
   
 
@@ -34,9 +36,33 @@ const passiveItems = {
     photoshoot:  { baseCost: 1000,  currentCost: 1000,  income: 50,  owned: 0, image: "assets/photoshoot.png" },
     socialsPost: { baseCost: 5000,  currentCost: 5000,  income: 150, owned: 0, image: "assets/socials.png" },
     redMercedes: { baseCost: 20000, currentCost: 20000, income: 500, owned: 0, image: "assets/redmercedes.png" },
-    disstrack:   { baseCost: 50000, currentCost: 50000, income: 1000,owned: 0, image: "assets/disstrack.jpeg" }
+    FBM:         { baseCost: 50000, currentCost: 50000, income: 1000,owned: 0, image: "assets/disstrack.jpeg" },
+    Lytra:       { baseCost: 100000,currentCost:100000, income: 5000,owned: 0, image: "assets/lytra.jpg", locked: true},
+    Vyzer:       { baseCost: 150000,currentCost:150000, income: 10000,owned: 0, image: "assets/vyzer.jpg",},
+    WhatYouWant: { baseCost: 150000,currentCost:150000, income: 10000,owned: 0, image: "assets/whatyouwant.jpg"}, 
+    HatsuneMiku: { baseCost: 150000,currentCost:150000, income: 10000,owned: 0, image: "assets/miku.jpeg"},
+    Odetari:     { baseCost: 150000,currentCost:150000, income: 10000,owned: 0, image: "assets/odetari.webp"},
+    TellMeLies:  { baseCost: 150000,currentCost:150000, income: 10000,owned: 0, image: "assets/tellmelies.jpeg"},
+    EyesOnMe:    { baseCost: 150000,currentCost:150000, income: 10000,owned: 0, image: "assets/eyesonme.jpg"},
+    ProjectX:        { baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/projectx.jpeg" },
+    TakeAPic:        { baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/takeapic.jpg" },
+    DontUnderstandIt:{ baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/dontunderstandit.jpg" },
+    Rave2Death:      { baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/rave2death.jpg" },
+    RockThatShit:    { baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/rockthatshit.jpg" },
+    SecondChances:   { baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/secondchances.jpg" },
+    FasterNHarder:    { baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/fasternharder.jpg" },
+    Bloodbath:        { baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/bloodbath.png" },
+    WorstNightm4re:   { baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/worstnightm4are.jpeg" },
+    W4steAway:        { baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/w4steaway.jpeg" },
+    OnMyWay:          { baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/onmyway.png" },
+    YouCantHide:      { baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/youcanthide.jpeg" },
+    Exotic:           { baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/exotic.jpeg" },
+    MakeMeFamous:     { baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/cutesongsforgangsters.jpg" },
+    FadeAway:         { baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/cutesongsforgangsters.jpg" },
+    Hypnotized:       { baseCost: 150000, currentCost: 150000, income: 10000, owned: 0, image: "assets/cutesongsforgangsters.jpg" },
   };
-  
+
+   //MikuMikuBEAAAAM
 
   function updateDisplays() {
     if (asteriaDisplay) asteriaDisplay.textContent = `Asteria: ${asteria} Ⓐ`;
@@ -72,20 +98,27 @@ function buyActiveItem(name) {
 
       }
       
+      if (name === "HAHA") {
+        passiveItems.Lytra.locked = false;
+        console.log("Lytra added");
+          
+        renderShops();
+      }
       if (name === "sunglasses") {
         hasGlasses = true;
         console.log("Glasses unlocked");
           
         updateAsteriaImage();
       }
-        if (name === "helloKittyHat") {
+      
+      if (name === "helloKittyHat") {
             hasHelloKittyHat = true;
             activeItems.GALORE.locked = false;
             console.log("Hello Kitty Hat unlocked");
             updateAsteriaImage();
             unlockAchievement("infiniteSwag");
             renderShops();
-        }
+     }  
       
 
     updateAsteriaImage();
@@ -106,7 +139,7 @@ function buyPassiveItem(name) {
         console.log("Drift unlocked!");
         unlockAchievement("redMercedes");
       }
-      if (name === "disstrack" && item.owned === 1) {
+      if (name === "FBM" && item.owned === 1) {
         britneySpawnModifier = 0.2; // Reduce spawn chance by 80%
         unlockAchievement("FBM");
       }
