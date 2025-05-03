@@ -1,9 +1,11 @@
-let asteria = 0;
+let asteria = 1000000;
 let clickPower = 1;
 let passiveIncome = 0;
 let hasHairDye = false;
 let hasGlasses = false;
 let hasHelloKittyHat = false;
+
+
 
 const asteriaDisplay = document.getElementById("asteriaDisplay");
 const passiveRateDisplay = document.getElementById("passiveRate");
@@ -17,10 +19,11 @@ const activeItems = {
     hairDye:     { cost: 100,  value: 2,  image: "assets/hairdye.png" },
     sunglasses:  { cost: 200,  value: 4,  image: "assets/glasses_spikey.png" },
     drift:       { cost: 400,  value: 8, image: "assets/drift.jpg", locked: true },
-    staff:       { cost: 1000, value: 10, image: "assets/staff.png" },
+    staff:       { cost: 1000, value: 20, image: "assets/staff.png" },
     helloKittyHat:{ cost: 1500, value: 20, image: "assets/kittyhat.PNG", locked: true},
     takeAPic:    { cost: 2500, value: 50, image: "assets/takeapic.jpeg" },
-    haha:        { cost: 6000, value: 120, image: "assets/haha.jpg" }                  // High-end
+    GALORE:        { cost: 6000, value: 120, image: "assets/galore.jpg", locked: true },
+    HAHA:        { cost: 6969, value: 69, image: "assets/haha.jpg" }
   };
   
 
@@ -41,11 +44,12 @@ const passiveItems = {
     if (activeRateDisplay) activeRateDisplay.textContent = `+${clickPower} Ⓐ/click`;
   }
   
-
-clickBtn.onclick = () => {
-  asteria += clickPower;
-  updateDisplays();
-};
+  clickBtn.onclick = () => {
+    asteria += clickPower;
+    updateDisplays();
+    updateClickProgress(1); // Register the click toward achievement progress
+  };
+  
 
 function buyActiveItem(name) {
   const item = activeItems[name];
@@ -76,9 +80,11 @@ function buyActiveItem(name) {
       }
         if (name === "helloKittyHat") {
             hasHelloKittyHat = true;
+            activeItems.GALORE.locked = false;
             console.log("Hello Kitty Hat unlocked");
             updateAsteriaImage();
             unlockAchievement("infiniteSwag");
+            renderShops();
         }
       
 
@@ -208,7 +214,7 @@ function updateAsteriaImage() {
     console.log("Updating image - HairDye:", hasHairDye, "Glasses:", hasGlasses, "HelloKittyHat:", hasHelloKittyHat);
   
     if (hasHairDye && hasHelloKittyHat) {
-      clickImage.src = "assets/hellokittyasteria.PNG"; // this one must be first
+      clickImage.src = "assets/hellokittyasteria.PNG";
     } else if (hasHairDye && hasGlasses) {
       clickImage.src = "assets/redhairglasses.PNG";
     } else if (hasHairDye) {
@@ -225,13 +231,4 @@ function updateAsteriaImage() {
 renderShops();
 updateDisplays();
 
-clickBtn.onclick = () => {
-    asteria += clickPower;
-    updateDisplays();
-  
-    // Unlock first click achievement
-    if (!achievements.firstClick.unlocked) {
-      unlockAchievement("firstClick");
-    }
-  };
   
