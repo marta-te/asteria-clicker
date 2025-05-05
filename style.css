@@ -44,12 +44,13 @@ body {
   }
   
   #clickBtn img {
-    width: 300px;
+    width: clamp(100px, 30vw, 300px); /* responsive width */
     height: auto;
     display: block;
     transition: transform 0.1s ease;
     border-radius: 50%;
   }
+  
   .asteria-icon {
     width: 300px;
     height: auto;
@@ -104,7 +105,7 @@ body {
   
   /* On hover, change the background color of the item */
   .shop-item:hover {
-    background-color: #e0e0e0;
+    background-color: #340000;
   }
   
   /* Add font weight variations for different elements */
@@ -167,6 +168,16 @@ body {
     margin: 5px 0;           /* Space between each piece of text */
     font-size: 14px;
     color: #ff0000;             /* Text color */
+  }
+  .shop-item .item-details .item-description {
+    font-weight: 400;
+    font-style: italic;
+    color: #8d2222;
+  }
+  .shop-item:hover .item-details .item-description {
+    font-weight: 400;
+    font-style: italic;
+    color: #ff6565;
   }
   
   /* For Chrome, Edge, Safari, opera */
@@ -342,5 +353,15 @@ body {
   }
   #achievementsPanel::-webkit-scrollbar-track {
     background: black;
+  }
+  
+  .barely-effect {
+    animation: barelyPulse 10s infinite alternate;
+    filter: hue-rotate(0.1deg) saturate(2.5) brightness(1.6) contrast(2);
+  }
+  
+  @keyframes barelyPulse {
+    0% { filter: hue-rotate(0deg) saturate(2) brightness(1.4) contrast(1.8); }
+    100% { filter: hue-rotate(90deg) saturate(3) brightness(1.6) contrast(2); }
   }
   
