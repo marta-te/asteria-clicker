@@ -57,15 +57,6 @@ function moveBritney() {
 }
 
 // === STEAL ASTERIA ===
-function stealAsteria() {
-  console.log("🧨 Britney Manson is stealing Asteria...");
-  console.log("Asteria before:", asteria);
-
-  asteria = 0;
-  if (typeof updateDisplays === "function") updateDisplays();
-  alert("💀 Britney Manson stole all your Asterias!");
-  hideBritney();
-}
 
 // === HIDE BRITNEY ===
 function hideBritney() {
@@ -91,7 +82,8 @@ setInterval(() => {
   console.log(`🎯 Spawn roll: ${roll} vs chance ${adjustedChance}`);
 
   if (!britneyVisible && roll < adjustedChance) {
-    showBritney();
+  //showBritney(); 
+  //---------------------------------------------------------------------this line is hidden!
   }
 }, 10000);
 

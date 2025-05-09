@@ -12,8 +12,10 @@ let achievements = {
     redMercedes: {name: "Red Mercedes",unlocked: false,description: "+active item: drift",},
     
     fanart: {name: "fanart", unlocked: false, description: "Anarchist sanctuary lets fans share art! | +passive item fanart",},
+
+    Welostitall: {name: "We Lost It all",unlocked: false,description: "Lose all your Ⓐ to Britney",},
     
-    infiniteSwag: {name: "Infinite Swag",unlocked: false,description: "Swag galore | +active item: GALORE",},
+    infiniteSwag: {name: "Infinite Swag",unlocked: false,description: "Swag galore | +passive item: GALORE",},
     
     britneyCatcher: {
           name: "Britney Catcher",description: "Catch 10, 100, and 1000 Britneys.",progress: 0,
@@ -42,6 +44,7 @@ let achievements = {
     const panel = document.getElementById("achievementsPanel");
     panel.style.display = "block";
     panel.classList.add("active");
+
   
     setTimeout(() => {
       panel.classList.remove("active");

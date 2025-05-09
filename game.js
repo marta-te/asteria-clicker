@@ -1,11 +1,18 @@
-let asteria = 1000000;
+let asteria = 1000000000;
 let clickPower = 1;
 let passiveIncome = 0;
 let hasHairDye = false;
 let hasGlasses = false;
 let hasHelloKittyHat = false;
+let hasDogsteria = false;
+let VyzerBought = false;
+let LytraBought = false;
+let barelyhumanBought = false;
+let kets4ekiBought = false;
+let kmrnxoBought = false;
 
 
+window.stoleAll = false;
 
 const asteriaDisplay = document.getElementById("asteriaDisplay");
 const passiveRateDisplay = document.getElementById("passiveRate");
@@ -13,119 +20,131 @@ const activeRateDisplay = document.getElementById("activeRate");
 let clonnexMimicIncome = 0;
 let clonnexInterval = null;
 
+
 const clickBtn = document.getElementById("clickBtn");
 
 const activeItems = {
     anarchistSanctuary: { cost: 50,currentCost: 50,image: "assets/sanctuary.jpeg", itemDetails:"+1 click pwr" }, // Unlocks fanart
-    sunglasses: {cost: 150,currentCost: 50,image: "assets/glasses_spikey.png", itemDetails:"more swag" },
-    hairDye: {cost: 500,currentCost: 50,image: "assets/hairdye.png" , itemDetails:"red hair"},
-    helloKittyHat: {cost: 1000,currentCost: 50,image: "assets/kittyhat.png", itemDetails:"Update Asteria swag" , locked: true }, // Unlocks GALORE
-    clonnex: {cost: 2000,currentCost: 50,image: "assets/clonnex.png", itemDetails:"Every 30s get a random passive item's value" },
-    _6arelyhuman: {cost: 2250,currentCost: 50,image: "assets/6arelyhuman.jpeg", itemDetails:"10s multiplier: Active x2, Passive x3"},
-    hatsuneMiku: {cost: 500,currentCost: 50,image: "assets/miku.png" , itemDetails:"MIKU MIKU BEAAAAM"},
-    staff: {cost: 50,currentCost: 50,image: "assets/staffofasteriacropped.PNG" , itemDetails:"Unlocks album covers where it is seen"}, // Unlocks UltraInstinct
-    cuteSongsForGangsters: {cost: 50,currentCost: 50,image: "assets/cutesongsforgangsters.jpeg", itemDetails:"Unlocks album songs" },
-    drift: {cost: 50,currentCost: 50,image: "assets/drift.jpg", itemDetails:"80% less chance of Britney" }, 
-    Lytra: {cost: 50,currentCost: 50,image: "assets/Lytra.jpg", itemDetails:"Unlocks songs with Lytra" },
-    Vyzer: {cost: 50,currentCost: 50,image: "assets/vyzer.jpg" , itemDetails:"Unlocks songs with Vyzer"},
-    Wasty: {cost: 50,currentCost: 50,image: "assets/wasty.jpeg" , itemDetails:"Unlocks songs with Wasty"},
-    Rave2death: {cost: 50,currentCost: 50,image: "assets/rave2death.jpg" , itemDetails:"Unlocks Rave2death album songs in passive items"}, // Unlocks Rave2death album songs in passive items
-    Studio: {cost: 50,currentCost: 50,image: "assets/studio.png" , itemDetails:"_"},
-    FBM: {cost: 50,currentCost: 50,image: "assets/disstrack.jpeg" , itemDetails:"_"},
-    EveryPill: {cost: 50,currentCost: 50,image: "assets/everypill.jpeg" , itemDetails:"_"},
-    HubiTheKid: {cost: 50,currentCost: 50,image: "assets/hubithekid.jpeg" , itemDetails:"_"},
-    worldwide: {cost: 50,currentCost: 50,image: "assets/worldwide.jpg", itemDetails:"_" },
-    FarFetch: {cost: 50,currentCost: 50,image: "assets/farfetch.PNG" , itemDetails:"_"}, //unlocks sword necklace
-    swordNecklace: {cost: 50,currentCost: 50,image: "assets/swordnecklace.png" , itemDetails:"_"},
-    GiveMeMore: {cost: 50,currentCost: 50,image: "assets/givememore.jpg" , itemDetails:"_" },
-    Odetari: {cost: 50,currentCost: 50,image: "assets/odetari.webp"  , itemDetails:"_"},
-    Ext3r4: {cost: 50,currentCost: 50,image: "assets/Ext3r4.jpeg"  , itemDetails:"_"},
-    Kalia: {cost: 50,currentCost: 50,image: "assets/kalia.jpeg"  , itemDetails:"_"},
-    Eclipse: {cost: 50,currentCost: 50,image: "assets/eclipse.jpeg" , itemDetails:"_" },
-    _2504: {cost: 50,currentCost: 50,image: "assets/2504.jpeg"  , itemDetails:"_"},
-    kmrnxo: {cost: 50,currentCost: 50,image: "assets/kmrnxo.jpeg"  , itemDetails:"_"},
-    Kazoo2death: {cost: 50,currentCost: 50,image: "assets/kazoo2death.jpg"  , itemDetails:"_"},
-    pluto: {cost: 50,currentCost: 50,image: "assets/pluto.jpeg"  , itemDetails:"_"},
-    D3r: {cost: 50,currentCost: 50,image: "assets/der.jpeg"  , itemDetails:"_"},
-    M1v: {cost: 50,currentCost: 50,image: "assets/m1v.jpeg"  , itemDetails:"_"},
-    asteriaarchive: {cost: 50,currentCost: 50,image: "assets/asteriaarchive2.jpeg"  , itemDetails:"_"},
-    Nosgov: {cost: 50,currentCost: 50,image: "assets/nosgov.jpeg"  , itemDetails:"_"},
-    AsteriaArchive1: {cost: 50,currentCost: 50,image: "assets/asteriaarchive1.jpeg"  , itemDetails:"_"},
-    AsteriaArchive2: {cost: 50,currentCost: 50,image: "assets/asteriaarchive2.jpeg"  , itemDetails:"_"},
-    AsteriaArchive3: {cost: 50,currentCost: 50,image: "assets/asteriaarchive3.jpeg"  , itemDetails:"_"},
-    AsteriaArchive4: {cost: 50,currentCost: 50,image: "assets/asteriaarchive4.jpeg"  , itemDetails:"_"},
-    OldScr4psss: {cost: 50,currentCost: 50,image: "assets/oldscraps.jpeg"  , itemDetails:"_"},
-    Watchout: {cost: 50,currentCost: 50,image: "assets/watchout.jpg"  , itemDetails:"_"},
-    IWassOffAPillInPrzechodnia: {cost: 50,currentCost: 50,image: "assets/pillarchive.jpg" , itemDetails:"_" },
+    kets4eki: {cost: 500,currentCost: 500,image: "assets/kets4eki.jpeg", itemDetails:"Unlocks songs w/ kets4eki, click power x2" , locked: true}, //unlocks kets4eki collab
+    sunglasses: {cost: 150,currentCost: 150,image: "assets/glasses_spikey.png", itemDetails:"more swag", locked: true },
+    hairDye: {cost: 750,currentCost: 750,image: "assets/hairdye.png" , itemDetails:"red hair", locked: true},
+    helloKittyHat: {cost: 1000,currentCost: 1000,image: "assets/kittyhat.png", itemDetails:"Update Asteria swag" , locked: true }, // Unlocks GALORE achievement
+    dogsteria: {cost: 409,currentCost: 409,image: "assets/dogsteria.jpg", itemDetails:"Update Asteria swag" , locked: true },
+    clonnex: {cost: 2000,currentCost: 2000,image: "assets/clonnex.png", itemDetails:"Every 30s get a random passive item's value", locked: true },
+    _6arelyhuman: {cost: 6000,currentCost: 6000,image: "assets/6arelyhuman.jpeg", itemDetails:"10s multiplier: Active x2, Passive x3", locked: true},
+    cuteSongsForGangsters: {cost: 66666,currentCost: 66666,image: "assets/cutesongsforgangsters.jpeg", itemDetails:"Unlocks album songs" , locked: true},
+    BloodSea: {cost: 50,currentCost: 50,image: "assets/bloodocean.png"  , itemDetails:"A sea of blood", locked: true},
+    hatsuneMiku: {cost: 10000,currentCost: 10000,image: "assets/miku2.png" , itemDetails:"MIKU MIKU BEAAAAM", locked: true},
+    staff: {cost: 15000,currentCost: 15000,image: "assets/staffofasteriacropped.PNG" , itemDetails:"Unlocks album covers where it is seen", locked: true}, // Unlocks UltraInstinct
+    Studio: {cost: 50,currentCost: 50,image: "assets/studioLytranAstee.jpg" , itemDetails:"Unlock more collabs", locked: true}, //Unlocks Lytra
+    drift: {cost: 100000,currentCost: 100000,image: "assets/drift.jpg", itemDetails:"80% less chance of Britney" , locked: true }, 
+    Lytra: {cost: 500007,currentCost: 500007,image: "assets/Lytra.jpg", itemDetails:"Unlocks songs with Lytra", locked: true}, // Unlocks Lytra Collabs
+    Vyzer: {cost: 654321,currentCost: 654321,image: "assets/vyzer.jpg" , itemDetails:"Has a kazoo.", locked: true},
+    Kazoo2death: {cost: 50,currentCost: 50,image: "assets/kazoo2death.jpg"  , itemDetails:"Unlocks Vyzer", locked: true },
+    Wasty: {cost: 999999,currentCost: 999999,image: "assets/wasty.jpeg" , itemDetails:"Unlocks songs with Wasty", locked: true}, // Unlocks Wasty Collabs -TBD
+    Rave2death: {cost: 50,currentCost: 50,image: "assets/rave2death.jpg" , itemDetails:"Unlocks Rave2death album songs in passive items", locked: true }, // Unlocks Rave2death album songs in passive items
+    FBM: {cost: 50,currentCost: 50,image: "assets/disstrack.jpeg" , itemDetails:"80% less chance of britney", locked: true}, // 80% less chance of Britney
+    EveryPill: {cost: 50,currentCost: 50,image: "assets/everypill.jpeg" , itemDetails:"_", locked: true},
+    HubiTheKid: {cost: 50,currentCost: 50,image: "assets/hubithekid.jpeg" , itemDetails:"_", locked: true},
+    worldwide: {cost: 50,currentCost: 50,image: "assets/worldwide.jpg", itemDetails:"_", locked: true},
+    ewsteria: {cost: 50,currentCost: 50,image: "assets/ewsteria.jpg" , itemDetails:"Ewww wtf is that"},
+    lolipopsteria: {cost: 50,currentCost: 50,image: "assets/lolipopsteria.jpg" , itemDetails:"Nom"},
+    micAsteria: {cost: 50,currentCost: 50,image: "assets/micasteria.jpg" , itemDetails:"Mogchrophone", locked: true},
+    studioAsteria: { cost: 50, currentCost: 50, image: "assets/studiosteria2.png", itemDetails: "Fire vocals", locked: true },
+    nomsteria: { cost: 50, currentCost: 50, image: "assets/nomsteria.png", itemDetails: "Will he turn into a strawberry" },
+    screamsteria: { cost: 50, currentCost: 50, image: "assets/screamsteria.jpg", itemDetails: "AAAAAAAAAAA" },
+    ragesteria: { cost: 50, currentCost: 50, image: "assets/ragesteria.jpg", itemDetails: "We lost it all", locked: true },
+    scremingasteria: { cost: 50, currentCost: 50, image: "assets/sreamingasteria.png", itemDetails: "I am scared." },
+    seesteria: { cost: 50, currentCost: 50, image: "assets/seestreia.jpg", itemDetails: "Just Curious" },
+    sideEye: { cost: 50, currentCost: 50, image: "assets/sideyeasteria.jpg", itemDetails: "Criminal offensive side-eye" },
+    swordNecklace: {cost: 50,currentCost: 50,image: "assets/swordnecklace.png" , itemDetails:"Adds swag to Asteria", locked: true},
+    GiveMeMore: {cost: 50,currentCost: 50,image: "assets/givememore.jpg" , itemDetails:"_", locked: true},
+    Odetari: {cost: 50,currentCost: 50,image: "assets/odetari.webp"  , itemDetails:"_", locked: true},
+    Ext3r4: {cost: 50,currentCost: 50,image: "assets/Ext3r4.jpeg"  , itemDetails:"_", locked: true},
+    Kalia: {cost: 50,currentCost: 50,image: "assets/kalia.jpeg"  , itemDetails:"_", locked: true},
+    Eclipse: {cost: 50,currentCost: 50,image: "assets/eclipse.jpeg" , itemDetails:"_" , locked: true},
+    _2504: {cost: 50,currentCost: 50,image: "assets/2504.jpeg"  , itemDetails:"_", locked: true},
+    kmrnxo: {cost: 50,currentCost: 50,image: "assets/kmrnxo.jpeg"  , itemDetails:"_", locked: true},
+    pluto: {cost: 50,currentCost: 50,image: "assets/pluto.jpeg"  , itemDetails:"_", locked: true},
+    D3r: {cost: 50,currentCost: 50,image: "assets/der.jpeg"  , itemDetails:"_", locked: true},
+    M1v: {cost: 50,currentCost: 50,image: "assets/m1v.jpeg"  , itemDetails:"_", locked: true},
+    Sickboyrari: {cost: 50,currentCost: 50,image: "assets/sickboyrari.jpeg"  , itemDetails:"_", locked: true},
+    asteriaarchive: {cost: 50,currentCost: 50,image: "assets/asteriaarchive2.jpeg"  , itemDetails:"_", locked: true},
+    Nosgov: {cost: 50,currentCost: 50,image: "assets/nosgov.jpeg"  , itemDetails:"_", locked: true},
+    AsteriaArchive1: {cost: 50,currentCost: 50,image: "assets/asteriaarchive1.jpeg"  , itemDetails:"_", locked: true},
+    AsteriaArchive2: {cost: 50,currentCost: 50,image: "assets/asteriaarchive2.jpeg"  , itemDetails:"_", locked: true,},
+    AsteriaArchive3: {cost: 50,currentCost: 50,image: "assets/asteriaarchive3.jpeg"  , itemDetails:"_", locked: true,},
+    AsteriaArchive4: {cost: 50,currentCost: 50,image: "assets/asteriaarchive4.jpeg"  , itemDetails:"_", locked: true,},
+    OldScr4psss: {cost: 50,currentCost: 50,image: "assets/oldscraps.jpeg"  , itemDetails:"_", locked: true,},
+    Watchout: {cost: 50,currentCost: 50,image: "assets/watchout.jpg"  , itemDetails:"_", locked: true,},
+    IWassOffAPillInPrzechodnia: {cost: 50,currentCost: 50,image: "assets/pillarchive.jpg" , itemDetails:"_",locked: true, },
     Eye: {cost: 50,currentCost: 50,image: "assets/eye.jpg"  , itemDetails:"_"},
-    BloodSea: {cost: 50,currentCost: 50,image: "assets/bloodocean.png"  , itemDetails:"_"},
+
 
     };
-  
 
     const passiveItems = {
-        OneMoreTime: { baseCost: 50, currentCost: 50, income: 1, owned: 0, image: "assets/onemoretime.jpeg" },
-        Fanart: { baseCost: 100, currentCost: 100, income: 2, owned: 0, image: "assets/instagram.webp" },
-        Photoshoot: { baseCost: 200, currentCost: 200, income: 4, owned: 0, image: "assets/photoshoot.png" },
-        TakeAPic: { baseCost: 500, currentCost: 500, income: 5, owned: 0, image: "assets/takeapic.jpg" },
+        OneMoreTime: { baseCost: 50, currentCost: 50, income: 1, owned: 0, image: "assets/onemoretime.jpeg" }, //unlock ketseki
+        Fanart: { baseCost: 100, currentCost: 100, income: 2, owned: 0, image: "assets/instagram.webp", locked: true },
+        Photoshoot: { baseCost: 200, currentCost: 200, income: 4, owned: 0, image: "assets/photoshoot.png", locked: true }, //unlocks takeapic
+        TakeAPic: { baseCost: 500, currentCost: 500, income: 5, owned: 0, image: "assets/takeapic.jpg", locked: true }, //unlocks 6arelyhuman, unlocks socials post
         GALORE: { baseCost: 1000, currentCost: 1000, income: 10, owned: 0, image: "assets/galore.jpg" , locked: true },
-        SocialsPost: { baseCost: 18565, currentCost: 18565, income: 1856, owned: 0, image: "assets/socials.png" },
-        WhatYouWant: { baseCost: 24134, currentCost: 24134, income: 2413, owned: 0, image: "assets/whatyouwant.jpg" },
-        UltraInstinct: { baseCost: 31375, currentCost: 31375, income: 3137, owned: 0, image: "assets/ultrainstinct.jpg" },
-        MESSAGES: { baseCost: 40788, currentCost: 40788, income: 4078, owned: 0, image: "assets/messages.jpeg" },
-        WasteAway: { baseCost: 53024, currentCost: 53024, income: 5302, owned: 0, image: "assets/wasteaway.jpeg" },
-        Bloodbath: { baseCost: 68931, currentCost: 68931, income: 6893, owned: 0, image: "assets/bloodbath.png", album: "CuteSongsForGangsters" },
-        Hypnotized: { baseCost: 89610, currentCost: 89610, income: 8961, owned: 0, image: "assets/cutesongsforgangsters.jpg", album: "CuteSongsForGangsters" },
-        RedMercedes: { baseCost: 116493, currentCost: 116493, income: 11649, owned: 0, image: "assets/redmercedes.png", album: "CuteSongsForGangsters" },
-        FadeAway: { baseCost: 151441, currentCost: 151441, income: 15144, owned: 0, image: "assets/cutesongsforgangsters.jpg", album: "CuteSongsForGangsters" },
-        MakeMeFamous: { baseCost: 196874, currentCost: 196874, income: 19687, owned: 0, image: "assets/cutesongsforgangsters.jpg", album: "CuteSongsForGangsters" },
-        BloodAsPaint: { baseCost: 255936, currentCost: 255936, income: 25593, owned: 0, image: "assets/bloodaspaint.jpg" },
-        Drift: { baseCost: 332717, currentCost: 332717, income: 33271, owned: 0, image: "assets/drift.jpg" },
-        FasterNHarder: { baseCost: 432532, currentCost: 432532, income: 43253, owned: 0, image: "assets/fasternharder.jpg" },
-        PartyLikeThe80s: { baseCost: 561292, currentCost: 561292, income: 56129, owned: 0, image: "assets/party80.jpeg" },
-        Skibidi: { baseCost: 729680, currentCost: 729680, income: 72968, owned: 0, image: "assets/skibidi.jpg" },
-        HAHA: { baseCost: 948585, currentCost: 948585, income: 94858, owned: 0, image: "assets/haha.jpg" },
-        HoldUp: { baseCost: 1233161, currentCost: 1233161, income: 123316, owned: 0, image: "assets/holdup.jpeg" },
-        iKnow: { baseCost: 1603109, currentCost: 1603109, income: 160310, owned: 0, image: "assets/iknow.jpg" },
-        RaveLife: { baseCost: 2084041, currentCost: 2084041, income: 208404, owned: 0, image: "assets/rave2death.jpg", album: "Rave2Death" },
-        Faded: { baseCost: 2709253, currentCost: 2709253, income: 270925, owned: 0, image: "assets/rave2death.jpg", album: "Rave2Death" },
-        DollarBills: { baseCost: 3522029, currentCost: 3522029, income: 352202, owned: 0, image: "assets/rave2death.jpg", album: "Rave2Death" },
-        TynaFuck: { baseCost: 4588437, currentCost: 4588437, income: 458843, owned: 0, image: "assets/rave2death.jpg", album: "Rave2Death" },
-        ComeOn: { baseCost: 5975588, currentCost: 5975588, income: 597558, owned: 0, image: "assets/rave2death.jpg", album: "Rave2Death" },
-        IFuckedHerFriend: { baseCost: 7788265, currentCost: 7788265, income: 778826, owned: 0, image: "assets/rave2death.jpg", album: "Rave2Death" },
-        FeelingNothing: { baseCost: 10124744, currentCost: 10124744, income: 1012474, owned: 0, image: "assets/rave2death.jpg", album: "Rave2Death" },
-        CountItUp: { baseCost: 13162167, currentCost: 13162167, income: 1316216, owned: 0, image: "assets/rave2death.jpg", album: "Rave2Death" },
-        TellMeLies: { baseCost: 17110817, currentCost: 17110817, income: 1711081, owned: 0, image: "assets/tellmelies.jpeg" },
-        Warsaw: { baseCost: 22244062, currentCost: 22244062, income: 2224406, owned: 0, image: "assets/warsaw.jpg" },
-        BodyOnTheFloor: { baseCost: 23356265, currentCost: 23356265, income: 2335626, owned: 0, image: "assets/BodyOnTheFloor.jpeg", locked: true },
-        HAHARemix: { baseCost: 24524078, currentCost: 24524078, income: 2452407, owned: 0, image: "assets/haharemix.jpeg", locked: true },
-        PicknChoose: { baseCost: 25750281, currentCost: 25750281, income: 2575028, owned: 0, image: "assets/PicknChoose.jpg", locked: true },
-        ThrowIt: { baseCost: 27037795, currentCost: 27037795, income: 2703779, owned: 0, image: "assets/ThrowIt.jpg", locked: true },
-        VampireFangs: { baseCost: 28389684, currentCost: 28389684, income: 2838968, owned: 0, image: "assets/VampireFangs.jpeg", locked: true },
-        Monster: { baseCost: 29809268, currentCost: 29809268, income: 2980926, owned: 0, image: "assets/monster1.jpg", locked: true },
-        MONSTER: { baseCost: 31300031, currentCost: 31300031, income: 3130003, owned: 0, image: "assets/monster.jpg", locked: true },
-        DigHisGrave: { baseCost: 32865782, currentCost: 32865782, income: 3286578, owned: 0, image: "assets/DigHisGrave.jpg", locked: true },
-        DontUnderstandIt: { baseCost: 34510571, currentCost: 34510571, income: 3451057, owned: 0, image: "assets/DontUnderstandIt.jpg", locked: true },
-        GoHard: { baseCost: 36238600, currentCost: 36238600, income: 3623860, owned: 0, image: "assets/gohard.jpg", locked: true },
-        BiggestFan: { baseCost: 38054330, currentCost: 38054330, income: 3805433, owned: 0, image: "assets/BiggestFan.jpeg", locked: true },
-        YouKnowUs: { baseCost: 39962446, currentCost: 39962446, income: 3996244, owned: 0, image: "assets/YouKnowUs.jpg", locked: true },
-        SeeThrough: { baseCost: 41967968, currentCost: 41967968, income: 4196796, owned: 0, image: "assets/SeeThrough.jpg", locked: true },
-        WhatdISay: { baseCost: 44076066, currentCost: 44076066, income: 4407606, owned: 0, image: "assets/WhatdISay.jpg", locked: true },        
-        NoEscape: { baseCost: 46281869, currentCost: 46281869, income: 4628186, owned: 0, image: "assets/NoEscape.jpg", locked: true },
-        GoneForSoLong: { baseCost: 48595963, currentCost: 48595963, income: 4859596, owned: 0, image: "assets/GoneForSoLong.jpg", locked: true },
-        EmoGirl: { baseCost: 51025761, currentCost: 51025761, income: 5102576, owned: 0, image: "assets/emogirl.jpeg", locked: true },
-        DieForYou: { baseCost: 53577049, currentCost: 53577049, income: 5357704, owned: 0, image: "assets/DieForYou.jpg", locked: true },
-        EyesOnMe: { baseCost: 56255801, currentCost: 56255801, income: 5625580, owned: 0, image: "assets/EyesOnMe.jpg", locked: true },
-        OutOfBody: { baseCost: 59068391, currentCost: 59068391, income: 5906839, owned: 0, image: "assets/OutOfBody.jpeg", locked: true },
-        WorstNightm4re: { baseCost: 62021610, currentCost: 62021610, income: 6202161, owned: 0, image: "assets/WorstNightm4are.jpeg", locked: true },
-        Exotic: { baseCost: 65122790, currentCost: 65122790, income: 6512279, owned: 0, image: "assets/Exotic.jpeg", locked: true },
-        YouCantHide: { baseCost: 68379729, currentCost: 68379729, income: 6837972, owned: 0, image: "assets/YouCantHide.png", locked: true },
-        SecondChances: { baseCost: 71800715, currentCost: 71800715, income: 7180071, owned: 0, image: "assets/SecondChances.jpg", locked: true },
-        RockThatShit: { baseCost: 75394693, currentCost: 75394693, income: 7539469, owned: 0, image: "assets/RockThatShit.jpg", locked: true },
-        WonderWhy: { baseCost: 79171128, currentCost: 79171128, income: 7917112, owned: 0, image: "assets/WonderWhy.jpg", locked: true },
-        Fusion: { baseCost: 83140184, currentCost: 83140184, income: 8314018, owned: 0, image: "assets/Fusion.jpg", locked: true },
-        IDidntNeedYouAnyway: { baseCost: 87312692, currentCost: 87312692, income: 8731269, owned: 0, image: "assets/IDidntNeedYouAnyway.jpeg", locked: true },
-        Paranoid: { baseCost: 91699926, currentCost: 91699926, income: 9169992, owned: 0, image: "assets/Paranoid.jpg", locked: true },
+        SocialsPost: { baseCost: 2000, currentCost: 2000, income: 12, owned: 0, image: "assets/socials.png", locked: true }, //unlocks dogsteria
+        WhatYouWant: { baseCost: 5000, currentCost: 5000, income: 15, owned: 0, image: "assets/whatyouwant.jpg", locked: true },
+        UltraInstinct: { baseCost: 20000, currentCost: 20000, income: 20, owned: 0, image: "assets/ultrainstinct.jpg", locked: true},
+        W4steAway: { baseCost: 44444, currentCost: 44444, income: 44, owned: 0, image: "assets/wasteaway.jpeg", locked: true },
+        MESSAGES: { baseCost: 60000, currentCost: 60000, income: 50, owned: 0, image: "assets/messages.jpeg", locked: true },
+        Bloodbath: { baseCost: 85000, currentCost: 85000, income: 55, owned: 0, image: "assets/bloodbath.png", album: "CuteSongsForGangsters", locked: true },
+        Hypnotized: { baseCost: 100000, currentCost: 100000, income: 60, owned: 0, image: "assets/cutesongsforgangsters.jpg", album: "CuteSongsForGangsters", locked: true },
+        RedMercedes: { baseCost: 100000, currentCost: 100000, income: 66, owned: 0, image: "assets/redmercedes.png", album: "CuteSongsForGangsters", locked: true },
+        FadeAway: { baseCost: 100000, currentCost: 100000, income: 70, owned: 0, image: "assets/cutesongsforgangsters.jpg", album: "CuteSongsForGangsters", locked: true },
+        MakeMeFamous: { baseCost: 100000, currentCost: 100000, income: 75, owned: 0, image: "assets/cutesongsforgangsters.jpg", album: "CuteSongsForGangsters", locked: true },
+        BloodAsPaint: { baseCost: 100000, currentCost: 100000, income: 80, owned: 0, image: "assets/bloodaspaint.jpg", locked: true },
+        FasterNHarder: { baseCost: 100000, currentCost: 100000, income: 90, owned: 0, image: "assets/fasternharder.jpg", locked: true },
+        PartyLikeThe80s: { baseCost: 100000, currentCost: 100000, income: 92, owned: 0, image: "assets/party80.jpeg" , locked: true},
+        Skibidi: { baseCost: 100000, currentCost: 100000, income: 93, owned: 0, image: "assets/skibidi.jpg", locked: true },
+        HAHA: { baseCost: 696969, currentCost: 696969, income: 69, owned: 0, image: "assets/haha.jpg",locked: true },
+        HoldUp: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/holdup.jpeg", locked: true }, 
+        iKnow: { baseCost: 100000, currentCost: 100000, income: 102, owned: 0, image: "assets/iknow.jpg", locked: true },
+        RaveLife: { baseCost: 100000, currentCost: 100000, income: 104, owned: 0, image: "assets/rave2death.jpg", album: "Rave2Death", locked: true }, //unlocks wasty
+        Faded: { baseCost: 100000, currentCost: 100000, income: 105, owned: 0, image: "assets/rave2death.jpg", album: "Rave2Death", locked: true },
+        DollarBills: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/rave2death.jpg", album: "Rave2Death", locked: true },
+        TynaFuck: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/rave2death.jpg", album: "Rave2Death" , locked: true},
+        ComeOn: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/rave2death.jpg", album: "Rave2Death" , locked: true},
+        IFuckedHerFriend: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/rave2death.jpg", album: "Rave2Death" , locked: true},
+        FeelingNothing: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/rave2death.jpg", album: "Rave2Death" , locked: true},
+        CountItUp: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/rave2death.jpg", album: "Rave2Death" , locked: true},
+        TellMeLies: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/tellmelies.jpeg", locked: true },
+        Warsaw: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/warsaw.jpg", locked: true },
+        BodyOnTheFloor: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/BodyOnTheFloor.jpeg", locked: true },
+        HAHARemix: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/haharemix.jpeg", locked: true },
+        PicknChoose: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/PicknChoose.jpg", locked: true },
+        ThrowIt: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/ThrowIt.jpg", locked: true },
+        VampireFangs: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/VampireFangs.jpeg", locked: true },
+        Monster: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/monster1.jpg", locked: true },
+        MONSTER: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/monster.jpg", locked: true },
+        DigHisGrave: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/DigHisGrave.jpg", locked: true },
+        DontUnderstandIt: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/DontUnderstandIt.jpg", locked: true },
+        GoHard: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/gohard.jpg", locked: true },
+        BiggestFan: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/BiggestFan.jpeg", locked: true },
+        YouKnowUs: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/YouKnowUs.jpg", locked: true },
+        SeeThrough: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/SeeThrough.jpg", locked: true },
+        WhatdISay: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/WhatdISay.jpg", locked: true },        
+        NoEscape: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/NoEscape.jpg", locked: true },
+        GoneForSoLong: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/GoneForSoLong.jpg", locked: true },
+        EmoGirl: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/emogirl.jpeg", locked: true },
+        DieForYou: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/DieForYou.jpg", locked: true },
+        EyesOnMe: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/EyesOnMe.jpg", locked: true },
+        OutOfBody: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/OutOfBody.jpeg", locked: true },
+        WorstNightm4re: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/WorstNightm4are.jpeg", locked: true },
+        Exotic: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/Exotic.jpeg", locked: true },
+        YouCantHide: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/YouCantHide.png", locked: true },
+        SecondChances: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/SecondChances.jpg", locked: true },
+        RockThatShit: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/RockThatShit.jpg", locked: true },
+        WonderWhy: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/WonderWhy.jpg", locked: true },
+        Fusion: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/Fusion.jpg", locked: true },
+        IDidntNeedYouAnyway: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/IDidntNeedYouAnyway.jpeg", locked: true },
+        Paranoid: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/Paranoid.jpg", locked: true },
 
         FlexLikeThis: { baseCost: 22244063, currentCost: 22244063, income: 2224406, owned: 0, image: "assets/asteriaarchive1.jpeg", locked: true, album: "AsteriaArchive1" },
         Numb: { baseCost: 22466504, currentCost: 22466504, income: 2246650, owned: 0, image: "assets/asteriaarchive1.jpeg", locked: true, album: "AsteriaArchive1" },
@@ -194,7 +213,7 @@ const activeItems = {
       calculatedPassiveIncome += item.income * item.owned;
     }
   }
-    if (asteriaDisplay) asteriaDisplay.textContent = `Asteria: ${asteria} Ⓐ`;
+    if (asteriaDisplay) asteriaDisplay.textContent = `${asteria} Ⓐ`;
     if (passiveRateDisplay) passiveRateDisplay.textContent = `+${calculatedPassiveIncome} Ⓐ/s`;
     if (activeRateDisplay) activeRateDisplay.textContent = `+${clickPower} Ⓐ/click`;
   }
@@ -210,50 +229,185 @@ const activeItems = {
 
   function buyActiveItem(name) {
 
-    const item = activeItems[name];
-    if (asteria >= item.currentCost) {
-      asteria -= item.currentCost;
-      activateItemEffect(name); // Fix: pass name
+        const item = activeItems[name];
+        if (asteria >= item.currentCost) {
+            asteria -= item.currentCost;
+            activateItemEffect(name);
 
 
-      renderShops();
-      updateDisplays();
-  
-      if (name === "hairDye") {
-        activeItems.helloKittyHat.locked = false;
-        hasHairDye = true;
-        unlockAchievement("buyHairDye");
-        console.log("Hello Kitty Hat unlocked");
-        console.log("Hairdye unlocked");
-        updateAsteriaImage();
-        renderShops();
+            renderShops();
+            updateDisplays();
+    
+        if (name === "hairDye") {
+            activeItems.helloKittyHat.locked = false;
+            hasHairDye = true;
+            unlockAchievement("buyHairDye");
+            console.log("Hello Kitty Hat unlocked");
+            console.log("Hairdye unlocked");
+            updateAsteriaImage();
+            renderShops();
+        }
 
-      }
+        if (name === "staff") {
+            passiveItems.UltraInstinct.locked = false;}
+            
+            if (name === "Lytra") {
+                LytraBought = true;
+                checkUnlocks();
+            }
+            
+            if (name === "Vyzer") {
+                VyzerBought = true;
+                if (VyzerBought && LytraBought) {
+                    passiveItems.Skibidi.locked = false;
+                }
+            }
+
+
+
+
+        if (name === "Studio") {
+            activeItems.Lytra.locked = false;
+            activeItems.HubiTheKid.locked = false;
+            activeItems.Ext3r4.locked = false;
+            activeItems.pluto.locked = false;
+            activeItems.M1v.locked = false;
+            activeItems.Nosgov.locked = false;
+            activeItems.D3r.locked = false;
+            activeItems.Kalia.locked = false;
+            activeItems.Odetari.locked = false;
+            activeItems.Sickboyrari.locked = false;
+            activeItems.kmrnxo.locked = false;}
+        
+        if (name === "HubiTheKid") {
+            passiveItems.worldwide.locked = false;
+            passiveItems.GiveMeMore.locked = false;
+        }
+
+        if (name === "Kazoo2death") {
+            activeItems.Vyzer.locked = false;}
+
+        if (name === "Lytra") {
+            passiveItems.HAHA.locked = false;}
+            
+            if (name === "BloodSea") {
+                passiveItems.BloodAsPaint.locked = false;}
+
+
+        if (name === "Odetari") {
+            passiveItems.TellMeLies.locked = false;}
+
+            if (name === "Sickboyrari") {
+                passiveItems.W4steAway.locked = false;}
+
+
+        if (name === "BloodSea") {
+            passiveItems.BloodAsPaint.locked = false;}
+        if (name === "kmrnxo") {
+            kmrnxoBought = true;}
+
+        if (name === "micAsteria") {
+            activeItems.studioAsteria.locked = false;}
+        if (name === "studioAsteria") {
+            activeItems.AsteriaArchive.locked = false;}
+
+        if (name === "_6arelyhuman") {
+            barelyhumanBought = true;
+            passiveItems.iKnow.locked = false;
+            activeItems.cuteSongsForGangsters.locked = false;
+            ketsNbarely(); 
+        }
+
+        if (name === "asteriaarchive") {
+            activeItems.AsteriaArchive1.locked = false;
+            activeItems.AsteriaArchive2.locked = false;
+            activeItems.AsteriaArchive3.locked = false;
+            activeItems.AsteriaArchive4.locked = false;
+            activeItems.OldScr4psss.locked = false;
+            activeItems.IWassOffAPillInPrzechodnia.locked = false;
+            activeItems.Watchout.locked = false;
+        }
+
+        if (name === "kets4eki") {
+            clickPower *= 2;
+            kets4ekiBought = true;
+            passiveItems.ThrowIt.locked = false;
+            activeItems.EveryPill.locked = false;
+            activeItems.Rave2death.locked = false;
+            ketsNbarely(); 
+            checkUnlocks();       }
+
+        if (name === "cuteSongsForGangsters") {
+            for (const item of Object.values(passiveItems)) {
+                if (item.album === "CuteSongsForGangsters") {
+                    item.locked = false;
+                }
+            }
+        renderShops();      }       
+
+        if (name === "Rave2death") {
+            for (const item of Object.values(passiveItems)) {
+                if (item.album === "Rave2Death") {
+                    item.locked = false;
+                }
+            }
+        renderShops();      }     
   
-      if (name === "HAHA") {
-        passiveItems.Lytra.locked = false;
-        console.log("Lytra added");
-        renderShops();
-      }
+
+        
+        if (name === "anarchistSanctuary") {
+            passiveItems.Fanart.locked = false;
+            activeItems.sunglasses.locked = false;
+            activeItems.hairDye.locked = false;
+            console.log("Lytra added");
+            renderShops();      }
+      
+        if (name === "sunglasses") {
+            hasGlasses = true;
+            passiveItems.Photoshoot.locked = false;
+            console.log("Glasses unlocked");
+            updateAsteriaImage();      }
+
+        if (name === "dogsteria") {
+            hasDogsteria = true;
+            console.log("dogsteria unlocked");
+            updateAsteriaImage();      }
+
+        if (name === "FBM") {
+            console.log("FBM unlocked!");
+            unlockAchievement("FBM");
+            britneySpawnModifier = 0.2; // Reduce spawn chance by 80%
+    
+          }
   
-      if (name === "sunglasses") {
-        hasGlasses = true;
-        console.log("Glasses unlocked");
-        updateAsteriaImage();
-      }
-  
-      if (name === "helloKittyHat") {
-        hasHelloKittyHat = true;
-        passiveItems.GALORE.locked = false;
-        console.log("Hello Kitty Hat unlocked");
-        updateAsteriaImage();
-        unlockAchievement("infiniteSwag");
-        renderShops();
-      }
-  
+        if (name === "helloKittyHat") {
+            hasHelloKittyHat = true;
+            passiveItems.GALORE.locked = false;
+            activeItems.swordNecklace.locked = false;
+            console.log("Hello Kitty Hat unlocked");
+            updateAsteriaImage();
+            unlockAchievement("infiniteSwag");
+            renderShops();      }
+        
+
+
+      renderShops(); 
       updateAsteriaImage();
     }
   }
+
+  function checkUnlocks() {
+    if (LytraBought && VyzerBought) {
+        passiveItems.Skibidi.locked = false;
+    }
+    if (LytraBought && kets4ekiBought) {
+        passiveItems.HoldUp.locked = false;
+    }
+    if (VyzerBought && kets4ekiBought && kmrnxoBought) {
+        passiveItems.HoldUp.locked = false;
+    }
+    
+}
   
   //-------------------------------------------------------------------Activate effect of active items-----------------------------------------------------
   function activateItemEffect(name) {
@@ -267,6 +421,7 @@ const activeItems = {
       }
       if (name === "_6arelyhuman") {
         activateBarelyhumanEffect();
+        ketsNbarely()
       }
       
   
@@ -283,26 +438,75 @@ function buyPassiveItem(name) {
       item.currentCost = Math.floor(item.currentCost * 1.5);
   
       // Unlock drift if redMercedes is bought
-      if (name === "redMercedes") {
+      if (name === "RedMercedes") {
         activeItems.drift.locked = false;
+        passiveItems.Warsaw.locked = false;
+        activeItems.Studio.locked = false;
         console.log("Drift unlocked!");
         unlockAchievement("redMercedes");
       }
-      if (name === "FBM" && item.owned === 1) {
-        britneySpawnModifier = 0.2; // Reduce spawn chance by 80%
-        unlockAchievement("FBM");
+      if (name === "Warsaw") {
+        activeItems._2504.locked = false;
+        activeItems.Eclipse.locked = false;
       }
+    
+      if (name === "MakeMeFamous") {
+        activeItems.micAsteria.locked = false;
+      }
+
+      if (name === "Bloodbath") {
+        activeItems.BloodSea.locked = false;
+      }
+
+      if (name === "SocialsPost") {
+        activeItems.dogsteria.locked = false;
+        passiveItems.WhatYouWant.locked = false;
+      }
+
+      if (name === "RaveLife") {
+        activeItems.Wasty.locked = false;
+      }
+
+      if (name === "OneMoreTime") {
+        activeItems.kets4eki.locked = false;
+        activeItems.staff.locked = false;
+      }
+
+      if (name === "WhatYouWant") {
+        activeItems.hatsuneMiku.locked = false;
+      }
+
+      if (name === "BloodAsPaint") {
+        activeItems.kmrnxo.locked = false;
+      }
+
+      if (name === "Photoshoot") {
+        passiveItems.TakeAPic.locked = false;
+      }
+
+      if (name === "TakeAPic") {
+        activeItems._6arelyhuman.locked = false;
+        passiveItems.SocialsPost.locked = false;
+      }    
+
+      if (name === "GALORE") {
+        activeItems.clonnex.locked = false;
+      }    
+      if (item.album === "Rave2Death") {
+        checkAllRave2DeathBought();
+    }
+
       if (name === "sanctuary" && item.owned === 1) {
+        passiveItems.fanart.locked = false;
+        console.log("Fanart unlocked!");        
         unlockAchievement("fanart");
       }
+
+      if (name === "HAHA") {
+        passiveItems.Lytra.locked = false;
+        console.log("Lytra added");
+        renderShops();      }
       
-      
-  
-      // Unlock fanart if anarchistSanctuary is bought
-      if (name === "sanctuary") {
-        passiveItems.fanart.locked = false;
-        console.log("Fanart unlocked!");
-      }
   
       renderShops();
       updateDisplays();
@@ -337,15 +541,15 @@ function renderShops() {
     const passiveShop = document.getElementById("passiveShop");
     activeShop.querySelectorAll(".shop-item").forEach(e => e.remove());
     passiveShop.querySelectorAll(".shop-item").forEach(e => e.remove());
-    asteriaDisplay.textContent = `Asteria: ${asteria} Ⓐ`;
+    asteriaDisplay.textContent = `${asteria} Ⓐ`;
     activeRateDisplay.textContent = `+${clickPower} Ⓐ/click`;
     passiveRateDisplay.textContent = `+${passiveIncome} Ⓐ/s`;
 
   
     for (const [name, item] of Object.entries(activeItems)) {
-       // if (item.locked) continue;
-      const card = document.createElement("div");
-      card.className = "shop-item";
+        if (item.locked) continue;
+        const card = document.createElement("div");
+        card.className = "shop-item";
   
       // Create a container for the image and item details
       const itemContent = document.createElement("div");
@@ -360,7 +564,7 @@ function renderShops() {
       itemDetails.className = "item-details";
       itemDetails.innerHTML = `
         <p>${name}</p>
-        <p>Cost: ${item.currentCost} Ⓐ</p>
+        <p>${item.currentCost} Ⓐ</p>
         <p class="item-description">${item.itemDetails}</p>
       `;
   
@@ -377,7 +581,7 @@ function renderShops() {
   
     for (const [name, item] of Object.entries(passiveItems)) {
 
-      //  if (item.locked) continue;
+        if (item.locked) continue;
         const card = document.createElement("div");
         card.className = "shop-item";
   
@@ -392,7 +596,7 @@ function renderShops() {
       itemDetails.className = "item-details";
       itemDetails.innerHTML = `
         <p>${name}</p>
-        <p>Cost: ${item.currentCost} Ⓐ</p>
+        <p>${item.currentCost} Ⓐ</p>
         <p>Owned: ${item.owned}</p>
         <p>+${item.income} Ⓐ/s</p>
       `;
@@ -406,24 +610,44 @@ function renderShops() {
     }
   }
 
-  function updateAsteriaImage() {
-    const clickImage = document.querySelector("#clickBtn img");
-    if (!clickImage) return;
-  
-    console.log("Updating image - HairDye:", hasHairDye, "Glasses:", hasGlasses, "HelloKittyHat:", hasHelloKittyHat);
-  
-    if (hasHelloKittyHat) {
-      clickImage.src = "assets/hellokittyasteria.PNG";
-    } else if (hasHairDye && hasGlasses) {
-      clickImage.src = "assets/redhairglasses.PNG";
-    } else if (hasHairDye) {
-      clickImage.src = "assets/redhair.PNG";
-    } else if (hasGlasses) {
-      clickImage.src = "assets/glassesnohair.PNG";
-    } else {
-      clickImage.src = "assets/asteria.PNG";
+function ketsNbarely() { 
+    if (barelyhumanBought && kets4ekiBought) {
+        passiveItems.FasterNHarder.locked = false;
+        passiveItems.PartyLikeThe80s.locked = false;
+        activeItems.FBM.locked = false;
     }
-  }
+   }
+
+function updateAsteriaImage() {
+   const clickImage = document.querySelector("#clickBtn img");
+   if (!clickImage) {
+     console.error("❌ Asteria image element not found.");
+     return;
+   }
+
+   console.log("Updating image - HairDye:", hasHairDye, "Glasses:", hasGlasses, "HelloKittyHat:", hasHelloKittyHat, "Dogsteria:", hasDogsteria);
+
+   if (hasDogsteria) {
+     console.log("✅ Setting to Dogsteria");
+     clickImage.src = "assets/dogsteria.jpg";
+   } else if (hasHelloKittyHat) {
+     console.log("✅ Setting to Hello Kitty");
+     clickImage.src = "assets/hellokittyasteria.PNG";
+   } else if (hasHairDye && hasGlasses) {
+     console.log("✅ Setting to Red Hair + Glasses");
+     clickImage.src = "assets/redhairglasses.PNG";
+   } else if (hasHairDye) {
+     console.log("✅ Setting to Red Hair");
+     clickImage.src = "assets/redhair.PNG";
+   } else if (hasGlasses) {
+     console.log("✅ Setting to Glasses");
+     clickImage.src = "assets/glassesnohair.PNG";
+   } else {
+     console.log("✅ Setting to Default");
+     clickImage.src = "assets/asteria.PNG";
+   }
+ }
+
   
   
 
@@ -474,7 +698,58 @@ function startClonnexEffect() {
   
       clickPower = originalClickPower;
       document.body.classList.remove("barely-effect");
-      console.log("🎧 Hyperpop Surge ended.");
+      console.log("6arelyhuman scene party ended.");
     }, 10000);
+  }
+  
+  //forkazoo2death
+  function checkAllRave2DeathBought() {
+    const rave2DeathSongs = [
+        "RaveLife",
+        "Faded",
+        "DollarBills",
+        "TynaFuck",
+        "ComeOn",
+        "IFuckedHerFriend",
+        "FeelingNothing",
+        "CountItUp"
+    ];
+
+    // Check if all songs are owned (owned > 0)
+    const allOwned = rave2DeathSongs.every(song => {
+        const item = passiveItems[song];
+        return item && item.owned > 0;
+    });
+
+    if (allOwned) {
+        if (activeItems.Kazoo2death && activeItems.Kazoo2death.locked) {
+            activeItems.Kazoo2death.locked = false;
+            renderShops();  // Re-render shops or whatever function needs to be called
+        }
+    }
+}
+
+if (window.stoleAll) {
+    console.log("Britney has stolen all your Asterias!");
+    // Perform any other actions based on this, like unlocking more items, achievements, etc.
+    
+    // Example: Unlock another item based on stealing Asteria
+    activeItems.ragesteria.locked = false;
+    console.log("Ragesteria has been unlocked!");
+  }
+
+  function stealAsteria() {
+    console.log("Britney Manson is stealing Asteria...");
+    console.log("Asteria before:", asteria);
+    window.stoleAll = true;
+
+    activeItems.ragesteria.locked = false;
+  
+    asteria = 0;
+    if (typeof updateDisplays === "function") updateDisplays();
+    alert("💀 Britney Manson stole all your Asterias!");
+    unlockAchievement("Welostitall");
+    hideBritney();
+    renderShops();
   }
   
