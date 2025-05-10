@@ -1,0 +1,93 @@
+---
+config:
+  look: neo
+  theme: neo
+  layout: elk
+---
+flowchart TD
+ subgraph s1["rave2death"]
+        n18@{ label: "<div style=\"color:\"><span style=\"color:\">RaveLife</span></div>" }
+        n19@{ label: "<div style=\"color:\"><div style=\"color:\"><span style=\"color:\">DollarBills</span></div></div>" }
+        n20@{ label: "<div style=\"color:\"><span style=\"color:\">TynaFuck</span></div>" }
+        n21@{ label: "<div style=\"color:\"><span style=\"color:\">Faded</span></div>" }
+        n22@{ label: "<div style=\"color:\"><span style=\"color:\">ComeOn</span></div>" }
+        n23@{ label: "<div style=\"color:\"><span style=\"color:\">IFuckedHerFriend</span></div>" }
+        n24@{ label: "<div style=\"color:\"><span style=\"color:\">FeelingNothing</span></div>" }
+        n25@{ label: "<div style=\"color:\"><span style=\"color:\">CountItUp</span></div>" }
+  end
+    ID_1(["AnarchistSanctuary"]) --> ID_2["Fanart"] & n6["sunglasses"] & n7["hairdye"]
+    n1(["OneMoreTime"]) --> n2["kets4eki"] & n17["staff"]
+    n2 --> n3["throw it"] & n4["EveryPill"] & n5["Rave2death"] & n14["FasterNharder"] & n15@{ label: "<div style=\"color:\"><span style=\"color:\">PartyLikeThe80s</span></div>" } & n16["FBM"] & n62["HoldUp"]
+    n7 --> n8["hellokitty hat"]
+    n8 --> n9["Galore"]
+    n9 --> n10["clonnex"]
+    n11["Photoshoot"] --> n12["TakeAPic"]
+    n12 --> n13["6arelyhuman"] & n35["Socials post"]
+    n13 --> n14 & n15 & n16 & n26@{ label: "<div style=\"color:\"><span style=\"color:\">cuteSongsForGangsters</span></div>" }
+    n6 --> n11
+    n5 --> n18 & n19 & n20 & n21 & n22 & n23 & n24 & n25
+    n26 --> n27@{ label: "<div style=\"color:\"><span style=\"color:\">Bloodbath</span></div>" } & n28["Hypnotized"] & n29@{ label: "<div style=\"color:\"><span style=\"color:\">RedMercedes</span></div>" } & n30@{ label: "<div style=\"color:\"><span style=\"color:\">FadeAway</span></div>" } & n31@{ label: "<div style=\"color:\"><span style=\"color:\">MakeMeFamous</span></div>" }
+    n17 --> n32["UltraInstinct"]
+    n29 --> n33["Studio"] & n34["Drift"] & n55["warsaw"]
+    n35 --> n36["dogsteria"] & n37["WhatYouWant"]
+    n37 --> n38["Miku"]
+    n18 --> n39["wasty"] & n40["Kazoo2death"]
+    n40 --> n41["vyzer"]
+    n24 --> n40
+    n19 --> n40
+    n22 --> n40
+    n23 --> n40
+    n20 --> n40
+    n25 --> n40
+    n21 --> n40
+    n33 --> n42["Lytra"] & n43["HubiTheKid"] & n45@{ label: "<div style=\"color:\"><span style=\"color:\">Ext3r4</span></div>" } & n46@{ label: "<div style=\"color:\"><span style=\"color:\">pluto</span></div>" } & n47@{ label: "<div style=\"color:\"><span style=\"color:\">M1v</span></div>" } & n48@{ label: "<div style=\"color:\"><span style=\"color:\">Nosgov</span></div>" } & n50@{ label: "<div style=\"color:\"><span style=\"color:\">D3r</span></div>" } & n51@{ label: "<div style=\"color:\"><span style=\"color:\">Kalia</span></div>" } & n53["Odetari"] & n57["sickboyrari"]
+    n53 --> n54["TellMeLies"]
+    n55 --> n49@{ label: "<div style=\"color:\"><span style=\"color:\">Eclipse</span></div>" } & n44@{ label: "<div style=\"color:\"><span style=\"color:\">_2504</span></div>" }
+    n42 --> n56["Haha"] & n61["Skibidi"] & n62
+    n57 --> n58["WasteAway"]
+    n31 --> n59["MicAsteria"]
+    n59 --> n60["StudioAsteria"]
+    n41 --> n61
+    n60 --> n63["AsteriaArchive"]
+    n27 --> n64["BloodSea"]
+    n64 --> n65["Blood as paint"]
+    n65 --> n52@{ label: "<div style=\"color:\"><span style=\"color:\">kmrnxo</span></div>" }
+    n45@{ shape: rect}
+    n46@{ shape: rect}
+    n47@{ shape: rect}
+    n48@{ shape: rect}
+    n50@{ shape: rect}
+    n51@{ shape: rect}
+    n49@{ shape: rect}
+    n44@{ shape: rect}
+    n52@{ shape: rect}
+     n2:::Rose
+     n10:::Rose
+     n13:::Rose
+     n38:::Rose
+     n39:::Rose
+     n41:::Rose
+     n42:::Rose
+     n43:::Rose
+     n45:::Rose
+     n46:::Rose
+     n47:::Rose
+     n48:::Rose
+     n50:::Rose
+     n51:::Rose
+     n53:::Rose
+     n57:::Rose
+     n49:::Rose
+     n44:::Rose
+     n63:::Rose
+     n52:::Rose
+    classDef Rose stroke-width:1px, stroke-dasharray:none, stroke:#FF5978, fill:#FFDFE5, color:#8E2236
+    style n42 stroke:#D50000
+    style n43 stroke:#D50000
+    style n46 stroke:#D50000
+    style n48 stroke:#D50000
+    style n50 stroke:#D50000
+    style n51 stroke:#D50000
+    style n57 stroke:#D50000
+    style n49 stroke:#D50000
+    style n44 stroke:#D50000
