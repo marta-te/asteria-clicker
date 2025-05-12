@@ -14,6 +14,39 @@ flowchart TD
         n23@{ label: "<div style=\"color:\"><span style=\"color:\">IFuckedHerFriend</span></div>" }
         n24@{ label: "<div style=\"color:\"><span style=\"color:\">FeelingNothing</span></div>" }
         n25@{ label: "<div style=\"color:\"><span style=\"color:\">CountItUp</span></div>" }
+        n73["lolipopasteria"]
+  end
+ subgraph s2["CuteSongsForGangsters"]
+        n27@{ label: "<div style=\"color:\"><span style=\"color:\">Bloodbath</span></div>" }
+        n28["Hypnotized"]
+        n29@{ label: "<div style=\"color:\"><span style=\"color:\">RedMercedes</span></div>" }
+        n30@{ label: "<div style=\"color:\"><span style=\"color:\">FadeAway</span></div>" }
+        n31@{ label: "<div style=\"color:\"><span style=\"color:\">MakeMeFamous</span></div>" }
+        n34["Drift"]
+  end
+ subgraph s3["Asteria Archive1"]
+        n78["FlexLikeThis"]
+        n79["Numb"]
+        n80["SoGone"]
+        n81["WayTooFar"]
+        n82["GoDown"]
+        n83["BadDreams"]
+        n84["NotEvenCudKnow"]
+        n85["OneTakeFreestyle"]
+        n86["Rockst4r"]
+        n87["DemonInDisguise"]
+        n88["Tonight"]
+        n89["LikeThat"]
+        n90["Attachments"]
+        n48@{ label: "<div style=\"color:\"><span style=\"color:\">Nosgov</span></div>" }
+  end
+ subgraph s4["AsteriaArchive2"]
+        n92["EyesClosed"]
+        n93["ComingDown"]
+        n94["AlreadyDead"]
+        n95["TookOverTheWorld"]
+        n96["TooAlive"]
+        n91@{ label: "<div style=\"color:\"><span style=\"color:\">Mia</span></div>" }
   end
     ID_1(["AnarchistSanctuary"]) --> ID_2["Fanart"] & n6["sunglasses"] & n7["hairdye"]
     n1(["OneMoreTime"]) --> n2["kets4eki"] & n17["staff"]
@@ -25,22 +58,15 @@ flowchart TD
     n12 --> n13["6arelyhuman"] & n35["Socials post"]
     n13 --> n14 & n15 & n16 & n26@{ label: "<div style=\"color:\"><span style=\"color:\">cuteSongsForGangsters</span></div>" }
     n6 --> n11
-    n5 --> n18 & n19 & n20 & n21 & n22 & n23 & n24 & n25
-    n26 --> n27@{ label: "<div style=\"color:\"><span style=\"color:\">Bloodbath</span></div>" } & n28["Hypnotized"] & n29@{ label: "<div style=\"color:\"><span style=\"color:\">RedMercedes</span></div>" } & n30@{ label: "<div style=\"color:\"><span style=\"color:\">FadeAway</span></div>" } & n31@{ label: "<div style=\"color:\"><span style=\"color:\">MakeMeFamous</span></div>" }
+    n5 --> s1
+    n26 --> n27 & n28 & n29 & n30 & n31
     n17 --> n32["UltraInstinct"]
-    n29 --> n33["Studio"] & n34["Drift"] & n55["warsaw"]
+    n29 --> n33["Studio"] & n34 & n55["warsaw"]
     n35 --> n36["dogsteria"] & n37["WhatYouWant"]
     n37 --> n38["Miku"]
-    n18 --> n39["wasty"] & n40["Kazoo2death"]
-    n40 --> n41["vyzer"]
-    n24 --> n40
-    n19 --> n40
-    n22 --> n40
-    n23 --> n40
-    n20 --> n40
-    n25 --> n40
-    n21 --> n40
-    n33 --> n42["Lytra"] & n43["HubiTheKid"] & n45@{ label: "<div style=\"color:\"><span style=\"color:\">Ext3r4</span></div>" } & n46@{ label: "<div style=\"color:\"><span style=\"color:\">pluto</span></div>" } & n47@{ label: "<div style=\"color:\"><span style=\"color:\">M1v</span></div>" } & n48@{ label: "<div style=\"color:\"><span style=\"color:\">Nosgov</span></div>" } & n50@{ label: "<div style=\"color:\"><span style=\"color:\">D3r</span></div>" } & n51@{ label: "<div style=\"color:\"><span style=\"color:\">Kalia</span></div>" } & n53["Odetari"] & n57["sickboyrari"]
+    n18 --> n39["wasty"]
+    n40["Kazoo2death"] --> n41["vyzer"]
+    n33 --> n42["Lytra"] & n43["HubiTheKid"] & n45@{ label: "<div style=\"color:\"><span style=\"color:\">Ext3r4</span></div>" } & n46@{ label: "<div style=\"color:\"><span style=\"color:\">pluto</span></div>" } & n47@{ label: "<div style=\"color:\"><span style=\"color:\">M1v</span></div>" } & n50@{ label: "<div style=\"color:\"><span style=\"color:\">D3r</span></div>" } & n51@{ label: "<div style=\"color:\"><span style=\"color:\">Kalia</span></div>" } & n53["Odetari"] & n57["sickboyrari"]
     n53 --> n54["TellMeLies"]
     n55 --> n49@{ label: "<div style=\"color:\"><span style=\"color:\">Eclipse</span></div>" } & n44@{ label: "<div style=\"color:\"><span style=\"color:\">_2504</span></div>" }
     n42 --> n56["Haha"] & n61["Skibidi"] & n62
@@ -52,15 +78,32 @@ flowchart TD
     n27 --> n64["BloodSea"]
     n64 --> n65["Blood as paint"]
     n65 --> n52@{ label: "<div style=\"color:\"><span style=\"color:\">kmrnxo</span></div>" }
+    n61 --> n66["Ewsteria"]
+    n54 --> n67["sideeyeasteria"]
+    n67 --> n68["Eye"]
+    n68 --> n69["Seesteria"]
+    n70(["Ragesteria"]) --> n71["screamsteria"]
+    n4 --> n72["Nomsteria"]
+    s1 --> n40
+    n19 --> n73
+    n63 --> n74["Archive1"] & n77["Archive4"]
+    n74 --> s3
+    n87 --> n48
+    s3 --> n75["Archive2"]
+    n75 --> s4
+    s4 --> n76["archive3"]
+    n48@{ shape: rect}
+    n91@{ shape: rect}
     n45@{ shape: rect}
     n46@{ shape: rect}
     n47@{ shape: rect}
-    n48@{ shape: rect}
     n50@{ shape: rect}
     n51@{ shape: rect}
     n49@{ shape: rect}
     n44@{ shape: rect}
     n52@{ shape: rect}
+    n75@{ shape: rect}
+     n48:::Rose
      n2:::Rose
      n10:::Rose
      n13:::Rose
@@ -72,7 +115,6 @@ flowchart TD
      n45:::Rose
      n46:::Rose
      n47:::Rose
-     n48:::Rose
      n50:::Rose
      n51:::Rose
      n53:::Rose
@@ -85,7 +127,6 @@ flowchart TD
     style n42 stroke:#D50000
     style n43 stroke:#D50000
     style n46 stroke:#D50000
-    style n48 stroke:#D50000
     style n50 stroke:#D50000
     style n51 stroke:#D50000
     style n57 stroke:#D50000

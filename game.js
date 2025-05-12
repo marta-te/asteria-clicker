@@ -305,7 +305,6 @@ const activeItems = {
             passiveItems.BloodAsPaint.locked = false;}
         if (name === "kmrnxo") {
             kmrnxoBought = true;}
-
         if (name === "micAsteria") {
             activeItems.studioAsteria.locked = false;}
         if (name === "studioAsteria") {
