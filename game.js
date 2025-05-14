@@ -332,9 +332,6 @@ const activeItems = {
 
         if (name === "asteriaarchive") {
             activeItems.AsteriaArchive1.locked = false;
-            activeItems.AsteriaArchive2.locked = false;
-            activeItems.AsteriaArchive3.locked = false;
-            activeItems.AsteriaArchive4.locked = false;
             activeItems.OldScr4psss.locked = false;
             activeItems.IWassOffAPillInPrzechodnia.locked = false;
             activeItems.Watchout.locked = false;
@@ -363,6 +360,7 @@ const activeItems = {
                     item.locked = false;
                 }
             }
+            renderShops(); 
         }     
 
         if (name === "AsteriaArchive1") {
@@ -370,7 +368,7 @@ const activeItems = {
                 if (item.album === "AsteriaArchive1") {
                     item.locked = false;
                 }
-            }
+            }renderShops(); 
         }     
 
         if (name === "AsteriaArchive2") {
@@ -385,7 +383,7 @@ const activeItems = {
                 if (item.album === "AsteriaArchive3") {
                     item.locked = false;
                 }
-            }
+            }renderShops(); 
         }     
 
         if (name === "AsteriaArchive4") {
@@ -393,7 +391,7 @@ const activeItems = {
                 if (item.album === "AsteriaArchive4") {
                     item.locked = false;
                 }
-            }
+            }renderShops(); 
         }     
 
         if (name === "OldScr4psss") {
@@ -401,7 +399,7 @@ const activeItems = {
                 if (item.album === "OldScr4psss") {
                     item.locked = false;
                 }
-            }
+            }renderShops(); 
         }     
   
 
@@ -558,14 +556,25 @@ function buyPassiveItem(name) {
       }    
       if (item.album === "Rave2Death") {
         checkAllRave2DeathBought();
+        renderShops(); 
     }
 
     if (item.album === "AsteriaArchive1") {
-        AA1songs();
+        renderShops();
+        checkAllAA1();
+    }
+
+    if (item.album === "AsteriaArchive2") {
+        renderShops();
+        checkAllAA2();
+
+
     }
 
     if (item.album === "AsteriaArchive3") {
-        AA3songs();
+        renderShops();
+        checkAllAA3();
+
     }
 
 
@@ -805,15 +814,16 @@ function startClonnexEffect() {
 
 function checkAllAA1() {
     const AA1songs = [
-        "NotEvenCudKnow",
+        "FlexLikeThis",
         "Numb",
-        "oneTakeFreestyle",
         "SoGone",
+        "WayTooFar",
         "GoDown",
         "BadDreams",
-        "WayTooFar",
-        "Rockst4r",
+        "NotEvenCudKnow",
+        "OneTakeFreestyle",
         "DemonInDisguise",
+        "Rockst4r",
         "Tonight",
         "LikeThat",
         "Attachments",
