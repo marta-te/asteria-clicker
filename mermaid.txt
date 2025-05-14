@@ -48,6 +48,18 @@ flowchart TD
         n96["TooAlive"]
         n91@{ label: "<div style=\"color:\"><span style=\"color:\">Mia</span></div>" }
   end
+ subgraph s5["Asteria archive 3"]
+        n99["ISeeYouAsAnEnemy"]
+        WritersPapers["WritersPapers"]
+        Slower["Slower"]
+        FosteredAlcoholism["FosteredAlcoholism"]
+        FeelMyLuv
+        DayNNight
+        BaddestBitchOut
+        HellNBackFreestyle
+        n97@{ label: "<div style=\"color:\"><span style=\"color:\">LetYouDown</span></div>" }
+        n98@{ label: "<div style=\"color:\"><span style=\"color:\">FaceOfDeath</span></div>" }
+  end
     ID_1(["AnarchistSanctuary"]) --> ID_2["Fanart"] & n6["sunglasses"] & n7["hairdye"]
     n1(["OneMoreTime"]) --> n2["kets4eki"] & n17["staff"]
     n2 --> n3["throw it"] & n4["EveryPill"] & n5["Rave2death"] & n14["FasterNharder"] & n15@{ label: "<div style=\"color:\"><span style=\"color:\">PartyLikeThe80s</span></div>" } & n16["FBM"] & n62["HoldUp"]
@@ -92,8 +104,12 @@ flowchart TD
     s3 --> n75["Archive2"]
     n75 --> s4
     s4 --> n76["archive3"]
+    n76 --> s5
+    s5 --> n98
     n48@{ shape: rect}
     n91@{ shape: rect}
+    n97@{ shape: rect}
+    n98@{ shape: rect}
     n45@{ shape: rect}
     n46@{ shape: rect}
     n47@{ shape: rect}

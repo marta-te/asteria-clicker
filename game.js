@@ -24,61 +24,61 @@ let clonnexInterval = null;
 const clickBtn = document.getElementById("clickBtn");
 
 const activeItems = {
-    anarchistSanctuary: { cost: 50,currentCost: 50,image: "assets/sanctuary.jpeg", itemDetails:"+1 click pwr" }, // Unlocks fanart
-    kets4eki: {cost: 500,currentCost: 500,image: "assets/kets4eki.jpeg", itemDetails:"Unlocks songs w/ kets4eki, click power x2" , locked: true}, //unlocks kets4eki collab
-    sunglasses: {cost: 150,currentCost: 150,image: "assets/glasses_spikey.png", itemDetails:"more swag", locked: true },
-    hairDye: {cost: 750,currentCost: 750,image: "assets/hairdye.png" , itemDetails:"red hair", locked: true},
-    helloKittyHat: {cost: 1000,currentCost: 1000,image: "assets/kittyhat.png", itemDetails:"Update Asteria swag" , locked: true }, // Unlocks GALORE achievement
-    dogsteria: {cost: 409,currentCost: 409,image: "assets/dogsteria.jpg", itemDetails:"Update Asteria swag" , locked: true },
-    clonnex: {cost: 2000,currentCost: 2000,image: "assets/clonnex.png", itemDetails:"Every 30s get a random passive item's value", locked: true },
-    _6arelyhuman: {cost: 6000,currentCost: 6000,image: "assets/6arelyhuman.jpeg", itemDetails:"10s multiplier: Active x2, Passive x3", locked: true},
-    cuteSongsForGangsters: {cost: 66666,currentCost: 66666,image: "assets/cutesongsforgangsters.jpeg", itemDetails:"Unlocks album songs" , locked: true},
-    BloodSea: {cost: 50,currentCost: 50,image: "assets/bloodocean.png"  , itemDetails:"A sea of blood", locked: true},
-    hatsuneMiku: {cost: 10000,currentCost: 10000,image: "assets/miku2.png" , itemDetails:"MIKU MIKU BEAAAAM", locked: true},
-    staff: {cost: 15000,currentCost: 15000,image: "assets/staffofasteriacropped.PNG" , itemDetails:"Unlocks album covers where it is seen", locked: true}, // Unlocks UltraInstinct
-    Studio: {cost: 50,currentCost: 50,image: "assets/studioLytranAstee.jpg" , itemDetails:"Unlock more collabs", locked: true}, //Unlocks Lytra
-    drift: {cost: 100000,currentCost: 100000,image: "assets/drift.jpg", itemDetails:"80% less chance of Britney" , locked: true }, 
-    Lytra: {cost: 500007,currentCost: 500007,image: "assets/Lytra.jpg", itemDetails:"Unlocks songs with Lytra", locked: true}, // Unlocks Lytra Collabs
-    Vyzer: {cost: 654321,currentCost: 654321,image: "assets/vyzer.jpg" , itemDetails:"Has a kazoo.", locked: true},
-    Kazoo2death: {cost: 50,currentCost: 50,image: "assets/kazoo2death.jpg"  , itemDetails:"Unlocks Vyzer", locked: true },
-    Wasty: {cost: 999999,currentCost: 999999,image: "assets/wasty.jpeg" , itemDetails:"Unlocks songs with Wasty", locked: true}, // Unlocks Wasty Collabs -TBD
+    anarchistSanctuary: { cost: 50,currentCost: 50,owned: 0,image: "assets/sanctuary.jpeg", itemDetails:"+1 click pwr" }, // Unlocks fanart
+    kets4eki: {cost: 500,currentCost: 500,owned: 0,image: "assets/kets4eki.jpeg", itemDetails:"Unlocks songs w/ kets4eki, click power x2" , locked: true}, //unlocks kets4eki collab
+    sunglasses: {cost: 150,currentCost: 150,owned: 0,image: "assets/glasses_spikey.png", itemDetails:"more swag", locked: true },
+    hairDye: {cost: 750,currentCost: 750,owned: 0,image: "assets/hairdye.png" , itemDetails:"red hair", locked: true},
+    helloKittyHat: {cost: 1000,currentCost: 1000,owned: 0,image: "assets/kittyhat.png", itemDetails:"Update Asteria swag" , locked: true }, // Unlocks GALORE achievement
+    dogsteria: {cost: 409,currentCost: 409,owned: 0,image: "assets/dogsteria.jpg", itemDetails:"Update Asteria swag" , locked: true },
+    clonnex: {cost: 2000,currentCost: 2000,owned: 0,image: "assets/clonnex.png", itemDetails:"Every 30s get a random passive item's value", locked: true },
+    _6arelyhuman: {cost: 6000,currentCost: 6000,owned: 0,image: "assets/6arelyhuman.jpeg", itemDetails:"10s multiplier: Active x2, Passive x3", locked: true},
+    cuteSongsForGangsters: {cost: 66666,currentCost: 66666,owned: 0,image: "assets/cutesongsforgangsters.jpeg", itemDetails:"Unlocks album songs" , locked: true},
+    BloodSea: {cost: 50,currentCost: 50,owned: 0,image: "assets/bloodocean.png"  , itemDetails:"A sea of blood", locked: true},
+    hatsuneMiku: {cost: 10000,currentCost: 10000,owned: 0,image: "assets/miku2.png" , itemDetails:"MIKU MIKU BEAAAAM", locked: true},
+    staff: {cost: 15000,currentCost: 15000,owned: 0,image: "assets/staffofasteriacropped.PNG" , itemDetails:"Unlocks album covers where it is seen", locked: true}, // Unlocks UltraInstinct
+    Studio: {cost: 50,currentCost: 50,owned: 0,image: "assets/studioLytranAstee.jpg" , itemDetails:"Unlock more collabs", locked: true}, //Unlocks Lytra
+    drift: {cost: 100000,currentCost: 100000,owned: 0,image: "assets/drift.jpg", itemDetails:"80% less chance of Britney" , locked: true }, 
+    Lytra: {cost: 500007,currentCost: 500007,owned: 0,image: "assets/Lytra.jpg", itemDetails:"Unlocks songs with Lytra", locked: true}, // Unlocks Lytra Collabs
+    Vyzer: {cost: 654321,currentCost: 654321,owned: 0,image: "assets/vyzer.jpg" , itemDetails:"Has a kazoo.", locked: true},
+    Kazoo2death: {cost: 50,currentCost: 50,owned: 0,image: "assets/kazoo2death.jpg"  , itemDetails:"Unlocks Vyzer", locked: true },
+    Wasty: {cost: 999999,currentCost: 999999,owned: 0,image: "assets/wasty.jpeg" , itemDetails:"Unlocks songs with Wasty", locked: true}, // Unlocks Wasty Collabs -TBD
     Rave2death: {cost: 50,currentCost: 50,image: "assets/rave2death.jpg" , itemDetails:"Unlocks Rave2death album songs in passive items", locked: true }, // Unlocks Rave2death album songs in passive items
-    FBM: {cost: 50,currentCost: 50,image: "assets/disstrack.jpeg" , itemDetails:"80% less chance of britney", locked: true}, // 80% less chance of Britney
-    EveryPill: {cost: 50,currentCost: 50,image: "assets/everypill.jpeg" , itemDetails:"_", locked: true},
-    HubiTheKid: {cost: 50,currentCost: 50,image: "assets/hubithekid.jpeg" , itemDetails:"_", locked: true},
-    worldwide: {cost: 50,currentCost: 50,image: "assets/worldwide.jpg", itemDetails:"_", locked: true},
-    ewsteria: {cost: 50,currentCost: 50,image: "assets/ewsteria.jpg" , itemDetails:"Ewww wtf is that"},
-    lolipopsteria: {cost: 50,currentCost: 50,image: "assets/lolipopsteria.jpg" , itemDetails:"Nom"},
-    micAsteria: {cost: 50,currentCost: 50,image: "assets/micasteria.jpg" , itemDetails:"Mogchrophone", locked: true},
-    studioAsteria: { cost: 50, currentCost: 50, image: "assets/studiosteria2.png", itemDetails: "Fire vocals", locked: true },
-    nomsteria: { cost: 50, currentCost: 50, image: "assets/nomsteria.png", itemDetails: "Will he turn into a strawberry" },
-    screamsteria: { cost: 50, currentCost: 50, image: "assets/screamsteria.jpg", itemDetails: "AAAAAAAAAAA" },
-    ragesteria: { cost: 50, currentCost: 50, image: "assets/ragesteria.jpg", itemDetails: "We lost it all", locked: true },
-    scremingasteria: { cost: 50, currentCost: 50, image: "assets/sreamingasteria.png", itemDetails: "I am scared." },
-    seesteria: { cost: 50, currentCost: 50, image: "assets/seestreia.jpg", itemDetails: "Just Curious" },
-    sideEye: { cost: 50, currentCost: 50, image: "assets/sideyeasteria.jpg", itemDetails: "Criminal offensive side-eye" },
-    swordNecklace: {cost: 50,currentCost: 50,image: "assets/swordnecklace.png" , itemDetails:"Adds swag to Asteria", locked: true},
-    GiveMeMore: {cost: 50,currentCost: 50,image: "assets/givememore.jpg" , itemDetails:"_", locked: true},
-    Odetari: {cost: 50,currentCost: 50,image: "assets/odetari.webp"  , itemDetails:"_", locked: true},
-    Ext3r4: {cost: 50,currentCost: 50,image: "assets/Ext3r4.jpeg"  , itemDetails:"_", locked: true},
-    Kalia: {cost: 50,currentCost: 50,image: "assets/kalia.jpeg"  , itemDetails:"_", locked: true},
-    Eclipse: {cost: 50,currentCost: 50,image: "assets/eclipse.jpeg" , itemDetails:"_" , locked: true},
-    _2504: {cost: 50,currentCost: 50,image: "assets/2504.jpeg"  , itemDetails:"_", locked: true},
-    kmrnxo: {cost: 50,currentCost: 50,image: "assets/kmrnxo.jpeg"  , itemDetails:"_", locked: true},
-    pluto: {cost: 50,currentCost: 50,image: "assets/pluto.jpeg"  , itemDetails:"_", locked: true},
-    D3r: {cost: 50,currentCost: 50,image: "assets/der.jpeg"  , itemDetails:"_", locked: true},
-    M1v: {cost: 50,currentCost: 50,image: "assets/m1v.jpeg"  , itemDetails:"_", locked: true},
-    Sickboyrari: {cost: 50,currentCost: 50,image: "assets/sickboyrari.jpeg"  , itemDetails:"_", locked: true},
-    asteriaarchive: {cost: 50,currentCost: 50,image: "assets/asteriaarchive2.jpeg"  , itemDetails:"_", locked: true},
-    Nosgov: {cost: 50,currentCost: 50,image: "assets/nosgov.jpeg"  , itemDetails:"_", locked: true},
-    AsteriaArchive1: {cost: 50,currentCost: 50,image: "assets/asteriaarchive1.jpeg"  , itemDetails:"_", locked: true},
-    AsteriaArchive2: {cost: 50,currentCost: 50,image: "assets/asteriaarchive2.jpeg"  , itemDetails:"_", locked: true,},
-    AsteriaArchive3: {cost: 50,currentCost: 50,image: "assets/asteriaarchive3.jpeg"  , itemDetails:"_", locked: true,},
-    AsteriaArchive4: {cost: 50,currentCost: 50,image: "assets/asteriaarchive4.jpeg"  , itemDetails:"_", locked: true,},
-    OldScr4psss: {cost: 50,currentCost: 50,image: "assets/oldscraps.jpeg"  , itemDetails:"_", locked: true,},
-    Watchout: {cost: 50,currentCost: 50,image: "assets/watchout.jpg"  , itemDetails:"_", locked: true,},
-    IWassOffAPillInPrzechodnia: {cost: 50,currentCost: 50,image: "assets/pillarchive.jpg" , itemDetails:"_",locked: true, },
-    Eye: {cost: 50,currentCost: 50,image: "assets/eye.jpg"  , itemDetails:"_"},
+    FBM: {cost: 50,currentCost: 50,owned: 0,image: "assets/disstrack.jpeg" , itemDetails:"80% less chance of britney", locked: true}, // 80% less chance of Britney
+    EveryPill: {cost: 50,currentCost: 50,owned: 0,image: "assets/everypill.jpeg" , itemDetails:"_", locked: true},
+    HubiTheKid: {cost: 50,currentCost: 50,owned: 0,image: "assets/hubithekid.jpeg" , itemDetails:"_", locked: true},
+    worldwide: {cost: 50,currentCost: 50,owned: 0,image: "assets/worldwide.jpg", itemDetails:"_", locked: true},
+    ewsteria: {cost: 50,currentCost: 50,owned: 0,image: "assets/ewsteria.jpg" , itemDetails:"Ewww wtf is that"},
+    lolipopsteria: {cost: 50,currentCost: 50,owned: 0,image: "assets/lolipopsteria.jpg" , itemDetails:"Nom"},
+    micAsteria: {cost: 50,currentCost: 50,owned: 0,image: "assets/micasteria.jpg" , itemDetails:"Mogchrophone", locked: true},
+    studioAsteria: { cost: 50, currentCost: 50, owned: 0,image: "assets/studiosteria2.png", itemDetails: "Fire vocals", locked: true },
+    nomsteria: { cost: 50, currentCost: 50, owned: 0,image: "assets/nomsteria.png", itemDetails: "Will he turn into a strawberry", locked: true },
+    screamsteria: { cost: 50, currentCost: 50, owned: 0,image: "assets/screamsteria.jpg", itemDetails: "AAAAAAAAAAA", locked: true  },
+    ragesteria: { cost: 50, currentCost: 50, owned: 0,image: "assets/ragesteria.jpg", itemDetails: "We lost it all", locked: true },
+    scremingasteria: { cost: 50, currentCost: 50, owned: 0,image: "assets/sreamingasteria.png", itemDetails: "I am scared.", locked: true  },
+    seesteria: { cost: 50, currentCost: 50, owned: 0,image: "assets/seestreia.jpg", itemDetails: "Just Curious", locked: true },
+    sideEye: { cost: 50, currentCost: 50, owned: 0,image: "assets/sideyeasteria.jpg", itemDetails: "Criminal offensive side-eye", locked: true },
+    swordNecklace: {cost: 50,currentCost: 50,owned: 0,image: "assets/swordnecklace.png" , itemDetails:"Adds swag to Asteria", locked: true},
+    GiveMeMore: {cost: 50,currentCost: 50,owned: 0,image: "assets/givememore.jpg" , itemDetails:"_", locked: true},
+    Odetari: {cost: 50,currentCost: 50,owned: 0,image: "assets/odetari.webp"  , itemDetails:"_", locked: true},
+    Ext3r4: {cost: 50,currentCost: 50,owned: 0,image: "assets/Ext3r4.jpeg"  , itemDetails:"_", locked: true},
+    Kalia: {cost: 50,currentCost: 50,owned: 0,image: "assets/kalia.jpeg"  , itemDetails:"_", locked: true},
+    Eclipse: {cost: 50,currentCost: 50,owned: 0,image: "assets/eclipse.jpeg" , itemDetails:"_" , locked: true},
+    _2504: {cost: 50,currentCost: 50,owned: 0,image: "assets/2504.jpeg"  , itemDetails:"_", locked: true},
+    kmrnxo: {cost: 50,currentCost: 50,owned: 0,image: "assets/kmrnxo.jpeg"  , itemDetails:"_", locked: true},
+    pluto: {cost: 50,currentCost: 50,owned: 0,image: "assets/pluto.jpeg"  , itemDetails:"_", locked: true},
+    D3r: {cost: 50,currentCost: 50,owned: 0,image: "assets/der.jpeg"  , itemDetails:"_", locked: true},
+    M1v: {cost: 50,currentCost: 50,owned: 0,image: "assets/m1v.jpeg"  , itemDetails:"_", locked: true},
+    Sickboyrari: {cost: 50,currentCost: 50,owned: 0,image: "assets/sickboyrari.jpeg"  , itemDetails:"_", locked: true},
+    asteriaarchive: {cost: 50,currentCost: 50,owned: 0,image: "assets/asteriaarchive2.jpeg"  , itemDetails:"_", locked: true},
+    Nosgov: {cost: 50,currentCost: 50,owned: 0,image: "assets/nosgov.jpeg"  , itemDetails:"_", locked: true},
+    AsteriaArchive1: {cost: 50,currentCost: 50,owned: 0,image: "assets/asteriaarchive1.jpeg"  , itemDetails:"_", locked: true},
+    AsteriaArchive2: {cost: 50,currentCost: 50,owned: 0,image: "assets/asteriaarchive2.jpeg"  , itemDetails:"_", locked: true,},
+    AsteriaArchive3: {cost: 50,currentCost: 50,owned: 0,image: "assets/asteriaarchive3.jpeg"  , itemDetails:"_", locked: true,},
+    AsteriaArchive4: {cost: 50,currentCost: 50,owned: 0,image: "assets/asteriaarchive4.jpeg"  , itemDetails:"_", locked: true,},
+    OldScr4psss: {cost: 50,currentCost: 50,owned: 0,image: "assets/oldscraps.jpeg"  , itemDetails:"_", locked: true,},
+    Watchout: {cost: 50,currentCost: 50,owned: 0,image: "assets/watchout.jpg"  , itemDetails:"_", locked: true,},
+    IWassOffAPillInPrzechodnia: {cost: 50,currentCost: 50,owned: 0,image: "assets/pillarchive.jpg" , itemDetails:"_",locked: true },
+    Eye: {cost: 50,currentCost: 50,owned: 0,image: "assets/eye.jpg"  , itemDetails:"_", locked: true},
 
 
     };
@@ -232,6 +232,8 @@ const activeItems = {
         const item = activeItems[name];
         if (asteria >= item.currentCost) {
             asteria -= item.currentCost;
+            item.owned += 1;
+            
             activateItemEffect(name);
 
 
@@ -272,7 +274,6 @@ const activeItems = {
             activeItems.Ext3r4.locked = false;
             activeItems.pluto.locked = false;
             activeItems.M1v.locked = false;
-            activeItems.Nosgov.locked = false;
             activeItems.D3r.locked = false;
             activeItems.Kalia.locked = false;
             activeItems.Odetari.locked = false;
@@ -292,6 +293,18 @@ const activeItems = {
             
             if (name === "BloodSea") {
                 passiveItems.BloodAsPaint.locked = false;}
+
+            if (name === "ragesteria") {
+                activeItems.screamsteria.locked = false;}
+
+
+            if (name === "sideEye") {
+                activeItems.Eye.locked = false;}
+
+            if (name === "Eye") {
+                activeItems.seesteria.locked = false;}
+    
+    
 
 
         if (name === "Odetari") {
@@ -350,7 +363,46 @@ const activeItems = {
                     item.locked = false;
                 }
             }
-        renderShops();      }     
+        }     
+
+        if (name === "AsteriaArchive1") {
+            for (const item of Object.values(passiveItems)) {
+                if (item.album === "AsteriaArchive1") {
+                    item.locked = false;
+                }
+            }
+        }     
+
+        if (name === "AsteriaArchive2") {
+            for (const item of Object.values(passiveItems)) {
+                if (item.album === "AsteriaArchive2") {
+                    item.locked = false;
+                }
+            }
+        }     
+        if (name === "AsteriaArchive3") {
+            for (const item of Object.values(passiveItems)) {
+                if (item.album === "AsteriaArchive3") {
+                    item.locked = false;
+                }
+            }
+        }     
+
+        if (name === "AsteriaArchive4") {
+            for (const item of Object.values(passiveItems)) {
+                if (item.album === "AsteriaArchive4") {
+                    item.locked = false;
+                }
+            }
+        }     
+
+        if (name === "OldScr4psss") {
+            for (const item of Object.values(passiveItems)) {
+                if (item.album === "OldScr4psss") {
+                    item.locked = false;
+                }
+            }
+        }     
   
 
         
@@ -359,7 +411,7 @@ const activeItems = {
             activeItems.sunglasses.locked = false;
             activeItems.hairDye.locked = false;
             console.log("Lytra added");
-            renderShops();      }
+        }
       
         if (name === "sunglasses") {
             hasGlasses = true;
@@ -453,8 +505,21 @@ function buyPassiveItem(name) {
         activeItems.micAsteria.locked = false;
       }
 
+          
+      if (name === "TellMeLies") {
+        activeItems.sideEye.locked = false;
+      }
+
+      if (name === "DemonInDisguise") {
+        activeItems.Nosgov.locked = false;
+      }
+
       if (name === "Bloodbath") {
         activeItems.BloodSea.locked = false;
+      }
+
+      if (name === "EveryPill") {
+        activeItems.nomsteria.locked = false;
       }
 
       if (name === "SocialsPost") {
@@ -494,6 +559,15 @@ function buyPassiveItem(name) {
       if (item.album === "Rave2Death") {
         checkAllRave2DeathBought();
     }
+
+    if (item.album === "AsteriaArchive1") {
+        AA1songs();
+    }
+
+    if (item.album === "AsteriaArchive3") {
+        AA3songs();
+    }
+
 
       if (name === "sanctuary" && item.owned === 1) {
         passiveItems.fanart.locked = false;
@@ -564,6 +638,7 @@ function renderShops() {
       itemDetails.innerHTML = `
         <p>${name}</p>
         <p>${item.currentCost} Ⓐ</p>
+        <p>${item.owned} pcs</p>
         <p class="item-description">${item.itemDetails}</p>
       `;
   
@@ -723,16 +798,89 @@ function startClonnexEffect() {
     if (allOwned) {
         if (activeItems.Kazoo2death && activeItems.Kazoo2death.locked) {
             activeItems.Kazoo2death.locked = false;
-            renderShops();  // Re-render shops or whatever function needs to be called
+            renderShops();
         }
+    }
+}
+
+function checkAllAA1() {
+    const AA1songs = [
+        "NotEvenCudKnow",
+        "Numb",
+        "oneTakeFreestyle",
+        "SoGone",
+        "GoDown",
+        "BadDreams",
+        "WayTooFar",
+        "Rockst4r",
+        "DemonInDisguise",
+        "Tonight",
+        "LikeThat",
+        "Attachments",
+
+    ];
+
+    // Check if all songs are owned (owned > 0)
+    const allOwned = AA1songs.every(song => {
+        const item = passiveItems[song];
+        return item && item.owned > 0;
+    });
+
+    if (allOwned) {
+            activeItems.AsteriaArchive2.locked = false;
+            renderShops();
+    }
+}
+
+function checkAllAA2() {
+    const AA2songs = [
+        "EyesClosed",
+        "ComingDown",
+        "AlreadyDead",
+        "TookOverTheWorld",
+        "TooAlive",
+        "Mia",
+    ];
+
+    const allOwned = AA2songs.every(song => {
+        const item = passiveItems[song];
+        return item && item.owned > 0;
+    });
+
+    if (allOwned) {
+            activeItems.AsteriaArchive3.locked = false;
+            renderShops();
+    }
+}
+function checkAllAA3() {
+    const AA3songs = [
+        "ISeeYouAsAnEnemy",
+        "WritersPapers",
+        "Slower",
+        "FosteredAlcoholism",
+        "FeelMyLuv",
+        "DayNNight",
+        "BaddestBitchOut",
+        "HellNBackFreestyle",
+        "DemonInDisguise",
+        "LetYouDown",
+        "FaceOfDeath",
+    ];
+
+    const allOwned = AA3songs.every(song => {
+        const item = passiveItems[song];
+        return item && item.owned > 0;
+    });
+
+    if (allOwned) {
+            activeItems.AsteriaArchive4.locked = false;
+            renderShops();
     }
 }
 
 if (window.stoleAll) {
     console.log("Britney has stolen all your Asterias!");
-    // Perform any other actions based on this, like unlocking more items, achievements, etc.
-    
-    // Example: Unlock another item based on stealing Asteria
+
     activeItems.ragesteria.locked = false;
     console.log("Ragesteria has been unlocked!");
   }
