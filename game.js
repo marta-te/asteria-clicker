@@ -43,7 +43,7 @@ const activeItems = {
     Kazoo2death: {cost: 50,currentCost: 50,owned: 0,image: "assets/kazoo2death.jpg"  , itemDetails:"Unlocks Vyzer", locked: true },
     Wasty: {cost: 999999,currentCost: 999999,owned: 0,image: "assets/wasty.jpeg" , itemDetails:"Unlocks songs with Wasty", locked: true}, // Unlocks Wasty Collabs -TBD
     Rave2death: {cost: 50,currentCost: 50,image: "assets/rave2death.jpg" , itemDetails:"Unlocks Rave2death album songs in passive items", locked: true }, // Unlocks Rave2death album songs in passive items
-	PARTY4LIFE: {cost: 444444, currentCost: 444444, image: "assets/party4life.jpg" , itemDetails:"Unlocks PARTY4LIFE album songs in passive items"}
+	PARTY4LIFE: {cost: 444444, currentCost: 444444, owned: 0, image: "assets/party4life.jpg" , itemDetails:"Unlocks PARTY4LIFE album songs in passive items"}
     FBM: {cost: 50,currentCost: 50,owned: 0,image: "assets/disstrack.jpeg" , itemDetails:"80% less chance of britney", locked: true}, // 80% less chance of Britney
     EveryPill: {cost: 50,currentCost: 50,owned: 0,image: "assets/everypill.jpeg" , itemDetails:"_", locked: true},
     HubiTheKid: {cost: 50,currentCost: 50,owned: 0,image: "assets/hubithekid.jpeg" , itemDetails:"_", locked: true},
