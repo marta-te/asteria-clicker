@@ -43,7 +43,7 @@ const activeItems = {
     Kazoo2death: {cost: 50,currentCost: 50,owned: 0,image: "assets/kazoo2death.jpg"  , itemDetails:"Unlocks Vyzer", locked: true },
     Wasty: {cost: 999999,currentCost: 999999,owned: 0,image: "assets/wasty.jpeg" , itemDetails:"Unlocks songs with Wasty", locked: true}, // Unlocks Wasty Collabs -TBD
     Rave2death: {cost: 50,currentCost: 50,image: "assets/rave2death.jpg" , itemDetails:"Unlocks Rave2death album songs in passive items", locked: true }, // Unlocks Rave2death album songs in passive items
-	PARTY4LIFE: {cost: 444444, currentCost: 444444, owned: 0, image: "assets/party4life.jpg" , itemDetails:"Unlocks PARTY4LIFE album songs in passive items"}
+	PARTY4LIFE: {cost: 444444, currentCost: 444444, owned: 0, image: "assets/party4life.jpg" , itemDetails:"Unlocks PARTY4LIFE album songs in passive items"},
     FBM: {cost: 50,currentCost: 50,owned: 0,image: "assets/disstrack.jpeg" , itemDetails:"80% less chance of britney", locked: true}, // 80% less chance of Britney
     EveryPill: {cost: 50,currentCost: 50,owned: 0,image: "assets/everypill.jpeg" , itemDetails:"_", locked: true},
     HubiTheKid: {cost: 50,currentCost: 50,owned: 0,image: "assets/hubithekid.jpeg" , itemDetails:"_", locked: true},
@@ -200,8 +200,21 @@ const activeItems = {
         AreYouBetterYet: { baseCost: 36600000, currentCost: 36600000, income: 3660000, owned: 0, image: "assets/oldscraps.jpeg", locked: true, album: "OldScr4psss" },
         FriendswBenefits: { baseCost: 37100000, currentCost: 37100000, income: 3710000, owned: 0, image: "assets/oldscraps.jpeg", locked: true, album: "OldScr4psss" },
         Mess: { baseCost: 37600000, currentCost: 37600000, income: 3760000, owned: 0, image: "assets/oldscraps.jpeg", locked: true, album: "OldScr4psss" },
-        ItsMyMusicAndIGetToMakeTheRules: { baseCost: 38100000, currentCost: 38100000, income: 3810000, owned: 0, image: "assets/oldscraps.jpeg", locked: true, album: "OldScr4psss" }
-        
+        ItsMyMusicAndIGetToMakeTheRules: { baseCost: 38100000, currentCost: 38100000, income: 3810000, owned: 0, image: "assets/oldscraps.jpeg", locked: true, album: "OldScr4psss" },
+
+        OnMyWay: { baseCost: 4444, currentCost: 4444, income: 4444, owned: 0, image: "assets/party4life.jpg", locked: true, album: "party4life" },
+        WelcomeToTheParty: { baseCost: 4444, currentCost: 4444, income: 4444, owned: 0, image: "assets/party4life.jpg", locked: true, album: "party4life" },
+        ThrowBandzzz: { baseCost: 444444, currentCost: 44444, income: 44444, owned: 0, image: "assets/party4life.jpg", locked: true, album: "party4life" },
+        ForReal: { baseCost: 69420, currentCost: 69420, income: 69, owned: 0, image: "assets/party4life.jpg", locked: true, album: "party4life" },
+        Manners: { baseCost: 69420, currentCost: 69420, income: 69, owned: 0, image: "assets/party4life.jpg", locked: true, album: "party4life" },
+        ProjectX_2_0: { baseCost: 69420, currentCost: 69420, income: 69, owned: 0, image: "assets/party4life.jpg", locked: true, album: "party4life" },
+        Gold: { baseCost: 69420, currentCost: 69420, income: 69, owned: 0, image: "assets/party4life.jpg", locked: true, album: "party4life" },
+        GetDown: { baseCost: 69420, currentCost: 69420, income: 69, owned: 0, image: "assets/party4life.jpg", locked: true, album: "party4life" },
+        NewBitch: { baseCost: 69420, currentCost: 69420, income: 69, owned: 0, image: "assets/party4life.jpg", locked: true, album: "party4life" },
+        PikaGirl: { baseCost: 69420, currentCost: 69420, income: 69, owned: 0, image: "assets/party4life.jpg", locked: true, album: "party4life" },
+        AllNightLong: { baseCost: 69420, currentCost: 69420, income: 69, owned: 0, image: "assets/party4life.jpg", locked: true, album: "party4life" },
+        WeMadeIt: { baseCost: 69420, currentCost: 69420, income: 69, owned: 0, image: "assets/party4life.jpg", locked: true, album: "party4life" },
+        MakeItBOUNCE: { baseCost: 69420, currentCost: 69420, income: 69, owned: 0, image: "assets/party4life.jpg", locked: true, album: "party4life" },        
       };
       
 
@@ -363,6 +376,16 @@ const activeItems = {
             }
             renderShops(); 
         }     
+
+
+        if (name === "PARTY4LIFE") {
+            for (const item of Object.values(passiveItems)) {
+                if (item.album === "party4life") {
+                    item.locked = false;
+                }
+            }
+            renderShops(); 
+        } 
 
         if (name === "AsteriaArchive1") {
             for (const item of Object.values(passiveItems)) {
@@ -628,70 +651,110 @@ function renderShops() {
     activeRateDisplay.textContent = `+${clickPower} Ⓐ/click`;
     passiveRateDisplay.textContent = `+${passiveIncome} Ⓐ/s`;
 
-  
     for (const [name, item] of Object.entries(activeItems)) {
         if (item.locked) continue;
         const card = document.createElement("div");
         card.className = "shop-item";
-  
-      // Create a container for the image and item details
-      const itemContent = document.createElement("div");
-      itemContent.className = "item-content";
-  
-      // Image and item details
-      const img = document.createElement("img");
-      img.src = item.image;
-      img.alt = name;
-  
-      const itemDetails = document.createElement("div");
-      itemDetails.className = "item-details";
-      itemDetails.innerHTML = `
-        <p>${name}</p>
-        <p>${item.currentCost} Ⓐ</p>
-        <p>${item.owned} pcs</p>
-        <p class="item-description">${item.itemDetails}</p>
-      `;
-  
-      // Append image and details to the content container
-      itemContent.appendChild(img);
-      itemContent.appendChild(itemDetails);
-      
-      // Add click functionality
-      card.onclick = () => buyActiveItem(name);
-  
-      card.appendChild(itemContent);
-      activeShop.appendChild(card);
+        
+        // Create a container for the image and item details
+        const itemContent = document.createElement("div");
+        itemContent.className = "item-content";
+        itemContent.style.display = "flex";
+        itemContent.style.alignItems = "center";
+        
+        // Image container with PCS below
+        const imgContainer = document.createElement("div");
+        imgContainer.style.display = "flex";
+        imgContainer.style.flexDirection = "column";
+        imgContainer.style.alignItems = "center";
+        
+        const img = document.createElement("img");
+        img.src = item.image;
+        img.alt = name;
+        img.style.maxWidth = "60px"; // Adjust image size as needed
+        
+        const pcsText = document.createElement("p");
+        pcsText.textContent = `${item.owned} pcs`;
+        pcsText.className = "pcs-text";
+        pcsText.style.textAlign = "center";
+        
+        imgContainer.appendChild(img);
+        imgContainer.appendChild(pcsText);
+        
+        // Item details on the right
+        const itemDetails = document.createElement("div");
+        itemDetails.className = "item-details";
+        itemDetails.style.flex = "1";
+        itemDetails.style.paddingLeft = "10px";
+        itemDetails.innerHTML = `
+            <p>${name}</p>
+            <p>${item.currentCost} Ⓐ</p>
+            <p class="item-description">${item.itemDetails}</p>
+        `;
+        
+        // Append image and details to the content container
+        itemContent.appendChild(imgContainer);
+        itemContent.appendChild(itemDetails);
+        
+        // Add click functionality
+        card.onclick = () => buyActiveItem(name);
+    
+        card.appendChild(itemContent);
+        activeShop.appendChild(card);
     }
-  
+    
     for (const [name, item] of Object.entries(passiveItems)) {
-
         if (item.locked) continue;
         const card = document.createElement("div");
         card.className = "shop-item";
-  
-      const itemContent = document.createElement("div");
-      itemContent.className = "item-content";
-  
-      const img = document.createElement("img");
-      img.src = item.image;
-      img.alt = name;
-  
-      const itemDetails = document.createElement("div");
-      itemDetails.className = "item-details";
-      itemDetails.innerHTML = `
-        <p>${name}</p>
-        <p>${item.currentCost} Ⓐ</p>
-        <p>Owned: ${item.owned}</p>
-        <p>+${item.income} Ⓐ/s</p>
-      `;
-  
-      itemContent.appendChild(img);
-      itemContent.appendChild(itemDetails);
-      
-      card.onclick = () => buyPassiveItem(name);
-      card.appendChild(itemContent);
-      passiveShop.appendChild(card);
+        
+        // Create a container for the image and item details
+        const itemContent = document.createElement("div");
+        itemContent.className = "item-content";
+        itemContent.style.display = "flex";
+        itemContent.style.alignItems = "center";
+        
+        // Image container with "Owned" below
+        const imgContainer = document.createElement("div");
+        imgContainer.style.display = "flex";
+        imgContainer.style.flexDirection = "column";
+        imgContainer.style.alignItems = "center";
+        
+        const img = document.createElement("img");
+        img.src = item.image;
+        img.alt = name;
+        img.style.maxWidth = "60px"; // Adjust image size as needed
+        
+        const ownedText = document.createElement("p");
+        ownedText.textContent = `Owned: ${item.owned}`;
+        ownedText.className = "owned-text";
+        ownedText.style.textAlign = "center";
+        
+        imgContainer.appendChild(img);
+        imgContainer.appendChild(ownedText);
+        
+        // Item details on the right
+        const itemDetails = document.createElement("div");
+        itemDetails.className = "item-details";
+        itemDetails.style.flex = "1";
+        itemDetails.style.paddingLeft = "10px";
+        itemDetails.innerHTML = `
+            <p>${name}</p>
+            <p>${item.currentCost} Ⓐ</p>
+            <p>+${item.income} Ⓐ/s</p>
+        `;
+        
+        // Append image and details to the content container
+        itemContent.appendChild(imgContainer);
+        itemContent.appendChild(itemDetails);
+        
+        // Add click functionality
+        card.onclick = () => buyPassiveItem(name);
+    
+        card.appendChild(itemContent);
+        passiveShop.appendChild(card);
     }
+    
   }
 
 function ketsNbarely() { 
