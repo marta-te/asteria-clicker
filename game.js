@@ -42,14 +42,14 @@ const activeItems = {
     Vyzer: {cost: 654321,currentCost: 654321,owned: 0,image: "assets/vyzer.jpg" , itemDetails:"Has a kazoo.", locked: true},
     Kazoo2death: {cost: 50,currentCost: 50,owned: 0,image: "assets/kazoo2death.jpg"  , itemDetails:"Unlocks Vyzer", locked: true },
     Wasty: {cost: 999999,currentCost: 999999,owned: 0,image: "assets/wasty.jpeg" , itemDetails:"Unlocks songs with Wasty", locked: true}, // Unlocks Wasty Collabs -TBD
-    Rave2death: {cost: 50,currentCost: 50,image: "assets/rave2death.jpg" , itemDetails:"Unlocks Rave2death album songs in passive items", locked: true }, // Unlocks Rave2death album songs in passive items
-	PARTY4LIFE: {cost: 444444, currentCost: 444444, owned: 0, image: "assets/party4life.jpg" , itemDetails:"Unlocks PARTY4LIFE album songs in passive items"},
+    Rave2death: {cost: 50,currentCost: 50,owned: 0,image: "assets/rave2death.jpg" , itemDetails:"Unlocks Rave2death album songs in passive items", locked: true }, // Unlocks Rave2death album songs in passive items
+	PARTY4LIFE: {cost: 444444, currentCost: 444444, owned: 0, image: "assets/party4life.jpg" , itemDetails:"Unlocks PARTY4LIFE album songs in passive items", locked: true }, // Unlocks PARTY4LIFE album songs in passive items
     FBM: {cost: 50,currentCost: 50,owned: 0,image: "assets/disstrack.jpeg" , itemDetails:"80% less chance of britney", locked: true}, // 80% less chance of Britney
     EveryPill: {cost: 50,currentCost: 50,owned: 0,image: "assets/everypill.jpeg" , itemDetails:"_", locked: true},
     HubiTheKid: {cost: 50,currentCost: 50,owned: 0,image: "assets/hubithekid.jpeg" , itemDetails:"_", locked: true},
     worldwide: {cost: 50,currentCost: 50,owned: 0,image: "assets/worldwide.jpg", itemDetails:"_", locked: true},
-    ewsteria: {cost: 50,currentCost: 50,owned: 0,image: "assets/ewsteria.jpg" , itemDetails:"Ewww wtf is that"},
-    lolipopsteria: {cost: 50,currentCost: 50,owned: 0,image: "assets/lolipopsteria.jpg" , itemDetails:"Nom"},
+    ewsteria: {cost: 50,currentCost: 50,owned: 0,image: "assets/ewsteria.jpg" , itemDetails:"Ewww", locked: true},
+    lolipopsteria: {cost: 50,currentCost: 50,owned: 0,image: "assets/lolipopsteria.jpg" , itemDetails:"Nom", locked: true},
     micAsteria: {cost: 50,currentCost: 50,owned: 0,image: "assets/micasteria.jpg" , itemDetails:"Mogchrophone", locked: true},
     studioAsteria: { cost: 50, currentCost: 50, owned: 0,image: "assets/studiosteria2.png", itemDetails: "Fire vocals", locked: true },
     nomsteria: { cost: 50, currentCost: 50, owned: 0,image: "assets/nomsteria.png", itemDetails: "Will he turn into a strawberry", locked: true },
@@ -58,6 +58,7 @@ const activeItems = {
     scremingasteria: { cost: 50, currentCost: 50, owned: 0,image: "assets/sreamingasteria.png", itemDetails: "I am scared.", locked: true  },
     seesteria: { cost: 50, currentCost: 50, owned: 0,image: "assets/seestreia.jpg", itemDetails: "Just Curious", locked: true },
     sideEye: { cost: 50, currentCost: 50, owned: 0,image: "assets/sideyeasteria.jpg", itemDetails: "Criminal offensive side-eye", locked: true },
+    EyesOnME: { cost: 50, currentCost: 50, owned: 0,image: "assets/eyesonme.jpg", itemDetails: "Eyes on me baby", locked: true },
     swordNecklace: {cost: 50,currentCost: 50,owned: 0,image: "assets/swordnecklace.png" , itemDetails:"Adds swag to Asteria", locked: true},
     GiveMeMore: {cost: 50,currentCost: 50,owned: 0,image: "assets/givememore.jpg" , itemDetails:"_", locked: true},
     Odetari: {cost: 50,currentCost: 50,owned: 0,image: "assets/odetari.webp"  , itemDetails:"_", locked: true},
@@ -70,7 +71,7 @@ const activeItems = {
     D3r: {cost: 50,currentCost: 50,owned: 0,image: "assets/der.jpeg"  , itemDetails:"_", locked: true},
     M1v: {cost: 50,currentCost: 50,owned: 0,image: "assets/m1v.jpeg"  , itemDetails:"_", locked: true},
     Sickboyrari: {cost: 50,currentCost: 50,owned: 0,image: "assets/sickboyrari.jpeg"  , itemDetails:"_", locked: true},
-    asteriaarchive: {cost: 50,currentCost: 50,owned: 0,image: "assets/asteriaarchive2.jpeg"  , itemDetails:"_", locked: true},
+    AsteriaArchive: {cost: 50,currentCost: 50,owned: 0,image: "assets/asteriaarchive2.jpeg"  , itemDetails:"_", locked: true},
     Nosgov: {cost: 50,currentCost: 50,owned: 0,image: "assets/nosgov.jpeg"  , itemDetails:"_", locked: true},
     AsteriaArchive1: {cost: 50,currentCost: 50,owned: 0,image: "assets/asteriaarchive1.jpeg"  , itemDetails:"_", locked: true},
     AsteriaArchive2: {cost: 50,currentCost: 50,owned: 0,image: "assets/asteriaarchive2.jpeg"  , itemDetails:"_", locked: true,},
@@ -93,6 +94,7 @@ const activeItems = {
         SocialsPost: { baseCost: 2000, currentCost: 2000, income: 12, owned: 0, image: "assets/socials.png", locked: true }, //unlocks dogsteria
         WhatYouWant: { baseCost: 5000, currentCost: 5000, income: 15, owned: 0, image: "assets/whatyouwant.jpg", locked: true },
         UltraInstinct: { baseCost: 20000, currentCost: 20000, income: 20, owned: 0, image: "assets/ultrainstinct.jpg", locked: true},
+        YouCantHide: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/YouCantHide.png", locked: true },
         W4steAway: { baseCost: 44444, currentCost: 44444, income: 44, owned: 0, image: "assets/wasteaway.jpeg", locked: true },
         MESSAGES: { baseCost: 60000, currentCost: 60000, income: 50, owned: 0, image: "assets/messages.jpeg", locked: true },
         Bloodbath: { baseCost: 85000, currentCost: 85000, income: 55, owned: 0, image: "assets/bloodbath.png", album: "CuteSongsForGangsters", locked: true },
@@ -126,7 +128,7 @@ const activeItems = {
         MONSTER: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/monster.jpg", locked: true },
         DigHisGrave: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/DigHisGrave.jpg", locked: true },
         DontUnderstandIt: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/DontUnderstandIt.jpg", locked: true },
-        GoHard: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/gohard.jpg", locked: true },
+        go_hard: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/gohard.jpg", locked: true },
         BiggestFan: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/BiggestFan.jpeg", locked: true },
         YouKnowUs: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/YouKnowUs.jpg", locked: true },
         SeeThrough: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/SeeThrough.jpg", locked: true },
@@ -139,13 +141,15 @@ const activeItems = {
         OutOfBody: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/OutOfBody.jpeg", locked: true },
         WorstNightm4re: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/WorstNightm4are.jpeg", locked: true },
         Exotic: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/Exotic.jpeg", locked: true },
-        YouCantHide: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/YouCantHide.png", locked: true },
         SecondChances: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/SecondChances.jpg", locked: true },
         RockThatShit: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/RockThatShit.jpg", locked: true },
         WonderWhy: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/WonderWhy.jpg", locked: true },
         Fusion: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/Fusion.jpg", locked: true },
         IDidntNeedYouAnyway: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/IDidntNeedYouAnyway.jpeg", locked: true },
         Paranoid: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/Paranoid.jpg", locked: true },
+        LifeSoTough: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/lifesotough.jpeg", locked: true },
+        PROJECTX: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/projectx.jpg", locked: true },
+        TOO_MANY_LINES: { baseCost: 100000, currentCost: 100000, income: 100, owned: 0, image: "assets/toomanylines.jpg", locked: true },
 
         FlexLikeThis: { baseCost: 22244063, currentCost: 22244063, income: 2224406, owned: 0, image: "assets/asteriaarchive1.jpeg", locked: true, album: "AsteriaArchive1" },
         Numb: { baseCost: 22466504, currentCost: 22466504, income: 2246650, owned: 0, image: "assets/asteriaarchive1.jpeg", locked: true, album: "AsteriaArchive1" },
@@ -299,14 +303,44 @@ const activeItems = {
             passiveItems.GiveMeMore.locked = false;
         }
 
+        if (name === "D3r") {
+            passiveItems.WhatdISay.locked = false;
+            passiveItems.BiggestFan.locked = false;
+            passiveItems.SeeThrough.locked = false;
+            passiveItems.YouKnowUs.locked = false;}
+
+        if (name === "Kalia") {
+            passiveItems.DigHisGrave.locked = false;}
+
+            if (name === "screamsteria") {
+                passiveItems.MONSTER.locked = false;}
+
+            if (name === "pluto") {
+                passiveItems.EmoGirl.locked = false;
+                passiveItems.BodyOnTheFloor.locked = false;}
+
         if (name === "Kazoo2death") {
             activeItems.Vyzer.locked = false;}
 
+            if (name === "Eclipse") {
+                passiveItems.LifeSoTough.locked = false;}
+
         if (name === "Lytra") {
-            passiveItems.HAHA.locked = false;}
+            passiveItems.HAHA.locked = false;
+            passiveItems.VampireFangs.locked = false;}
+
+            if (name === "M1v") {
+                passiveItems.NoEscape.locked = false;}
+
+        if (name === "Wasty") {
+            activeItems.PARTY4LIFE.locked = false;
+        passiveItems.go_hard.locked = false;}
             
             if (name === "BloodSea") {
                 passiveItems.BloodAsPaint.locked = false;}
+
+                if (name === "nomsteria") {
+                    passiveItems.PROJECTX.locked = false;}
 
             if (name === "ragesteria") {
                 activeItems.screamsteria.locked = false;}
@@ -317,6 +351,9 @@ const activeItems = {
 
             if (name === "Eye") {
                 activeItems.seesteria.locked = false;}
+
+            if (name === "seesteria") {
+                activeItems.EyesOnME.locked = false;}
     
     
 
@@ -324,16 +361,24 @@ const activeItems = {
         if (name === "Odetari") {
             passiveItems.TellMeLies.locked = false;}
 
-            if (name === "Sickboyrari") {
-                passiveItems.W4steAway.locked = false;}
-
-
+        if (name === "Sickboyrari") {
+            passiveItems.W4steAway.locked = false;}
+            
         if (name === "BloodSea") {
             passiveItems.BloodAsPaint.locked = false;}
+
+        if (name === "Ext3r4") {
+            passiveItems.Monster.locked = false;}
+
+            if (name === "FBM") {
+                passiveItems.SecondChances.locked = false;}
+
         if (name === "kmrnxo") {
             kmrnxoBought = true;}
+
         if (name === "micAsteria") {
             activeItems.studioAsteria.locked = false;}
+
         if (name === "studioAsteria") {
             activeItems.AsteriaArchive.locked = false;}
 
@@ -344,7 +389,7 @@ const activeItems = {
             ketsNbarely(); 
         }
 
-        if (name === "asteriaarchive") {
+        if (name === "AsteriaArchive") {
             activeItems.AsteriaArchive1.locked = false;
             activeItems.OldScr4psss.locked = false;
             activeItems.IWassOffAPillInPrzechodnia.locked = false;
@@ -357,6 +402,7 @@ const activeItems = {
             passiveItems.ThrowIt.locked = false;
             activeItems.EveryPill.locked = false;
             activeItems.Rave2death.locked = false;
+            passiveItems.GoneForSoLong.locked = false;
             ketsNbarely(); 
             checkUnlocks();       }
 
@@ -466,8 +512,8 @@ const activeItems = {
 
       renderShops(); 
       updateAsteriaImage();
-    }
-  }
+ }
+}
 
   function checkUnlocks() {
     if (LytraBought && VyzerBought) {
@@ -527,6 +573,39 @@ function buyPassiveItem(name) {
         activeItems.micAsteria.locked = false;
       }
 
+      if (name === "DollarBills") {
+        activeItems.lolipopsteria.locked = false;
+      }
+
+      if (name === "Skibidi") {
+        activeItems.ewsteria.locked = false;
+      }
+      if (name === "Skibidi") {
+        activeItems.ewsteria.locked = false;
+      }
+      if (name === "NewBitch") {
+        passiveItems.Exotic.locked = false;
+      }
+      if (name === "Exotic") {
+        passiveItems.PicknChoose.locked = false;
+      }
+      if (name === "UltraInstinct") {
+        passiveItems.YouCantHide.locked = false;
+      }
+      if (name === "FeelingNothing") {
+        passiveItems.TOO_MANY_LINES.locked = false;
+      }
+      if (name === "EyesOnME") {
+        passiveItems.Paranoid.locked = false;
+      }
+
+      if (name === "NoEscape") {
+        passiveItems.WorstNightm4re.locked = false;
+      }
+
+      if (name === "BiggestFan") {
+        passiveItems.DieForYou.locked = false;
+      }
           
       if (name === "TellMeLies") {
         activeItems.sideEye.locked = false;
@@ -553,6 +632,17 @@ function buyPassiveItem(name) {
         activeItems.Wasty.locked = false;
       }
 
+      if (name === "WhatdISay") {
+        activeItems.DontUnderstandIt.locked = false;
+      }
+      if (name === "Paranoid") {
+        passiveItems.WonderWhy.locked = false;
+      }
+
+      if (name === "BodyOnTheFloor") {
+        passiveItems.OutOfBody.locked = false;
+      }
+
       if (name === "OneMoreTime") {
         activeItems.kets4eki.locked = false;
         activeItems.staff.locked = false;
@@ -561,7 +651,9 @@ function buyPassiveItem(name) {
       if (name === "WhatYouWant") {
         activeItems.hatsuneMiku.locked = false;
       }
-
+      if (name === "Attachments") {
+        passiveItems.IDidntNeedYouAnyway.locked = false;
+      }
       if (name === "BloodAsPaint") {
         activeItems.kmrnxo.locked = false;
       }
@@ -569,6 +661,15 @@ function buyPassiveItem(name) {
       if (name === "Photoshoot") {
         passiveItems.TakeAPic.locked = false;
       }
+
+      if (name === "IFuckedHerFriend") {
+        passiveItems.Fusion.locked = false;
+      }
+
+      if (name === "Rockst4r") {
+        passiveItems.RockThatShit.locked = false;
+      }
+
 
       if (name === "TakeAPic") {
         activeItems._6arelyhuman.locked = false;

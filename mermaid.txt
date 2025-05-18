@@ -39,6 +39,7 @@ flowchart TD
         n89["LikeThat"]
         n90["Attachments"]
         n48@{ label: "<div style=\"color:\"><span style=\"color:\">Nosgov</span></div>" }
+        n105@{ label: "<div style=\"color:\"><span style=\"color:\">IDidntNeedYouAnyway</span></div>" }
   end
  subgraph s4["AsteriaArchive2"]
         n92["EyesClosed"]
@@ -53,12 +54,44 @@ flowchart TD
         WritersPapers["WritersPapers"]
         Slower["Slower"]
         FosteredAlcoholism["FosteredAlcoholism"]
-        FeelMyLuv
-        DayNNight
-        BaddestBitchOut
-        HellNBackFreestyle
+        FeelMyLuv["FeelMyLuv"]
+        DayNNight["DayNNight"]
+        BaddestBitchOut["BaddestBitchOut"]
+        HellNBackFreestyle["HellNBackFreestyle"]
         n97@{ label: "<div style=\"color:\"><span style=\"color:\">LetYouDown</span></div>" }
         n98@{ label: "<div style=\"color:\"><span style=\"color:\">FaceOfDeath</span></div>" }
+  end
+ subgraph s6["Party4life"]
+        OnMyWay["OnMyWay"]
+        WelcomeToTheParty["WelcomeToTheParty"]
+        ThrowBandzzz["ThrowBandzzz"]
+        ForReal["ForReal"]
+        Manners["Manners"]
+        ProjectX_2_0["ProjectX_2_0"]
+        Gold["Gold"]
+        GetDown["GetDown"]
+        NewBitch["NewBitch"]
+        PikaGirl["PikaGirl"]
+        AllNightLong["AllNightLong"]
+        WeMadeIt["WeMadeIt"]
+        MakeItBOUNCE["MakeItBOUNCE"]
+  end
+ subgraph s7["Asteria archive4"]
+        n119@{ label: "<div style=\"color:\"><span style=\"color:\">LetMeBreathe</span></div>" }
+      IDontLikeYou
+      RightHere
+      TimeAndTimeAgain
+      IMissMeToo
+      FvckWithMe
+      Deathrow
+      IcedOut
+      TopRappersFreestyle
+      DontRuinMyPlans
+      MakeItHome
+      Lifestyle
+      StripperFreestyle
+      BetSheWantMe
+
   end
     ID_1(["AnarchistSanctuary"]) --> ID_2["Fanart"] & n6["sunglasses"] & n7["hairdye"]
     n1(["OneMoreTime"]) --> n2["kets4eki"] & n17["staff"]
@@ -81,7 +114,7 @@ flowchart TD
     n33 --> n42["Lytra"] & n43["HubiTheKid"] & n45@{ label: "<div style=\"color:\"><span style=\"color:\">Ext3r4</span></div>" } & n46@{ label: "<div style=\"color:\"><span style=\"color:\">pluto</span></div>" } & n47@{ label: "<div style=\"color:\"><span style=\"color:\">M1v</span></div>" } & n50@{ label: "<div style=\"color:\"><span style=\"color:\">D3r</span></div>" } & n51@{ label: "<div style=\"color:\"><span style=\"color:\">Kalia</span></div>" } & n53["Odetari"] & n57["sickboyrari"]
     n53 --> n54["TellMeLies"]
     n55 --> n49@{ label: "<div style=\"color:\"><span style=\"color:\">Eclipse</span></div>" } & n44@{ label: "<div style=\"color:\"><span style=\"color:\">_2504</span></div>" }
-    n42 --> n56["Haha"] & n61["Skibidi"] & n62
+    n42 --> n56["Haha"] & n61["Skibidi"] & n62 & n113["vampirefangs"]
     n57 --> n58["WasteAway"]
     n31 --> n59["MicAsteria"]
     n59 --> n60["StudioAsteria"]
@@ -98,18 +131,36 @@ flowchart TD
     n4 --> n72["Nomsteria"]
     s1 --> n40
     n19 --> n73
-    n63 --> n74["Archive1"] & n77["Archive4"]
+    n63 --> n74["Archive1"]
     n74 --> s3
     n87 --> n48
     s3 --> n75["Archive2"]
     n75 --> s4
     s4 --> n76["archive3"]
     n76 --> s5
-    s5 --> n98
+    s5 --> n98 & n77["Archive4"]
+    n39 --> n100["PARTY4LIFE"]
+    n100 --> s6
+    n69 --> n101["EyesOnME"]
+    n32 --> n102["YouCantHide"]
+    NewBitch --> n103["exotic"]
+    n101 --> n104["paranoid"]
+    n90 --> n105
+    n45 --> n106["Monster"]
+    n43 --> n107["worldwide"] & n108["givememore"]
+    n47 --> n109@{ label: "<div style=\"color:\"><span style=\"color:\">NoEscape</span></div>" }
+    n51 --> n110["digHisGrave"]
+    n46 --> n111["BodyOnTheFloor"] & n112["EmoGirl"]
+    n50 --> n114["biggestfan"] & n115@{ label: "<div style=\"color:\"><span style=\"color:\">SeeThrough</span></div>" } & n116@{ label: "<div style=\"color:\"><span style=\"color:\">WhatdISay</span></div>" }
+    n49 --> n117["lifesotough"]
+    n116 --> n118@{ label: "<div style=\"color:\"><span style=\"color:\">DontUnderstandIt</span></div>" }
+    n77 --> s7
     n48@{ shape: rect}
+    n105@{ shape: rect}
     n91@{ shape: rect}
     n97@{ shape: rect}
     n98@{ shape: rect}
+    n119@{ shape: rect}
     n45@{ shape: rect}
     n46@{ shape: rect}
     n47@{ shape: rect}
@@ -119,6 +170,10 @@ flowchart TD
     n44@{ shape: rect}
     n52@{ shape: rect}
     n75@{ shape: rect}
+    n109@{ shape: rect}
+    n115@{ shape: rect}
+    n116@{ shape: rect}
+    n118@{ shape: rect}
      n48:::Rose
      n2:::Rose
      n10:::Rose
@@ -143,7 +198,6 @@ flowchart TD
     style n42 stroke:#D50000
     style n43 stroke:#D50000
     style n46 stroke:#D50000
-    style n50 stroke:#D50000
     style n51 stroke:#D50000
     style n57 stroke:#D50000
     style n49 stroke:#D50000
