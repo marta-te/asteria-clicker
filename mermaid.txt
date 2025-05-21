@@ -78,20 +78,19 @@ flowchart TD
   end
  subgraph s7["Asteria archive4"]
         n119@{ label: "<div style=\"color:\"><span style=\"color:\">LetMeBreathe</span></div>" }
-      IDontLikeYou
-      RightHere
-      TimeAndTimeAgain
-      IMissMeToo
-      FvckWithMe
-      Deathrow
-      IcedOut
-      TopRappersFreestyle
-      DontRuinMyPlans
-      MakeItHome
-      Lifestyle
-      StripperFreestyle
-      BetSheWantMe
-
+        IDontLikeYou["IDontLikeYou"]
+        RightHere["RightHere"]
+        TimeAndTimeAgain["TimeAndTimeAgain"]
+        IMissMeToo["IMissMeToo"]
+        FvckWithMe["FvckWithMe"]
+        Deathrow["Deathrow"]
+        IcedOut["IcedOut"]
+        TopRappersFreestyle["TopRappersFreestyle"]
+        DontRuinMyPlans["DontRuinMyPlans"]
+        MakeItHome["MakeItHome"]
+        Lifestyle["Lifestyle"]
+        StripperFreestyle["StripperFreestyle"]
+        BetSheWantMe["BetSheWantMe"]
   end
     ID_1(["AnarchistSanctuary"]) --> ID_2["Fanart"] & n6["sunglasses"] & n7["hairdye"]
     n1(["OneMoreTime"]) --> n2["kets4eki"] & n17["staff"]
@@ -111,7 +110,7 @@ flowchart TD
     n37 --> n38["Miku"]
     n18 --> n39["wasty"]
     n40["Kazoo2death"] --> n41["vyzer"]
-    n33 --> n42["Lytra"] & n43["HubiTheKid"] & n45@{ label: "<div style=\"color:\"><span style=\"color:\">Ext3r4</span></div>" } & n46@{ label: "<div style=\"color:\"><span style=\"color:\">pluto</span></div>" } & n47@{ label: "<div style=\"color:\"><span style=\"color:\">M1v</span></div>" } & n50@{ label: "<div style=\"color:\"><span style=\"color:\">D3r</span></div>" } & n51@{ label: "<div style=\"color:\"><span style=\"color:\">Kalia</span></div>" } & n53["Odetari"] & n57["sickboyrari"]
+    n33 --> n42["Lytra"] & n43["HubiTheKid"] & n45@{ label: "<div style=\"color:\"><span style=\"color:\">Ext3r4</span></div>" } & n46@{ label: "<div style=\"color:\"><span style=\"color:\">pluto</span></div>" } & n47@{ label: "<div style=\"color:\"><span style=\"color:\">M1v</span></div>" } & n50@{ label: "<div style=\"color:\"><span style=\"color:\">D3r</span></div>" } & n51@{ label: "<div style=\"color:\"><span style=\"color:\">Kalia</span></div>" } & n53["Odetari"] & n57["sickboyrari"] & n124["pink_luu"]
     n53 --> n54["TellMeLies"]
     n55 --> n49@{ label: "<div style=\"color:\"><span style=\"color:\">Eclipse</span></div>" } & n44@{ label: "<div style=\"color:\"><span style=\"color:\">_2504</span></div>" }
     n42 --> n56["Haha"] & n61["Skibidi"] & n62 & n113["vampirefangs"]
@@ -131,7 +130,7 @@ flowchart TD
     n4 --> n72["Nomsteria"]
     s1 --> n40
     n19 --> n73
-    n63 --> n74["Archive1"]
+    n63 --> n74["Archive1"] & n120["Old scraps"] & n121@{ label: "<div style=\"color:\"><span style=\"color:\">IWassOffAPillInPrzechodnia</span></div>" } & n122@{ label: "<div style=\"color:\"><span style=\"color:\">Watchout</span></div>" }
     n74 --> s3
     n87 --> n48
     s3 --> n75["Archive2"]
@@ -155,6 +154,8 @@ flowchart TD
     n49 --> n117["lifesotough"]
     n116 --> n118@{ label: "<div style=\"color:\"><span style=\"color:\">DontUnderstandIt</span></div>" }
     n77 --> s7
+    n124 --> n125["SomethinsNotOkay"]
+    n123["lonestar"]
     n48@{ shape: rect}
     n105@{ shape: rect}
     n91@{ shape: rect}
@@ -169,11 +170,14 @@ flowchart TD
     n49@{ shape: rect}
     n44@{ shape: rect}
     n52@{ shape: rect}
+    n121@{ shape: rect}
+    n122@{ shape: rect}
     n75@{ shape: rect}
     n109@{ shape: rect}
     n115@{ shape: rect}
     n116@{ shape: rect}
     n118@{ shape: rect}
+    n123@{ shape: rounded}
      n48:::Rose
      n2:::Rose
      n10:::Rose
@@ -190,6 +194,7 @@ flowchart TD
      n51:::Rose
      n53:::Rose
      n57:::Rose
+     n124:::Rose
      n49:::Rose
      n44:::Rose
      n63:::Rose
