@@ -1,4 +1,4 @@
-let asteria = 1000000000;
+let asteria = 0;
 let clickPower = 1;
 let passiveIncome = 0;
 let hasHairDye = false;

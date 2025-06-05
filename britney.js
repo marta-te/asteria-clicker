@@ -82,8 +82,8 @@ setInterval(() => {
   console.log(`🎯 Spawn roll: ${roll} vs chance ${adjustedChance}`);
 
   if (!britneyVisible && roll < adjustedChance) {
-  //showBritney(); 
-  //---------------------------------------------------------------------this line is hidden!
+  showBritney(); 
+  //---------------------------------------------------------------------this line is sometimes hidden!
   }
 }, 10000);
 
