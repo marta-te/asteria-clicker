@@ -28,7 +28,7 @@ const activeItems = {
     kets4eki: {cost: 500,currentCost: 500,owned: 0,image: "assets/kets4eki.jpeg", itemDetails:"Unlocks songs w/ kets4eki, click power x2" , locked: true}, //unlocks kets4eki collab
     sunglasses: {cost: 150,currentCost: 150,owned: 0,image: "assets/glasses_spikey.png", itemDetails:"more swag", locked: true },
     hairDye: {cost: 750,currentCost: 750,owned: 0,image: "assets/hairdye.png" , itemDetails:"red hair", locked: true},
-    helloKittyHat: {cost: 1000,currentCost: 1000,owned: 0,image: "assets/kittyhat.png", itemDetails:"Update Asteria swag" , locked: true }, // Unlocks GALORE achievement
+    helloKittyHat: {cost: 1000,currentCost: 1000,owned: 0,image: "assets/kittyhat.PNG", itemDetails:"Update Asteria swag" , locked: true }, // Unlocks GALORE achievement
     dogsteria: {cost: 409,currentCost: 409,owned: 0,image: "assets/dogsteria.jpg", itemDetails:"Update Asteria swag" , locked: true },
     clonnex: {cost: 2000,currentCost: 2000,owned: 0,image: "assets/clonnex.png", itemDetails:"Every 30s get a random passive item's value", locked: true },
     _6arelyhuman: {cost: 6000,currentCost: 6000,owned: 0,image: "assets/6arelyhuman.jpeg", itemDetails:"10s multiplier: Active x2, Passive x3", locked: true},
