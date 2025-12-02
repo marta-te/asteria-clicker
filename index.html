@@ -1,54 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <title>Asteria Clicker</title>
-    <!-- Preconnect to improve font loading speed -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sono:wght@200..800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <div id="danger" style="display: none; position: absolute; top: 20px; right: 20px; z-index: 10;">
-    <img id="dangerImage" src="assets/britney_manson.PNG" alt="Danger" style="width: 100px; cursor: pointer;"  />
-  </div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asteria Clicker - Login & Leaderboard</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Sono:wght@200..800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Sono', sans-serif;
+      background: #1a1a1a;
+      color: rgb(255, 255, 255);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 50px;
+    }
+
+    .container {
+      display: flex;
+      gap: 40px;
+      width: 90%;
+      max-width: 1200px;
+    }
+
+    .auth-box, .leaderboard-box {
+      background: #222;
+      padding: 20px;
+      border-radius: 12px;
+      width: 350px;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border-radius: 6px;
+      border: none;
+    }
+
+    button {
+      font-family: 'Sono', sans-serif;
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #6e0000;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background: #310f0f;
+    }
+
+    #message {
+      margin-top: 15px;
+      text-align: center;
+      color: #ff0000;
+    }
+
+    ul {
+      padding-left: 0;
+      list-style: none;
+      margin-top: 15px;
+    }
+
+    li {
+      padding: 6px 0;
+      border-bottom: 1px solid #80000059;
+    }
+  </style>
+</head>
 <body>
+
   <div class="container">
-    <div class="shop-container" id="activeShop">
-      <h2>Active: <span id="activeRate">+0 Ⓐ/s</span></h2>
+
+    <!-- LEFT: LOGIN / REGISTER -->
+    <div class="auth-box">
+      <h1>Asteria Clicker</h1>
+
+      <h2>Register</h2>
+      <input type="text" id="regUsername" placeholder="Username">
+      <input type="password" id="regPassword" placeholder="Password">
+      <button onclick="register()">Register</button>
+
+      <h2 style="margin-top: 30px;">Login</h2>
+      <input type="text" id="loginUsername" placeholder="Username">
+      <input type="password" id="loginPassword" placeholder="Password">
+      <button onclick="login()">Login</button>
+
+      <p id="message"></p>
     </div>
 
-    <div class="game-area">
-        <button id="achievementsBtn">Achievements</button>
-      <div id="asteriaDisplay"> 0 Ⓐ</div>
-      <button id="clickBtn">
-        <img src="assets/asteria.PNG" alt="Click Icon" class="asteria-img"/>
-      </button>
+    <!-- RIGHT: LEADERBOARD -->
+    <div class="leaderboard-box">
+      <h2>Top 20 Players</h2>
+      <ul id="leaderboard">
+        <li>Loading...</li>
+      </ul>
     </div>
 
-
-    
-
-  <div id="achievementsPanel" style="display: none;">
-    <h2>Achievements</h2>
-    <ul id="achievementsList">
-        <!-- Achievements go here -->
-    </ul>
-    </div>
-        <div class="shop-container" id="passiveShop">
-            <h2>Passive: <span id="passiveRate">+0 Ⓐ/s</span></h2>
-        </div>
   </div>
 
-  <script src="game.js"></script>
-  <script src="britney.js"></script>
-  <script src="achievements.js"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyClgZg22t_i8I6fs21pe8eBZEKBc4WnwoA",
+      authDomain: "asteriaclicker.firebaseapp.com",
+      projectId: "asteriaclicker",
+      storageBucket: "asteriaclicker.firebasestorage.app",
+      messagingSenderId: "991305827040",
+      appId: "1:991305827040:web:02bd7b1081e388342b4685"
+    };
 
-  </body>
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
 
-  
+    const message = document.getElementById("message");
+    const leaderboardList = document.getElementById("leaderboard");
+
+    // REGISTER
+    function register() {
+      const username = document.getElementById("regUsername").value.trim();
+      const password = document.getElementById("regPassword").value;
+      if (!username || !password) return message.innerText = "Enter username and password.";
+
+      const email = username + "@game.com";
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          message.innerText = "Registration successful!";
+          const userId = auth.currentUser.uid;
+
+          // Create Firestore user doc
+          db.collection("users").doc(userId).set({
+            username: username,
+            score: 0,
+            allTimeA: 0
+          });
+        })
+        .catch(err => message.innerText = err.message);
+    }
+
+    // LOGIN
+    function login() {
+      const username = document.getElementById("loginUsername").value.trim();
+      const password = document.getElementById("loginPassword").value;
+      if (!username || !password) return message.innerText = "Enter username and password.";
+
+      const email = username + "@game.com";
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          window.location.href = "game.html";
+        })
+        .catch(err => message.innerText = err.message);
+    }
+
+    // LEADERBOARD (TOP 20 BY allTimeA)
+    function loadLeaderboard() {
+      db.collection("users")
+        .orderBy("allTimeA", "desc")
+        .limit(20)
+        .get()
+        .then(snapshot => {
+          leaderboardList.innerHTML = "";
+          let rank = 1;
+
+          snapshot.forEach(doc => {
+            const data = doc.data();
+            const li = document.createElement("li");
+            li.innerText = `#${rank} — ${data.username || "Unknown"}: ${data.allTimeA || 0} Ⓐ`;
+            leaderboardList.appendChild(li);
+            rank++;
+          });
+        })
+        .catch(err => {
+          leaderboardList.innerHTML = "<li>Failed to load leaderboard</li>";
+          console.error(err);
+        });
+    }
+
+    loadLeaderboard();
+  </script>
+
+</body>
 </html>

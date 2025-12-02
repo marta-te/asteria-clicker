@@ -16,6 +16,12 @@ let achievements = {
     Welostitall: {name: "We Lost It all",unlocked: false,description: "Lose all your Ⓐ to Britney",},
     
     infiniteSwag: {name: "Infinite Swag",unlocked: false,description: "Swag galore | +passive item: GALORE",},
+
+    // New achievements
+    Collector: { name: "Collector", unlocked: false, description: "Own 10 active items.", },
+    Wealthy: { name: "Wealthy", unlocked: false, description: "Accumulate 10,000 Ⓐ (current or all-time).", },
+    PassiveMaster: { name: "Passive Master", unlocked: false, description: "Reach +100 Ⓐ/s passive income.", },
+    buyHairDye: { name: "Hair Dye Buyer", unlocked: false, description: "Purchase hair dye for Asteria.", },
     
     britneyCatcher: {
           name: "Britney Catcher",description: "Catch 10, 100, and 1000 Britneys.",progress: 0,
@@ -26,6 +32,9 @@ let achievements = {
           ],
         }
   };
+
+// expose globally so save/load can access it
+window.achievements = achievements;
 
   function unlockAchievement(key) {
     const achievement = achievements[key];
@@ -99,6 +108,29 @@ let achievements = {
 
     renderAchievements();
   });
+
+// If game.js loaded saved achievements before this file did, apply them now
+if (window.achievementsToLoad) {
+  try {
+    for (const [key, saved] of Object.entries(window.achievementsToLoad)) {
+      const target = achievements[key];
+      if (!target) continue;
+      if (saved.unlocked !== undefined) target.unlocked = saved.unlocked;
+      if (saved.progress !== undefined) target.progress = saved.progress;
+      if (saved.lastUnlockedAt !== undefined) target.lastUnlockedAt = saved.lastUnlockedAt;
+      if (Array.isArray(saved.tiers) && Array.isArray(target.tiers)) {
+        for (let i = 0; i < Math.min(saved.tiers.length, target.tiers.length); i++) {
+          if (saved.tiers[i] && saved.tiers[i].unlocked !== undefined) target.tiers[i].unlocked = saved.tiers[i].unlocked;
+        }
+      }
+    }
+    renderAchievements();
+  } catch (e) {
+    console.error('Error applying stashed achievements:', e);
+  }
+  // clear stash
+  delete window.achievementsToLoad;
+}
   
   
   function updateBritneyProgress(count) {

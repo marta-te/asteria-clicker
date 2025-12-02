@@ -11,6 +11,19 @@ let barelyhumanBought = false;
 let kets4ekiBought = false;
 let kmrnxoBought = false;
 
+window.modifyScore = function(amount) {
+  asteria += amount;
+  if (asteria < 0) asteria = 0;
+  updateDisplays();
+  // Track all-time Asteria (only increase on positive gains)
+  if (amount > 0) {
+    window.allTimeA = (window.allTimeA || 0) + amount;
+  }
+  // keep window copy of asteria for saveProgress
+  window.asteria = asteria;
+};
+
+
 
 window.stoleAll = false;
 
@@ -28,7 +41,7 @@ const activeItems = {
     kets4eki: {cost: 500,currentCost: 500,owned: 0,image: "assets/kets4eki.jpeg", itemDetails:"Unlocks songs w/ kets4eki, click power x2" , locked: true}, //unlocks kets4eki collab
     sunglasses: {cost: 150,currentCost: 150,owned: 0,image: "assets/glasses_spikey.png", itemDetails:"more swag", locked: true },
     hairDye: {cost: 750,currentCost: 750,owned: 0,image: "assets/hairdye.png" , itemDetails:"red hair", locked: true},
-    helloKittyHat: {cost: 1000,currentCost: 1000,owned: 0,image: "assets/kittyhat.PNG", itemDetails:"Update Asteria swag" , locked: true }, // Unlocks GALORE achievement
+    helloKittyHat: {cost: 1000,currentCost: 1000,owned: 0,image: "assets/kittyhat.png", itemDetails:"Update Asteria swag" , locked: true }, // Unlocks GALORE achievement
     dogsteria: {cost: 409,currentCost: 409,owned: 0,image: "assets/dogsteria.jpg", itemDetails:"Update Asteria swag" , locked: true },
     clonnex: {cost: 2000,currentCost: 2000,owned: 0,image: "assets/clonnex.png", itemDetails:"Every 30s get a random passive item's value", locked: true },
     _6arelyhuman: {cost: 6000,currentCost: 6000,owned: 0,image: "assets/6arelyhuman.jpeg", itemDetails:"10s multiplier: Active x2, Passive x3", locked: true},
@@ -223,26 +236,64 @@ const activeItems = {
         MakeItBOUNCE: { baseCost: 47069420, currentCost: 47069420, income: 69, owned: 0, image: "assets/party4life.jpg", locked: true, album: "party4life" },        
       };
       
+  // Expose item collections to the global window so save/load can access them
+  window.activeItems = activeItems;
+  window.passiveItems = passiveItems;
+
+  function syncWindowState() {
+    // primitives & flags
+    window.clickPower = clickPower;
+    window.hasHairDye = hasHairDye;
+    window.hasGlasses = hasGlasses;
+    window.hasHelloKittyHat = hasHelloKittyHat;
+    window.hasDogsteria = hasDogsteria;
+    window.VyzerBought = VyzerBought;
+    window.LytraBought = LytraBought;
+    window.barelyhumanBought = barelyhumanBought;
+    window.kets4ekiBought = kets4ekiBought;
+    window.kmrnxoBought = kmrnxoBought;
+    window.stoleAll = window.stoleAll || false;
+    // keep references to item objects
+    window.activeItems = activeItems;
+    window.passiveItems = passiveItems;
+  }
+      
 
    //MikuMikuBEAAAAM
 
   function updateDisplays() {
-    let calculatedPassiveIncome = 0;
+  // compute passive income from owned, unlocked passive items (+ Clonnex mimic)
+  let calculatedPassiveIncome = 0;
   for (const item of Object.values(passiveItems)) {
-    if (!item.locked) {
+    if (!item.locked && item.income) {
       calculatedPassiveIncome += item.income * item.owned;
     }
   }
-    if (asteriaDisplay) asteriaDisplay.textContent = `${asteria} Ⓐ`;
-    if (passiveRateDisplay) passiveRateDisplay.textContent = `+${calculatedPassiveIncome} Ⓐ/s`;
-    if (activeRateDisplay) activeRateDisplay.textContent = `+${clickPower} Ⓐ/click`;
+  // include clonnex mimic bonus
+  calculatedPassiveIncome += clonnexMimicIncome || 0;
+
+  // update global passiveIncome so other code / UI can read it
+  passiveIncome = calculatedPassiveIncome;
+
+  if (asteriaDisplay) asteriaDisplay.textContent = `${asteria} Ⓐ`;
+  if (passiveRateDisplay) passiveRateDisplay.textContent = `+${passiveIncome} Ⓐ/s`;
+  if (activeRateDisplay) activeRateDisplay.textContent = `+${clickPower} Ⓐ/click`;
+  // Evaluate achievements when displays update
+  if (typeof checkAchievements === 'function') checkAchievements();
   }
   
-  clickBtn.onclick = () => {
-    asteria += clickPower;
-    updateDisplays();
-    updateClickProgress(1); // Register the click toward achievement progress
-  };
+clickBtn.onclick = () => {
+    modifyScore(clickPower);
+
+    // Immediately update the display
+    asteriaDisplay.textContent = `${asteria} Ⓐ`;
+
+    updateDisplays(); // optional if you have other updates like passive rate, click rate
+    
+    // Track click achievement progress
+    if (typeof updateClickProgress === 'function') updateClickProgress(1);
+};
+
   
   //-------------------------------------------------------------------------------------------------Buy active items-----------------------------------------------------
 
@@ -251,7 +302,8 @@ const activeItems = {
 
         const item = activeItems[name];
         if (asteria >= item.currentCost) {
-            asteria -= item.currentCost;
+            modifyScore(-item.currentCost);
+
             item.owned += 1;
             
             activateItemEffect(name);
@@ -517,6 +569,8 @@ const activeItems = {
 
       renderShops(); 
       updateAsteriaImage();
+      // keep window.* copies in sync for saving
+        if (typeof syncWindowState === 'function') syncWindowState();
  }
 }
 
@@ -722,29 +776,25 @@ function buyPassiveItem(name) {
   
       renderShops();
       updateDisplays();
+      // sync window copies for saving
+      if (typeof syncWindowState === 'function') syncWindowState();
     }
   }
   function applyPassiveIncome() {
+    // recompute and apply passive income for this tick (keeps logic colocated)
     let totalIncome = 0;
-
-  
     for (const item of Object.values(passiveItems)) {
-      if (!item.locked) {
-        totalIncome += item.income * item.owned;
-      }
+      if (!item.locked && item.income) totalIncome += item.income * item.owned;
     }
-  
-    totalIncome += clonnexMimicIncome; // Add Clonnex bonus here
-    asteria += totalIncome;
-  
-    updateDisplays();
+    totalIncome += clonnexMimicIncome || 0;
+    if (totalIncome !== 0) modifyScore(totalIncome);
   }
   
   
 
+// once per second, apply the computed passive income
 setInterval(() => {
-  asteria += passiveIncome;
-  applyPassiveIncome()
+  applyPassiveIncome();
   updateDisplays();
 }, 1000);
 
@@ -904,6 +954,21 @@ function updateAsteriaImage() {
   
   
 
+
+// If Firestore provided a saved score/gameState before game.js loaded, apply it now
+if (window.asteriaToLoad !== undefined) {
+  asteria = window.asteriaToLoad;
+  // keep window copy in sync
+  window.asteria = asteria;
+  console.log(`✅ Applied saved asteria: ${asteria}`);
+}
+if (window.gameStateToLoad) {
+  // merge saved state into current objects
+  window.loadGameState && window.loadGameState(window.gameStateToLoad);
+}
+
+// ensure window copies available
+if (typeof syncWindowState === 'function') syncWindowState();
 
 renderShops();
 updateDisplays();
@@ -1079,4 +1144,108 @@ if (window.stoleAll) {
     hideBritney();
     renderShops();
   }
+  
+  // === LOAD GAME STATE FROM FIREBASE ===
+  window.loadGameState = function(gameState) {
+    if (!gameState) return;
+    
+    // Restore global flags and stats
+    if (gameState.clickPower !== undefined) clickPower = gameState.clickPower;
+    if (gameState.hasHairDye !== undefined) hasHairDye = gameState.hasHairDye;
+    if (gameState.hasGlasses !== undefined) hasGlasses = gameState.hasGlasses;
+    if (gameState.hasHelloKittyHat !== undefined) hasHelloKittyHat = gameState.hasHelloKittyHat;
+    if (gameState.hasDogsteria !== undefined) hasDogsteria = gameState.hasDogsteria;
+    if (gameState.VyzerBought !== undefined) VyzerBought = gameState.VyzerBought;
+    if (gameState.LytraBought !== undefined) LytraBought = gameState.LytraBought;
+    if (gameState.barelyhumanBought !== undefined) barelyhumanBought = gameState.barelyhumanBought;
+    if (gameState.kets4ekiBought !== undefined) kets4ekiBought = gameState.kets4ekiBought;
+    if (gameState.kmrnxoBought !== undefined) kmrnxoBought = gameState.kmrnxoBought;
+    if (gameState.stoleAll !== undefined) window.stoleAll = gameState.stoleAll;
+    
+    // Restore item ownership and state
+    if (gameState.activeItems) {
+      for (const [key, savedItem] of Object.entries(gameState.activeItems)) {
+        if (activeItems[key]) {
+          activeItems[key].owned = savedItem.owned || 0;
+          activeItems[key].currentCost = savedItem.currentCost || activeItems[key].cost;
+          if (savedItem.locked !== undefined) activeItems[key].locked = savedItem.locked;
+        }
+      }
+    }
+    
+    if (gameState.passiveItems) {
+      for (const [key, savedItem] of Object.entries(gameState.passiveItems)) {
+        if (passiveItems[key]) {
+          passiveItems[key].owned = savedItem.owned || 0;
+          passiveItems[key].currentCost = savedItem.currentCost || passiveItems[key].baseCost;
+          if (savedItem.locked !== undefined) passiveItems[key].locked = savedItem.locked;
+        }
+      }
+    }
+
+    // Restore achievements if present (achievements.js may load later)
+    if (gameState.achievements) {
+      if (window.achievements) {
+        try {
+          for (const [key, saved] of Object.entries(gameState.achievements)) {
+            const target = window.achievements[key];
+            if (!target) continue;
+            if (saved.unlocked !== undefined) target.unlocked = saved.unlocked;
+            if (saved.progress !== undefined) target.progress = saved.progress;
+            if (saved.lastUnlockedAt !== undefined) target.lastUnlockedAt = saved.lastUnlockedAt;
+            if (Array.isArray(saved.tiers) && Array.isArray(target.tiers)) {
+              for (let i = 0; i < Math.min(saved.tiers.length, target.tiers.length); i++) {
+                if (saved.tiers[i] && saved.tiers[i].unlocked !== undefined) target.tiers[i].unlocked = saved.tiers[i].unlocked;
+              }
+            }
+          }
+          if (typeof renderAchievements === 'function') renderAchievements();
+        } catch (e) { console.error('Error restoring achievements:', e); }
+      } else {
+        // stash for achievements.js to apply later
+        window.achievementsToLoad = gameState.achievements;
+      }
+    }
+    
+    console.log("✅ Game state loaded from Firestore");
+    
+    // Re-render shops and update displays after loading
+    if (typeof renderShops === 'function') renderShops();
+    if (typeof updateAsteriaImage === 'function') updateAsteriaImage();
+    if (typeof updateDisplays === 'function') updateDisplays();
+    if (typeof syncWindowState === 'function') syncWindowState();
+
+    // Ensure any derived/unlocked state based on owned items is applied
+    try {
+      if (typeof checkUnlocks === 'function') checkUnlocks();
+      if (typeof checkAllRave2DeathBought === 'function') checkAllRave2DeathBought();
+      if (typeof checkAllAA1 === 'function') checkAllAA1();
+      if (typeof checkAllAA2 === 'function') checkAllAA2();
+      if (typeof checkAllAA3 === 'function') checkAllAA3();
+      // Start clonnex mimic effect if owned
+      if (activeItems.clonnex && activeItems.clonnex.owned > 0) {
+        if (typeof startClonnexEffect === 'function') startClonnexEffect();
+      }
+    } catch (e) {
+      console.error('Error applying derived state after load:', e);
+    }
+  };
+
+// Achievement checks based on runtime state
+function checkAchievements() {
+  try {
+    // Collector: own 10 active items
+    const totalActiveOwned = Object.values(activeItems).reduce((s, it) => s + (it.owned || 0), 0);
+    if (totalActiveOwned >= 10) { if (typeof unlockAchievement === 'function') unlockAchievement('Collector'); }
+
+    // Wealthy: 10k asteria (current or all-time)
+    const totalEarned = (window.allTimeA || 0) + 0; // prefer allTimeA
+    if (asteria >= 10000 || totalEarned >= 10000) { if (typeof unlockAchievement === 'function') unlockAchievement('Wealthy'); }
+
+    // Passive master: passiveIncome threshold
+    if ((passiveIncome || 0) >= 100) { if (typeof unlockAchievement === 'function') unlockAchievement('PassiveMaster'); }
+  } catch (e) {
+    console.error('Error checking achievements:', e);
+  }
+}
   

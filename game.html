@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asteria Clicker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sono:wght@200..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  
+
+  <div class="container">
+    <div class="shop-container" id="activeShop">
+      <h2>Active: <span id="activeRate">+0 Ⓐ/s</span></h2>
+    </div>
+
+    <div class="game-area" style="position: relative;">
+        <button id="logoutBtn" style="position: fixed; top: 20px; right: 20px;">Logout</button>
+      <button id="achievementsBtn">Achievements</button>
+      <div id="asteriaDisplay">0 Ⓐ</div>
+      <button id="clickBtn">
+        <img src="assets/asteria.PNG" alt="Click Icon" class="asteria-img">
+      </button>
+
+      <!-- Britney container (hidden by default) -->
+      <div id="danger" style="display:none; position:absolute; left:50%; top:0; transform:translateX(-50%); z-index:1000;">
+        <img id="dangerImage" src="assets/britney_manson.PNG" alt="Britney" style="width:120px; height:auto; cursor:pointer;">
+      </div>
+    </div>
+
+    <div id="achievementsPanel" style="display: none;">
+      <h2>Achievements</h2>
+      <ul id="achievementsList"></ul>
+    </div>
+
+    <div class="shop-container" id="passiveShop">
+      <h2>Passive: <span id="passiveRate">+0 Ⓐ/s</span></h2>
+    </div>
+  </div>
+
+  <!-- Firebase CDN -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyClgZg22t_i8I6fs21pe8eBZEKBc4WnwoA",
+    authDomain: "asteriaclicker.firebaseapp.com",
+    projectId: "asteriaclicker",
+    storageBucket: "asteriaclicker.firebasestorage.app",
+    messagingSenderId: "991305827040",
+    appId: "1:991305827040:web:02bd7b1081e388342b4685"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  auth.onAuthStateChanged(user => {
+    if (!user) return window.location.href = "index.html";
+
+    const userId = user.uid;
+
+  const scoreDisplay = document.getElementById("asteriaDisplay");
+
+  // Initialize global allTimeA (game.js will update window.allTimeA when score changes)
+  window.allTimeA = window.allTimeA || 0;
+
+  db.collection("users").doc(userId).get().then(doc => {
+    if (doc.exists) {
+      const data = doc.data();
+      // set displayed score and global counters
+      scoreDisplay.innerText = (data.score || 0) + " Ⓐ";
+      window.allTimeA = data.allTimeA || 0;
+      
+      // Load game state (items, click power, etc.) if it exists
+      if (data.gameState) {
+        // Defer to game.js loader if available, otherwise stash until it runs
+        if (typeof window.loadGameState === 'function') {
+          window.loadGameState(data.gameState);
+        } else {
+          window.gameStateToLoad = data.gameState;
+        }
+      }
+
+      // Prefer restoring asteria from saved score into the runtime loader
+      if (typeof window.asteriaToLoad === 'undefined') window.asteriaToLoad = data.score || 0;
+
+      if (typeof updateDisplays === 'function') updateDisplays();
+    }
+  });
+
+
+  // Save progress (exposed globally so game.js can call it)
+  window.saveProgress = function() {
+    // ensure window copies are current before serializing
+    if (typeof syncWindowState === 'function') syncWindowState();
+
+    // prefer authoritative runtime value if available
+    const score = (typeof window.asteria === 'number') ? window.asteria : (parseInt((scoreDisplay ? scoreDisplay.innerText : '').replace(/[^0-9-]/g, '')) || 0);
+
+    // Gather game state from game.js globals
+    const gameState = {
+      clickPower: window.clickPower || 1,
+      hasHairDye: window.hasHairDye || false,
+      hasGlasses: window.hasGlasses || false,
+      hasHelloKittyHat: window.hasHelloKittyHat || false,
+      hasDogsteria: window.hasDogsteria || false,
+      VyzerBought: window.VyzerBought || false,
+      LytraBought: window.LytraBought || false,
+      barelyhumanBought: window.barelyhumanBought || false,
+      kets4ekiBought: window.kets4ekiBought || false,
+      kmrnxoBought: window.kmrnxoBought || false,
+      stoleAll: window.stoleAll || false,
+      activeItems: window.activeItems ? JSON.parse(JSON.stringify(window.activeItems)) : {},
+      passiveItems: window.passiveItems ? JSON.parse(JSON.stringify(window.passiveItems)) : {}
+    };
+
+    // include achievements state when available
+    if (window.achievements) {
+      try {
+        gameState.achievements = JSON.parse(JSON.stringify(window.achievements));
+      } catch (e) {
+        console.warn('Could not serialize achievements for save', e);
+      }
+    }
+    
+    // debug: log what we're about to save (helps verify persistence)
+    try { console.log('Saving progress to Firestore for', userId, { score, allTimeA: window.allTimeA, gameState }); } catch(e){}
+
+    return db.collection("users").doc(userId).set({
+      score: score,
+      allTimeA: window.allTimeA || 0,
+      gameState: gameState
+    }, { merge: true });
+  };
+
+
+    // Allow game.js to SET the value on login
+    window.setScore = function(value) {
+      if (scoreDisplay) scoreDisplay.innerText = value + " Ⓐ";
+    }
+
+    // Only save on logout (to reduce Firestore writes)
+    // Logout
+ document.getElementById("logoutBtn").addEventListener("click", () => {
+      // disable button to avoid duplicate clicks
+      document.getElementById("logoutBtn").disabled = true;
+      // try to save, then sign out; sign out even if save fails
+      window.saveProgress()
+        .catch(err => console.error('Save failed on logout:', err))
+        .then(() => auth.signOut())
+        .then(() => window.location.href = "index.html");
+    });
+  });
+</script>
+
+
+
+
+  <script src="game.js"></script>
+  <script src="britney.js"></script>
+  <script src="achievements.js"></script>
+</body>
+</html>
