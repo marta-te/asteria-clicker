@@ -416,6 +416,15 @@ body {
     animation: barelyPulse 10s infinite alternate;
     filter: hue-rotate(0.1deg) saturate(2.5) brightness(1.6) contrast(2);
   }
+
+  html, body {
+  touch-action: manipulation;
+}
+
+button {
+  touch-action: manipulation;
+}
+
   
   @keyframes barelyPulse {
     0% { filter: hue-rotate(0deg) saturate(2) brightness(1.4) contrast(1.8); }
